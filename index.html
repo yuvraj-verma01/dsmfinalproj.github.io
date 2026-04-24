@@ -3,749 +3,1484 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ST Education and Livelihood Dashboard</title>
+    <title>When Schooling Does Not Become Security</title>
     <meta
       name="description"
-      content="Interactive DSM final project dashboard on Scheduled Tribe education, poverty, employment, dropout, and MGNREG distress across high-ST states in India."
+      content="A policy analysis of Scheduled Tribe education, poverty, employment, dropout, and livelihood distress across high-ST states in India."
     >
     <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
     <header class="topbar">
-      <a class="brand" href="#top">DSM Final Project</a>
-      <nav aria-label="Dashboard sections">
-        <a href="#dashboard">Dashboard</a>
-        <a href="#questions">Questions</a>
-        <a href="#states">States</a>
-        <a href="#methods">Methods</a>
+      <a class="site-name" href="#top">DSM Final Project</a>
+
+      <nav aria-label="Article sections">
+        <a href="#introduction">Introduction</a>
+        <a href="#problem-statement">Problem Statement</a>
+        <a href="#analysis-results">Analysis & Results</a>
         <a href="#recommendations">Recommendations</a>
+        <a href="#limitations">Limitations</a>
+        <a href="#references">References</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Scheduled Tribe education, poverty, employment, and livelihood distress</p>
-          <h1>When schooling does not become security</h1>
-          <p>
-            This dashboard studies whether better ST education outcomes are associated with lower poverty,
-            stronger work outcomes, and lower livelihood distress across high-ST states in India.
+    <main id="top" class="page">
+      <article class="post">
+
+        <header class="post-header">
+          <div class="tags" aria-label="Project topics">
+            <span>Scheduled Tribes</span>
+            <span>Education</span>
+            <span>Poverty</span>
+            <span>Employment</span>
+            <span>Policy Analysis</span>
+          </div>
+
+          <h1>When Schooling Does Not Become Security</h1>
+
+          <p class="subtitle">
+            A data-driven policy analysis of Scheduled Tribe education, poverty,
+            employment, dropout, and livelihood distress across high-ST states in India.
           </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#dashboard">Explore dashboard</a>
-            <a class="button ghost" href="#questions">Read key findings</a>
-          </div>
-        </div>
-        <div class="hero-panel" aria-label="Project summary">
-          <div>
-            <span class="panel-value" id="heroStates">--</span>
-            <span class="panel-label">high-ST states in master file</span>
-          </div>
-          <div>
-            <span class="panel-value">13</span>
-            <span class="panel-label">policy questions in notebook</span>
-          </div>
-          <div>
-            <span class="panel-value">NDAP</span>
-            <span class="panel-label">core data source</span>
-          </div>
-        </div>
-      </section>
 
-      <section id="dashboard" class="dashboard-shell">
-        <div class="section-heading">
-          <p class="eyebrow">Interactive dashboard</p>
-          <h2>Education-livelihood profile across high-ST states</h2>
+          <div class="byline">
+            <span>Yuvraj Verma</span>
+            <span>DSM Final Project</span>
+            <span>April 2026</span>
+            <span>Policy Data Analysis</span>
+          </div>
+        </header>
+
+        <section id="introduction">
+          <h2>Introduction</h2>
+
           <p>
-            Use the controls to compare education indicators against poverty, labour outcomes, and MGNREG distress.
-            Points are states. Click a point or select a state to update the profile panel.
+            This project studies the relationship between Scheduled Tribe educational
+            outcomes and broader livelihood indicators across Indian states. The analysis
+            focuses especially on high-ST states, where education, poverty, employment,
+            and social disadvantage often overlap in complex ways.
           </p>
-        </div>
 
-        <div class="metric-grid" aria-label="Summary metrics">
-          <article class="metric-card">
-            <span class="metric-label">Mean ST literacy</span>
-            <strong id="metricLiteracy">--</strong>
-            <small>Across high-ST states with data</small>
-          </article>
-          <article class="metric-card">
-            <span class="metric-label">Mean secondary dropout</span>
-            <strong id="metricDropout">--</strong>
-            <small>StateUT-wise ST dropout rate</small>
-          </article>
-          <article class="metric-card">
-            <span class="metric-label">Mean ST poverty</span>
-            <strong id="metricPoverty">--</strong>
-            <small>Available BPL poverty sample</small>
-          </article>
-          <article class="metric-card">
-            <span class="metric-label">Unmet MGNREG demand</span>
-            <strong id="metricMgnreg">--</strong>
-            <small>Sought but did not receive work per 1000</small>
-          </article>
-        </div>
+          <p>
+            Instead of only asking whether schooling levels are high or low, the project
+            asks whether education outcomes are translating into better livelihood security.
+            This makes the analysis useful for identifying where policy support may be most
+            urgently needed.
+          </p>
+        </section>
 
-        <div class="dashboard-grid">
-          <section class="panel chart-panel">
-            <div class="panel-header">
-              <div>
-                <h3>Relationship explorer</h3>
-                <p id="chartSubtitle">Choose variables to test the project questions.</p>
-              </div>
-              <div class="correlation-pill" id="corrPill">r = --</div>
-            </div>
+        <section id="problem-statement">
+          <h2>Problem Statement</h2>
 
-            <div class="control-grid">
-              <label>
-                X-axis
-                <select id="xSelect"></select>
-              </label>
-              <label>
-                Y-axis
-                <select id="ySelect"></select>
-              </label>
-              <label>
-                Color by
-                <select id="colorSelect">
-                  <option value="overall_priority_score">Policy priority score</option>
-                  <option value="dropout_secondary_pct">Secondary dropout</option>
-                  <option value="st_bpl_mean_pct">ST poverty</option>
-                  <option value="mgnreg_sought_not_received_per_1000">MGNREG unmet demand</option>
-                </select>
-              </label>
-            </div>
+          <p>
+            The main problem addressed in this project is that better educational access
+            does not always lead to better economic outcomes for Scheduled Tribe populations.
+            States may show improvement in enrolment or literacy, but still face high dropout,
+            poverty, weak employment outcomes, or dependence on public employment schemes.
+          </p>
 
-            <div class="chart-wrap">
-              <svg id="scatterChart" role="img" aria-label="Interactive scatterplot"></svg>
-              <div id="tooltip" class="tooltip" hidden></div>
-            </div>
+          <p>
+            Therefore, the project asks:
+          </p>
+
+          <blockquote>
+            How do educational outcomes among Scheduled Tribe populations relate to
+            employment, poverty, and livelihood distress across high-ST states in India?
+          </blockquote>
+        </section>
+
+        <section id="analysis-results">
+          <h2>Analysis and Results</h2>
+
+          <section id="q1">
+            <h3>Q1. How do ST literacy and literacy gaps describe long-term educational exclusion?</h3>
+
+            <p>The correlations between ST literacy rate and employment or poverty outcomes are weak and noisy. The scatter of literacy rate against work participation shows a loose positive trend, but with enough deviation that literacy rate alone explains very little of the variation in WPR across states. Similarly, the literacy gap against WPR runs in the expected direction — larger gaps coincide with lower work participation — but again the relationship is too scattered to treat as causal. What this tells us is not that literacy causes employment or poverty in a direct, measurable way, but rather that both literacy and livelihood outcomes are downstream of the same long-run structural conditions: historical access to schooling, geographic integration, and administrative reach over decades. Literacy is measuring accumulated exclusion, not a current lever. The literacy gap adds a genuinely distinct layer — it flags whether women were left behind even within already-disadvantaged ST communities — which the aggregate literacy rate obscures entirely. The two indicators together describe the shape of historical exclusion, but they are poor predictors of near-term economic outcomes, and they should not be confused with the current schooling pipeline, which needs GER and dropout to be assessed properly.
+            </p>
+            <figure>
+              <img src="assets\figures\q1-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q1-2.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q1-3.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q1-4.png">
+            </figure>
           </section>
+          <section id="q2">
+            <h3>Q2. Do states with stronger ST schooling participation, measured by GER, also have lower dropout and lower ST poverty?</h3>
 
-          <aside class="panel state-panel">
-            <div class="panel-header">
-              <div>
-                <h3>State profile</h3>
-                <p>Compare one state against the high-ST sample median.</p>
-              </div>
-            </div>
-            <label class="state-picker">
-              State
-              <select id="stateSelect"></select>
-            </label>
-            <div id="stateProfile" class="state-profile"></div>
-          </aside>
-        </div>
-      </section>
-
-      <section id="questions" class="question-section">
-        <div class="section-heading">
-          <p class="eyebrow">Key project questions</p>
-          <h2>Evidence panels</h2>
-          <p>
-            These are the strongest question-level views from the notebook. The dashboard keeps the
-            graph exports for clear reporting and the scatterplot above for live exploration.
-          </p>
-        </div>
-
-        <div class="question-tabs" role="tablist" aria-label="Question tabs">
-          <button class="tab is-active" data-question="q2" type="button">Q2 GER and dropout</button>
-          <button class="tab" data-question="q4" type="button">Q4 Literacy gap</button>
-          <button class="tab" data-question="q6" type="button">Q6 MGNREG distress</button>
-          <button class="tab" data-question="q8" type="button">Q8 Education-livelihood mismatch</button>
-          <button class="tab" data-question="q10" type="button">Q10 Warning signals</button>
-          <button class="tab" data-question="q12" type="button">Q12 Spatial concentration</button>
-        </div>
-
-        <div class="question-layout">
-          <article class="panel question-copy">
-            <p class="eyebrow" id="questionTag">Q2</p>
-            <h3 id="questionTitle">Schooling participation is not enough</h3>
-            <p id="questionText"></p>
-            <ul id="questionBullets"></ul>
-          </article>
-
-          <article class="panel evidence-card">
-            <div class="panel-header">
-              <div>
-                <h3 id="evidenceTitle">Evidence graph</h3>
-                <p id="evidenceCaption"></p>
-              </div>
-              <div class="image-controls">
-                <button id="prevImage" type="button" aria-label="Previous graph">Prev</button>
-                <button id="nextImage" type="button" aria-label="Next graph">Next</button>
-              </div>
-            </div>
-            <img id="evidenceImage" src="" alt="">
-          </article>
-        </div>
-      </section>
-
-      <section id="states" class="table-section">
-        <div class="section-heading">
-          <p class="eyebrow">State prioritisation</p>
-          <h2>Which states need different policy attention?</h2>
-          <p>
-            Sort the table to see how education disadvantage, economic vulnerability, and overall priority
-            differ across high-ST states. The table is intentionally compact for quick comparison.
-          </p>
-        </div>
-
-        <div class="panel">
-          <div class="table-controls">
-            <label>
-              Sort by
-              <select id="sortSelect">
-                <option value="overall_priority_score">Overall priority</option>
-                <option value="education_disadvantage_score">Education disadvantage</option>
-                <option value="economic_vulnerability_score">Economic vulnerability</option>
-                <option value="dropout_secondary_pct">Secondary dropout</option>
-                <option value="mgnreg_sought_not_received_per_1000">MGNREG unmet demand</option>
-              </select>
-            </label>
-            <label>
-              Filter
-              <input id="stateSearch" type="search" placeholder="Search state">
-            </label>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>State</th>
-                  <th>Priority</th>
-                  <th>Education</th>
-                  <th>Economic</th>
-                  <th>Dropout</th>
-                  <th>ST poverty</th>
-                  <th>MGNREG unmet</th>
-                </tr>
-              </thead>
-              <tbody id="priorityTable"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="methods" class="methods-grid">
-        <div class="section-heading">
-          <p class="eyebrow">Data and method</p>
-          <h2>How the dashboard was built</h2>
-        </div>
-
-        <article class="panel">
-          <h3>Unit of analysis</h3>
-          <p>
-            The main analysis uses one row per state in the high-ST state master table. Variables combine
-            ST education, poverty, labour, MGNREG, demographic, village-concentration, scholarship, and
-            tribe-level support datasets.
-          </p>
-        </article>
-        <article class="panel">
-          <h3>Database workflow</h3>
-          <p>
-            Raw CSVs were cleaned into standardized outputs, merged into analysis-ready state tables, and
-            then used to produce notebook EDA, correlation tables, and graph exports.
-          </p>
-        </article>
-        <article class="panel">
-          <h3>Interpretation rule</h3>
-          <p>
-            The dashboard reports associations, not causal estimates. Poverty coverage is limited, and
-            some variables come from different years, so findings are policy signals rather than proof of cause.
-          </p>
-        </article>
-      </section>
-
-      <section id="recommendations" class="recommendations">
-        <div class="section-heading">
-          <p class="eyebrow">Policy reading</p>
-          <h2>What the evidence suggests</h2>
-        </div>
-        <div class="recommendation-grid">
-          <article class="panel">
-            <h3>Retention before expansion</h3>
             <p>
-              GER alone can be misleading. Secondary dropout is a better warning signal for poverty and
-              livelihood distress, so policy should focus on transition and retention support.
+              This question examines whether stronger schooling participation among Scheduled Tribe
+              students is associated with two expected outcomes: lower dropout and lower ST poverty.
+              The results show a mixed picture. GER is useful for measuring schooling access, but it
+              does not automatically indicate educational success or livelihood security. The more
+              important policy signal appears to be retention: whether students stay in school long
+              enough to progress from elementary to secondary education.
             </p>
-          </article>
-          <article class="panel">
-            <h3>Education-livelihood mismatch</h3>
+
             <p>
-              Some states show reasonable schooling participation but continued MGNREG dependence or weak
-              labour outcomes. These states need employment pathways, not only school access.
+              Overall, the findings suggest that stronger schooling participation is linked with lower
+              dropout around the transition into secondary school, especially for girls. However, GER
+              does not clearly translate into lower ST poverty. In fact, some of the poverty results are
+              counter-intuitive, showing that high enrolment can coexist with high poverty.
             </p>
-          </article>
-          <article class="panel">
-            <h3>Spatial targeting</h3>
+
+            <h4>1. GER I–VIII and ST poverty</h4>
+
+            <figure>
+              <img
+                src="assets/q2/q2_ger_i_viii_vs_st_poverty.png"
+                alt="Scatter plot showing GER I-VIII and ST poverty"
+              >
+              <figcaption>
+                GER I–VIII and ST poverty show a positive association: Pearson r = 0.7172,
+                p = 0.0296, n = 9.
+              </figcaption>
+            </figure>
+
             <p>
-              ST village concentration is most clearly linked with unmet MGNREG demand. Service delivery
-              and livelihood programs should account for geographic concentration.
+              The first result is the most counter-intuitive. GER I–VIII has a strong positive
+              relationship with ST poverty in the available poverty sample. Normally, we might expect
+              higher enrolment to be associated with lower poverty. However, the graph shows that
+              states with higher GER I–VIII also tend to have higher ST poverty.
             </p>
-          </article>
-        </div>
-      </section>
+
+            <p>
+              This does not mean that schooling causes poverty. Instead, it shows that GER should not
+              be interpreted as a welfare indicator by itself. GER is a gross enrolment measure, so it
+              can be high because of over-age enrolment, delayed progression, repeat enrolment, late
+              entry into school, or targeted schooling expansion in poorer regions. In other words, a
+              state can have many students enrolled while still struggling with poverty, poor progression,
+              and weak livelihood outcomes.
+            </p>
+
+            <p>
+              States such as Odisha, Madhya Pradesh, Jharkhand, Maharashtra, and Chhattisgarh show
+              relatively high poverty despite high or moderate GER. This suggests that access to school
+              is not enough. The key question is whether students are progressing smoothly and whether
+              schooling eventually improves economic security.
+            </p>
+
+            <h4>2. Secondary dropout and ST poverty</h4>
+
+            <figure>
+              <img
+                src="assets/q2/q2_secondary_dropout_vs_st_poverty.png"
+                alt="Scatter plot showing secondary dropout and ST poverty"
+              >
+              <figcaption>
+                Secondary dropout and ST poverty show a moderate positive association:
+                Pearson r = 0.5266, p = 0.1453, n = 9.
+              </figcaption>
+            </figure>
+
+            <p>
+              The relationship between secondary dropout and ST poverty is more policy-relevant than
+              the relationship between GER and poverty. The graph shows that states with higher
+              secondary dropout tend to also have higher ST poverty. The result is not statistically
+              conclusive because the poverty data is available for only nine states, but the direction
+              is important.
+            </p>
+
+            <p>
+              Dropout is a retention indicator. Unlike GER, which tells us whether students are enrolled,
+              dropout tells us whether students are leaving the school system before completing important
+              stages of education. This makes dropout a sharper signal of educational failure.
+            </p>
+
+            <p>
+              Odisha is the clearest example: it has both very high secondary dropout and very high
+              ST poverty. Madhya Pradesh and Maharashtra also show high dropout along with high poverty.
+              Jammu and Kashmir is an exception, with relatively low ST poverty despite moderate dropout.
+              These differences show that dropout is not the only explanation for poverty, but it is still
+              a stronger warning signal than enrolment alone.
+            </p>
+
+            <h4>3. Secondary GER IX–X and upper-primary dropout</h4>
+
+            <figure>
+              <img
+                src="assets/q2/q2_secondary_ger_ix_x_vs_upper_primary_dropout.png"
+                alt="Scatter plot showing secondary GER IX-X and upper-primary dropout"
+              >
+              <figcaption>
+                Secondary GER IX–X and upper-primary dropout show a negative association:
+                Pearson r = -0.4621, p = 0.0535, n = 18.
+              </figcaption>
+            </figure>
+
+            <p>
+              This graph should be read as a transition-stage result. It does not compare enrolment and
+              dropout within the exact same class group. Instead, it compares secondary GER IX–X with
+              upper-primary dropout. Since upper-primary covers Classes VI–VIII, this relationship tells
+              us something about the transition from upper-primary into secondary schooling.
+            </p>
+
+            <p>
+              The negative relationship suggests that states with stronger secondary participation tend
+              to have lower dropout before students reach secondary school. This makes sense: if many
+              students are dropping out in Classes VI–VIII, fewer students will be visible in Classes IX–X.
+              Therefore, secondary GER partly reflects whether students are successfully moving through
+              the earlier schooling pipeline.
+            </p>
+
+            <p>
+              The result is suggestive rather than definitive because the p-value is slightly above 0.05.
+              Still, it supports an important policy point: improving secondary participation requires
+              attention to earlier dropout. States cannot improve secondary enrolment only by focusing
+              on Classes IX–X; they also need to strengthen retention before students reach that stage.
+            </p>
+
+            <h4>4. Girls’ secondary GER IX–X and upper-primary dropout</h4>
+
+            <figure>
+              <img
+                src="assets/q2/q2_girls_secondary_ger_ix_x_vs_upper_primary_dropout.png"
+                alt="Scatter plot showing girls secondary GER IX-X and upper-primary dropout"
+              >
+              <figcaption>
+                Girls’ secondary GER IX–X and upper-primary dropout show a negative association:
+                Pearson r = -0.5197, p = 0.0271, n = 18.
+              </figcaption>
+            </figure>
+
+            <p>
+              The girls’ secondary GER result is stronger than the overall secondary GER result. States
+              with higher girls’ GER in Classes IX–X tend to have lower upper-primary dropout. This
+              suggests that girls’ progression into secondary education is especially sensitive to
+              whether students are retained through Classes VI–VIII.
+            </p>
+
+            <p>
+              This finding is important because girls’ secondary participation is not just a gender
+              indicator. It may also reflect broader schooling conditions such as safety, transport,
+              household support, scholarship access, school availability, and social acceptance of
+              girls continuing education beyond the elementary stage.
+            </p>
+
+            <p>
+              The result supports the idea that gender-sensitive education policy should focus not only
+              on enrolment at the secondary level, but also on preventing dropout before secondary school.
+              If girls leave during the upper-primary stage, they never appear in secondary GER in the
+              first place.
+            </p>
+
+            <h4>5. Gender parity indicators: useful, but not sufficient</h4>
+
+            <figure>
+              <img
+                src="assets/q2/q2_secondary_gpi_vs_st_poverty.png"
+                alt="Scatter plot showing official secondary GPI and ST poverty"
+              >
+              <figcaption>
+                Official secondary GPI and ST poverty show a positive association:
+                Pearson r = 0.5993, p = 0.0881, n = 9.
+              </figcaption>
+            </figure>
+
+            <p>
+              The gender parity result needs careful interpretation. A higher GPI means that girls’
+              enrolment is closer to, or sometimes higher than, boys’ enrolment. However, the graph shows
+              that higher secondary GPI can coexist with higher ST poverty. This does not mean that gender
+              parity causes poverty. Rather, it shows that gender parity in enrolment is not the same as
+              economic empowerment.
+            </p>
+
+            <p>
+              A state can have gender-balanced enrolment and still face high ST poverty if overall
+              education quality is weak, labour markets are limited, school completion is poor, or
+              education does not translate into work opportunities. GPI is therefore useful, but it should
+              be read alongside actual enrolment levels, dropout, poverty, and employment indicators.
+            </p>
+
+            <figure>
+              <img
+                src="assets/q2/q2_secondary_ger_ix_x_gpi_vs_upper_primary_dropout.png"
+                alt="Scatter plot showing secondary GER IX-X GPI and upper-primary dropout"
+              >
+              <figcaption>
+                Secondary GER IX–X GPI and upper-primary dropout show a weak negative association:
+                Pearson r = -0.2692, p = 0.2650, n = 19.
+              </figcaption>
+            </figure>
+
+            <p>
+              The secondary GER IX–X GPI relationship with upper-primary dropout is weak. This shows why
+              GPI alone is less informative than girls’ GER itself. A state can have a good GPI either
+              because both boys and girls are doing well, or because both are doing poorly. For this reason,
+              the girls’ GER graph provides a clearer signal than the GPI graph.
+            </p>
+
+            <h4>Q2 interpretation</h4>
+
+            <p>
+              Taken together, the results show that stronger ST schooling participation is only partly
+              associated with better outcomes. On the dropout side, there is evidence that stronger
+              secondary participation is linked with lower dropout before the transition into secondary
+              school. This relationship is especially clear for girls’ secondary GER.
+            </p>
+
+            <p>
+              On the poverty side, however, the relationship is not straightforward. GER does not clearly
+              correspond to lower ST poverty. In fact, GER I–VIII is positively associated with ST poverty
+              in the available sample. This shows that enrolment indicators can look strong even when
+              welfare outcomes remain weak.
+            </p>
+
+            <p>
+              The main policy lesson is that enrolment alone should not be treated as educational success.
+              A stronger education system is one where ST students not only enter school, but also progress
+              through upper-primary, reach secondary education, avoid dropout, and eventually gain better
+              livelihood opportunities.
+            </p>
+
+            <p>
+              <strong>Takeaway:</strong> GER captures schooling access, but dropout captures schooling
+              failure more directly. For high-ST states, retention and progression are stronger policy
+              signals than enrolment alone.
+            </p>
+          </section>
+          <section id="q3">
+            <h3>Q3. Are enrolment and GER enough to indicate educational progress, or do dropout rates tell a different story?</h3>
+          <p>The near-zero correlation between GER IX–XII and secondary dropout is the central finding here, and it is important to read this carefully without inferring causation in either direction. High GER does not cause dropout, nor does it prevent it — they are measuring fundamentally different things. GER captures whether children are being enrolled at the right age relative to the school-age population; dropout captures whether enrolled students are staying through secondary completion. A state can inflate GER through enrolment drives, conditional cash transfers, or age-relaxed admissions without building any of the retention infrastructure — school quality, proximity, teacher attendance, household economic security — that actually keeps students in school. The high-GER-but-high-dropout states in the notebook's sub-group table are the clearest evidence of this: they are not contradictions but natural consequences of treating access and retention as the same problem when they are not. The high-GER-but-low-WPR states add another layer — even completion without labour market integration does not produce the livelihood outcomes that the education investment is supposed to generate. GER is a politically legible indicator and an administratively easy one to report, which is precisely why it tends to dominate policy tracking. The dropout rate at secondary level is harder to collect and less flattering to report, but it is a closer approximation of whether the schooling system is actually working.</p>
+            <figure>
+              <img src="assets\figures\q3-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-2.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-3.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-4.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-5.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-6.png">
+            </figure>
+
+          </section>
+          <section id="q4">
+            <h3>Q4. Does the ST literacy gap matter more than the ST literacy level?</h3>
+
+            <p>
+              This question compares two ways of understanding educational disadvantage among
+              Scheduled Tribe populations. The first is the absolute ST literacy rate, which tells
+              us how literate the ST population is within a state. The second is the literacy gap,
+              which measures how far ST literacy falls behind the broader state population.
+            </p>
+
+            <p>
+              The distinction matters because a state can have a moderate or even high ST literacy
+              rate but still have a large gap between ST communities and the rest of the population.
+              In that case, the problem is not only low literacy, but unequal educational progress.
+              This makes the literacy gap a useful indicator of relative exclusion.
+            </p>
+
+            <h4>1. Literacy gap and secondary dropout</h4>
+
+            <figure>
+              <img
+                src="assets/q4/q4_literacy_gap_vs_secondary_dropout.png"
+                alt="Scatter plot showing literacy gap and secondary dropout"
+              >
+              <figcaption>
+                Literacy gap and secondary dropout show a positive association:
+                Pearson r = 0.5099, p = 0.0306, n = 18.
+              </figcaption>
+            </figure>
+
+            <p>
+              The strongest direct finding in this section is that states with larger ST literacy gaps
+              tend to have higher secondary dropout. The relationship is moderate and statistically
+              meaningful, with a Pearson correlation of 0.5099 and a p-value of 0.0306. This means that
+              relative educational disadvantage is not only visible in literacy outcomes, but also appears
+              to be connected with students leaving school at the secondary stage.
+            </p>
+
+            <p>
+              Odisha is the clearest high-risk case in this graph. It has both a very large literacy
+              gap and very high secondary dropout. Gujarat, Maharashtra, Madhya Pradesh, and Jammu and
+              Kashmir also appear on the higher-gap side of the graph, showing that the literacy gap can
+              help identify states where ST communities are lagging behind in a deeper structural sense.
+            </p>
+
+            <p>
+              However, the relationship is not perfect. Meghalaya has high secondary dropout despite
+              a very small literacy gap, while Goa has a relatively large literacy gap but low secondary
+              dropout. These exceptions show that literacy gap is important, but it should not be used
+              alone. It should be read alongside dropout, poverty, employment, gender indicators, and
+              state-specific context.
+            </p>
+
+            <h4>2. ST literacy level and literacy gap together</h4>
+
+            <figure>
+              <img
+                src="assets/q4/q4_literacy_level_vs_literacy_gap_quadrants.png"
+                alt="Quadrant plot showing ST literacy level and literacy gap"
+              >
+              <figcaption>
+                The quadrant plot separates states by absolute ST literacy level and relative literacy gap.
+              </figcaption>
+            </figure>
+
+            <p>
+              The quadrant plot is useful because it shows that ST education disadvantage has two
+              dimensions: absolute literacy and relative inequality. States in the lower-literacy and
+              higher-gap quadrant face compound education disadvantage. These are states where ST
+              literacy is low and the gap from the broader population is also large.
+            </p>
+
+            <p>
+              Odisha, Madhya Pradesh, Jammu and Kashmir, Rajasthan, Gujarat, Maharashtra,
+              Chhattisgarh, and Jharkhand are important concern cases because they have relatively low
+              ST literacy, large literacy gaps, or both. Odisha and Madhya Pradesh are especially
+              serious because they combine low ST literacy with very large gaps.
+            </p>
+
+            <p>
+              States such as Mizoram, Lakshadweep, Sikkim, Manipur, Nagaland, Assam, and Meghalaya
+              appear in a comparatively better position because they have higher ST literacy and smaller
+              literacy gaps. This does not mean they have no education problems, but it suggests that
+              their ST communities are not as far behind the broader state population on literacy.
+            </p>
+
+            <p>
+              Goa and Tripura are interesting cases because they have relatively higher ST literacy but
+              still show a noticeable literacy gap. These states can be interpreted as hidden-exclusion
+              cases: the absolute level of ST literacy may look acceptable, but ST communities still lag
+              behind the general population.
+            </p>
+
+            <h4>3. Which matters more: ST literacy level or literacy gap?</h4>
+
+            <figure>
+              <img
+                src="assets/q4/q4_literacy_vs_gap_predictor_comparison.png"
+                alt="Bar chart comparing absolute correlations of ST literacy rate and literacy gap with outcomes"
+              >
+              <figcaption>
+                Literacy gap is often as strong as, or stronger than, ST literacy level for explaining
+                dropout, poverty, and work participation outcomes.
+              </figcaption>
+            </figure>
+
+            <p>
+              The comparison chart shows that the literacy gap is often a stronger predictor than the
+              ST literacy rate. For ST poverty, the literacy gap has a stronger relationship than the
+              ST literacy level, although the poverty sample is small and the relationship is not
+              statistically strong. For work participation, the literacy gap also has a stronger
+              association than the ST literacy rate.
+            </p>
+
+            <p>
+              For the employment PU indicator, the ST literacy rate is the stronger predictor. This
+              suggests that absolute literacy still matters for some employment outcomes. In other words,
+              the analysis should not replace literacy level with literacy gap. Both are useful, but they
+              tell us different things.
+            </p>
+
+            <p>
+              For secondary dropout, the literacy gap is only slightly stronger than the ST literacy rate.
+              The correlation with literacy gap is 0.5099, while the runner-up absolute correlation for
+              ST literacy rate is 0.5051. This means both measures are relevant for dropout, but the gap
+              has a small advantage because it captures relative educational exclusion.
+            </p>
+
+            <h4>Q4 interpretation</h4>
+
+            <p>
+              The results suggest that the literacy gap is a better policy signal than ST literacy level
+              alone. ST literacy tells us whether a community has reached a basic educational threshold,
+              but the literacy gap tells us whether ST communities are falling behind the rest of the
+              state. This relative disadvantage matters because it can reveal exclusion even in states
+              where the absolute literacy rate does not look extremely low.
+            </p>
+
+            <p>
+              The positive relationship between literacy gap and secondary dropout is especially important.
+              It suggests that states where ST communities are further behind in literacy also tend to
+              lose more students at the secondary stage. This supports the idea that dropout is not only
+              a schooling access problem, but also a deeper inequality problem.
+            </p>
+
+            <p>
+              At the same time, the analysis should not ignore absolute ST literacy. Some states have low
+              ST literacy and large gaps at the same time, making them compound-disadvantage states. These
+              states require stronger foundational literacy support, remedial learning, and targeted
+              retention policies.
+            </p>
+
+            <p>
+              <strong>Takeaway:</strong> ST literacy level shows the absolute education condition, but
+              the literacy gap shows relative exclusion. For policy targeting, the literacy gap is often
+              the sharper indicator because it reveals whether ST communities are being left behind within
+              their own states.
+            </p>
+          </section>
+          <section id="q5">
+            <h3>Q5. Are there states where educational indicators look reasonable, but employment or poverty outcomes remain weak?</h3>
+          <p>The mismatch classification is a descriptive exercise — states are assigned flags based on median thresholds, not on any underlying causal model — but the pattern it reveals is substantively important. States like Assam, Nagaland, Arunachal Pradesh, and Tripura appear with multiple simultaneous livelihood distress flags despite having education indicators that are not the weakest in the sample. The temptation is to read this as evidence that education investment in these states has "failed," but that inference is not supported by the data. What the mismatch more plausibly reflects is that the constraints on livelihood outcomes in these states are operating primarily on the demand side of the labour market: thin formal employment sectors, geographic isolation, dependence on subsistence agriculture, and weak integration with broader economic networks. Education can improve a person's readiness to participate in a formal economy, but it cannot create that economy where it does not exist. The mismatch states are therefore not evidence against education investment; they are evidence that education investment without complementary economic development produces credentialed but underemployed or informally employed populations. Policy designed purely around school access or even dropout reduction will not resolve the livelihood distress visible in these states.</p>
+            <figure>
+              <img src="assets\figures\q5-1.png">
+            </figure>
+          </section>
+          <section id="q6">
+            <h3>Q6. Does MGNREG unmet demand reflect deeper livelihood distress among ST households?</h3>
+
+            <p>
+              This question examines whether MGNREG-related indicators reveal deeper livelihood
+              distress among Scheduled Tribe households. The analysis uses two MGNREG measures:
+              households receiving 100-plus days of work per 1000, and households who sought work
+              but did not receive it per 1000. The second measure, unmet demand, is the stronger
+              distress indicator because it captures households that needed work but were unable
+              to access it.
+            </p>
+
+            <p>
+              The results show that MGNREG unmet demand is closely associated with other signs of
+              disadvantage. States with higher unmet demand tend to have higher secondary dropout,
+              lower ST literacy, and higher ST poverty. In contrast, the 100-plus-days measure has
+              a much weaker relationship with dropout. This suggests that the problem is not simply
+              public-work dependence, but unfulfilled demand for work.
+            </p>
+
+            <h4>1. Which states have the highest MGNREG unmet demand?</h4>
+
+            <figure>
+              <img
+                src="assets/q6/q6_highest_mgnreg_unmet_demand.png"
+                alt="Bar chart showing highest MGNREG unmet demand among ST households"
+              >
+              <figcaption>
+                Arunachal Pradesh, Assam, Odisha, Jharkhand, Madhya Pradesh, and Chhattisgarh
+                show some of the highest levels of MGNREG sought-not-received demand.
+              </figcaption>
+            </figure>
+
+            <p>
+              The unmet demand ranking shows where ST households are most likely to report seeking
+              MGNREG work but not receiving it. This is an important livelihood-distress indicator
+              because it captures a gap between need and actual access to public employment.
+            </p>
+
+            <p>
+              Arunachal Pradesh and Assam appear at the top of the ranking, followed by Odisha,
+              Jharkhand, Madhya Pradesh, Chhattisgarh, Dadra and Nagar Haveli and Daman and Diu,
+              and Maharashtra. These states should be read as places where the demand for wage
+              work is high, but the work-provision mechanism may not be fully meeting household
+              need.
+            </p>
+
+            <p>
+              This graph is useful because it shifts the focus away from only poverty or dropout.
+              It shows that livelihood distress can also be visible through public employment
+              demand. If households seek work but do not receive it, that may indicate income
+              insecurity, weak local labour markets, or implementation gaps in work provision.
+            </p>
+
+            <h4>2. MGNREG unmet demand and ST poverty</h4>
+
+            <figure>
+              <img
+                src="assets/q6/q6_mgnreg_unmet_demand_vs_st_poverty.png"
+                alt="Scatter plot showing MGNREG unmet demand and ST poverty"
+              >
+              <figcaption>
+                MGNREG unmet demand and ST poverty show a strong positive association:
+                Pearson r = 0.6488, p = 0.0587, n = 9.
+              </figcaption>
+            </figure>
+
+            <p>
+              The strongest poverty-related result is the positive relationship between MGNREG
+              unmet demand and ST poverty. States with higher ST poverty tend to also have more
+              households reporting that they sought but did not receive MGNREG work. The correlation
+              is strong, although the p-value is slightly above 0.05 because poverty data is available
+              for only nine states.
+            </p>
+
+            <p>
+              Odisha is the clearest high-distress case: it has both very high ST poverty and high
+              MGNREG unmet demand. Madhya Pradesh, Chhattisgarh, Jharkhand, and Maharashtra also
+              sit in the high-poverty and high-unmet-demand cluster. This suggests that unmet demand
+              is capturing genuine livelihood vulnerability rather than being a random administrative
+              statistic.
+            </p>
+
+            <p>
+              Assam is an important exception. It has high unmet demand but comparatively lower ST
+              poverty in this sample. This shows that MGNREG unmet demand should not be treated as
+              identical to poverty. Instead, it should be treated as a complementary distress indicator
+              that can reveal pressure in the rural labour market even where poverty estimates are lower.
+            </p>
+
+            <h4>3. MGNREG unmet demand and secondary dropout</h4>
+
+            <figure>
+              <img
+                src="assets/q6/q6_mgnreg_unmet_demand_vs_secondary_dropout.png"
+                alt="Scatter plot showing MGNREG unmet demand and secondary dropout"
+              >
+              <figcaption>
+                MGNREG unmet demand and secondary dropout show a moderate positive association:
+                Pearson r = 0.5114, p = 0.0252, n = 19.
+              </figcaption>
+            </figure>
+
+            <p>
+              MGNREG unmet demand is also positively associated with secondary dropout. States where
+              more ST households seek but do not receive work tend to have higher secondary dropout.
+              This relationship is statistically meaningful, with a p-value of 0.0252.
+            </p>
+
+            <p>
+              This result is important because it connects livelihood distress with school retention.
+              If households face economic pressure, students may be more likely to leave school, either
+              because of direct costs, opportunity costs, household labour needs, migration, or weak
+              expectations that schooling will lead to better work. The graph does not prove causality,
+              but it shows that livelihood distress and educational retention problems cluster in the
+              same states.
+            </p>
+
+            <p>
+              Odisha again stands out as a serious concern case, with both high unmet demand and very
+              high secondary dropout. Maharashtra, Gujarat, Madhya Pradesh, Meghalaya, and Nagaland
+              also show notable dropout levels alongside moderate to high unmet demand. This supports
+              the broader project argument that education and livelihood outcomes should be studied
+              together rather than separately.
+            </p>
+
+            <h4>4. MGNREG unmet demand and ST literacy</h4>
+
+            <figure>
+              <img
+                src="assets/q6/q6_mgnreg_unmet_demand_vs_st_literacy.png"
+                alt="Scatter plot showing MGNREG unmet demand and ST literacy"
+              >
+              <figcaption>
+                MGNREG unmet demand and ST literacy show a moderate negative association:
+                Pearson r = -0.5271, p = 0.0246, n = 18.
+              </figcaption>
+            </figure>
+
+            <p>
+              The relationship between unmet demand and ST literacy is negative. This means that
+              states with higher MGNREG unmet demand tend to have lower ST literacy. This is one of
+              the strongest Q6 results because it links livelihood distress directly with weaker
+              educational foundations.
+            </p>
+
+            <p>
+              Odisha, Madhya Pradesh, Jharkhand, Chhattisgarh, Rajasthan, and Jammu and Kashmir fall
+              toward the lower-literacy side of the graph. Many of these states also show moderate to
+              high unmet demand. This suggests that weaker educational foundations and livelihood
+              vulnerability may reinforce each other.
+            </p>
+
+            <p>
+              However, there are exceptions. Assam and Arunachal Pradesh have high unmet demand despite
+              higher ST literacy than some other states. This means that literacy is not the only factor
+              shaping livelihood distress. Local labour markets, implementation capacity, geography,
+              and state-level employment conditions may also matter.
+            </p>
+
+            <h4>5. 100-plus-days employment among ST households</h4>
+
+            <figure>
+              <img
+                src="assets/q6/q6_highest_mgnreg_100_plus_days.png"
+                alt="Bar chart showing highest MGNREG 100-plus-days employment among ST households"
+              >
+              <figcaption>
+                Mizoram is a clear outlier in 100-plus-days employment among ST households.
+              </figcaption>
+            </figure>
+
+            <p>
+              The 100-plus-days measure tells a different story from unmet demand. Mizoram is a major
+              outlier, while most other states show very low levels of 100-plus-days employment per
+              1000 households. This suggests that the measure is not capturing distress in the same
+              way as sought-not-received demand.
+            </p>
+
+            <p>
+              Receiving 100-plus days of work can mean that households are heavily dependent on public
+              employment, but it can also mean that the scheme is functioning and work is actually being
+              provided. For that reason, this indicator is harder to interpret as pure distress. It may
+              reflect both need and implementation capacity.
+            </p>
+
+            <h4>6. 100-plus-days employment and secondary dropout</h4>
+
+            <figure>
+              <img
+                src="assets/q6/q6_mgnreg_100_plus_days_vs_secondary_dropout.png"
+                alt="Scatter plot showing MGNREG 100-plus-days employment and secondary dropout"
+              >
+              <figcaption>
+                MGNREG 100-plus-days employment and secondary dropout show almost no relationship:
+                Pearson r = -0.0462, p = 0.8511, n = 19.
+              </figcaption>
+            </figure>
+
+            <p>
+              The 100-plus-days measure has almost no relationship with secondary dropout. The
+              correlation is close to zero, and the p-value is very high. This means that heavier
+              receipt of 100-plus-days employment does not clearly line up with higher or lower dropout
+              across the high-ST states.
+            </p>
+
+            <p>
+              This contrast is important. It shows that not all MGNREG indicators capture the same kind
+              of distress. The number of households receiving 100-plus days of work is not strongly linked
+              with school retention problems. But unmet demand, or seeking work and not receiving it, is
+              linked with dropout, literacy, and poverty.
+            </p>
+
+            <h4>Q6 interpretation</h4>
+
+            <p>
+              Taken together, the Q6 results show that MGNREG unmet demand is a strong livelihood-distress
+              signal among ST households. It is positively associated with secondary dropout and ST poverty,
+              and negatively associated with ST literacy. This suggests that states where households face
+              unfulfilled demand for public work also tend to face weaker education and livelihood outcomes.
+            </p>
+
+            <p>
+              The key distinction is between receiving work and not receiving work. The 100-plus-days
+              measure does not show a meaningful relationship with dropout, partly because receiving many
+              days of work may reflect both household need and effective implementation. In contrast,
+              unmet demand more directly captures vulnerability because it represents households who asked
+              for work but did not get it.
+            </p>
+
+            <p>
+              The policy implication is that MGNREG should be read not only as an employment scheme, but
+              also as a diagnostic indicator. High unmet demand may reveal areas where ST households face
+              income insecurity, weak local employment options, or implementation gaps in access to public
+              work. These same areas may also need stronger education-retention support, especially at the
+              secondary level.
+            </p>
+
+            <p>
+              <strong>Takeaway:</strong> MGNREG unmet demand reflects deeper livelihood distress more clearly
+              than 100-plus-days employment. Where ST households seek but do not receive work, states also
+              tend to show higher dropout, lower literacy, and higher poverty.
+            </p>
+          </section>
+          <section id="q7">
+            <h3>Q7. Are scholarship-supported states seeing lower secondary dropout among ST students?</h3>
+          <p>The absence of a negative correlation between per-capita scholarship release and secondary dropout is easy to misread as evidence that scholarships do not work. That inference is not valid. The notebook's own framing flags that scholarships are likely targeted toward higher-need, higher-dropout states, which would mechanically produce a positive or flat association between funding and dropout even if scholarships are genuinely helping at the margin within those states. This is a classic confounding-by-targeting problem: the treatment is concentrated where the problem is worst, so cross-sectional correlations will not recover the treatment effect. What the data can flag is the utilization gap — states where release is relatively high but utilization remains low — which is actionable without requiring causal inference. Low utilization indicates that money is not reaching students, whether because of awareness failures, administrative friction, conditionality barriers, or delayed disbursement. Those states need process reform rather than additional allocations. More broadly, the scholarship findings reinforce that financial support is one necessary input among several; retention also depends on school quality, teacher presence, household opportunity costs, and the perceived value of secondary completion for future employment — none of which scholarship disbursement directly addresses.</p>
+            <figure>
+              <img src="assets\figures\q7-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q7-2.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q7-3.png">
+            </figure>
+          </section>
+          <section id="q8">
+            <h3>Q8. Do states with high ST schooling participation still depend heavily on MGNREG?</h3>
+
+            <p>
+              This question tests whether stronger ST schooling participation is enough to reduce
+              dependence on MGNREG-related livelihood support. The analysis uses latest secondary
+              GER for Classes IX-X as the schooling participation indicator and compares it with
+              three MGNREG indicators: average days worked, 100-plus-days work, and unmet demand
+              measured as households that sought work but did not receive it.
+            </p>
+
+            <p>
+              The overall result is mixed. Higher secondary GER does not consistently correspond
+              to lower MGNREG dependence or lower MGNREG unmet demand. Some states with high
+              schooling participation still show heavy MGNREG use or high unmet demand. This
+              suggests that school participation and livelihood security do not always improve
+              together. The strongest signal in this question comes not from GER, but from
+              secondary dropout: states with higher dropout also tend to report higher unmet
+              MGNREG demand.
+            </p>
+
+            <h4>1. Highest average MGNREG days worked</h4>
+
+            <figure>
+              <img
+                src="assets/q8/q8_highest_mgnreg_average_days.png"
+                alt="Bar chart showing highest average MGNREG days worked"
+              >
+              <figcaption>
+                Rajasthan, Mizoram, Sikkim, Tripura, and Manipur show the highest average
+                MGNREG days worked.
+              </figcaption>
+            </figure>
+
+            <p>
+              The average-days-worked indicator shows the broad level of MGNREG use among households.
+              Rajasthan and Mizoram stand out as the highest, followed by Sikkim, Tripura, Manipur,
+              Lakshadweep, Arunachal Pradesh, Meghalaya, Nagaland, and Chhattisgarh.
+            </p>
+
+            <p>
+              This indicator should be interpreted carefully. High average days worked may reflect
+              livelihood dependence, but it can also mean that the scheme is functioning and that
+              households are actually receiving work. Therefore, average days worked is useful for
+              identifying MGNREG reliance, but it is not always a pure distress indicator.
+            </p>
+
+            <h4>2. Highest MGNREG unmet demand</h4>
+
+            <figure>
+              <img
+                src="assets/q8/q8_highest_mgnreg_unmet_demand.png"
+                alt="Bar chart showing highest MGNREG unmet demand"
+              >
+              <figcaption>
+                Arunachal Pradesh, Assam, Odisha, Jharkhand, Madhya Pradesh, and Chhattisgarh
+                show the highest MGNREG unmet demand.
+              </figcaption>
+            </figure>
+
+            <p>
+              Unmet demand is a sharper livelihood-distress measure than average days worked because
+              it captures households that sought MGNREG work but did not receive it. Arunachal Pradesh
+              and Assam show the highest unmet demand, followed by Odisha, Jharkhand, Madhya Pradesh,
+              Chhattisgarh, Dadra and Nagar Haveli and Daman and Diu, Maharashtra, Nagaland, and
+              Meghalaya.
+            </p>
+
+            <p>
+              This ranking suggests that livelihood stress is not only about whether households use
+              MGNREG, but also whether the demand for work is being met. A state can have high need
+              for public employment but still fail to provide enough work to households that ask for it.
+            </p>
+
+            <h4>3. Latest secondary GER IX-X and MGNREG 100-plus-days</h4>
+
+            <figure>
+              <img
+                src="assets/q8/q8_latest_secondary_ger_vs_mgnreg_100_plus_days.png"
+                alt="Scatter plot showing latest secondary GER IX-X and MGNREG 100-plus-days"
+              >
+              <figcaption>
+                Latest secondary GER IX-X and MGNREG 100-plus-days show a moderate positive
+                association: Pearson r = 0.4661, p = 0.0443, n = 19.
+              </figcaption>
+            </figure>
+
+            <p>
+              This graph shows a moderate positive relationship between latest secondary GER IX-X
+              and the number of households receiving 100-plus days of MGNREG work. This is important
+              because it goes against the simple expectation that higher schooling participation should
+              automatically reduce dependence on public employment.
+            </p>
+
+            <p>
+              Mizoram is the clearest outlier: it has very high secondary GER and also the highest
+              100-plus-days value. Rajasthan and Madhya Pradesh also contribute to the positive slope.
+              However, many states cluster close to zero on the 100-plus-days measure, so this result
+              should be interpreted cautiously.
+            </p>
+
+            <p>
+              The correct interpretation is not that higher schooling causes more MGNREG dependence.
+              Rather, the graph shows that high schooling participation can coexist with heavy public-work
+              reliance in some states. This supports the broader mismatch argument: schooling participation
+              may improve without fully removing household dependence on employment support.
+            </p>
+
+            <h4>4. Latest secondary GER IX-X and average MGNREG days worked</h4>
+
+            <figure>
+              <img
+                src="assets/q8/q8_latest_secondary_ger_vs_mgnreg_average_days.png"
+                alt="Scatter plot showing latest secondary GER IX-X and average MGNREG days worked"
+              >
+              <figcaption>
+                Latest secondary GER IX-X and average MGNREG days worked show a weak relationship:
+                Pearson r = 0.1574, p = 0.5199, n = 19.
+              </figcaption>
+            </figure>
+
+            <p>
+              When MGNREG dependence is measured using average days worked, the relationship with
+              secondary GER becomes weak. The correlation is small and statistically insignificant.
+              This means that states with higher secondary GER do not consistently show either higher
+              or lower average MGNREG days worked.
+            </p>
+
+            <p>
+              This weak relationship is useful because it tempers the 100-plus-days result. While a few
+              states show high GER and high 100-plus-days employment, the broader average-days measure
+              does not show a strong pattern. Schooling participation and average public-work use are
+              therefore only loosely connected.
+            </p>
+
+            <p>
+              This supports the main Q8 argument: higher ST schooling participation does not guarantee
+              lower livelihood dependence, but it also does not have a simple one-direction relationship
+              with MGNREG use.
+            </p>
+
+            <h4>5. Latest secondary GER IX-X and MGNREG unmet demand</h4>
+
+            <figure>
+              <img
+                src="assets/q8/q8_latest_secondary_ger_vs_mgnreg_unmet_demand.png"
+                alt="Scatter plot showing latest secondary GER IX-X and MGNREG unmet demand"
+              >
+              <figcaption>
+                Latest secondary GER IX-X and MGNREG unmet demand show a weak relationship:
+                Pearson r = 0.1559, p = 0.5239, n = 19.
+              </figcaption>
+            </figure>
+
+            <p>
+              This graph directly tests whether stronger schooling participation is associated with
+              lower livelihood distress. If secondary schooling participation were enough to reduce
+              household distress, we would expect a clear negative relationship between GER and unmet
+              MGNREG demand. The data does not show that pattern.
+            </p>
+
+            <p>
+              The relationship is weak and statistically insignificant. Some high-GER states still show
+              high unmet demand. Assam, Odisha, and Maharashtra are important examples because they have
+              relatively high secondary GER but also high sought-not-received demand. Mizoram, on the
+              other hand, has very high GER and low unmet demand, showing that the pattern varies sharply
+              across states.
+            </p>
+
+            <p>
+              This is one of the clearest pieces of evidence for the mismatch argument. Higher schooling
+              participation does not automatically mean that households face less employment insecurity.
+              Education access may improve, but local labour markets, household income insecurity, and
+              public employment access can remain weak.
+            </p>
+
+            <h4>6. Secondary dropout and MGNREG unmet demand</h4>
+
+            <figure>
+              <img
+                src="assets/q8/q8_secondary_dropout_vs_mgnreg_unmet_demand.png"
+                alt="Scatter plot showing secondary dropout and MGNREG unmet demand"
+              >
+              <figcaption>
+                Secondary dropout and MGNREG unmet demand show a moderate positive association:
+                Pearson r = 0.5114, p = 0.0252, n = 19.
+              </figcaption>
+            </figure>
+
+            <p>
+              This is the clearest Q8 result. Unlike secondary GER, secondary dropout has a meaningful
+              positive relationship with MGNREG unmet demand. States with higher secondary dropout tend
+              to report more households seeking but not receiving MGNREG work.
+            </p>
+
+            <p>
+              This suggests that livelihood distress is more closely connected to retention failure than
+              to enrolment alone. GER tells us whether students are participating in school, but dropout
+              tells us whether students are being lost from the system. When dropout is high and unmet
+              work demand is also high, it points to a deeper education-livelihood problem.
+            </p>
+
+            <p>
+              Odisha, Madhya Pradesh, Maharashtra, Jharkhand, Chhattisgarh, Assam, and Arunachal Pradesh
+              appear as important concern cases because they show high unmet demand and/or high dropout.
+              These states suggest that schooling and livelihood policy should be connected rather than
+              treated as separate issues.
+            </p>
+
+            <h4>Q8 interpretation</h4>
+
+            <p>
+              The Q8 results show that high ST schooling participation does not automatically mean low
+              MGNREG dependence. Secondary GER has only weak relationships with average MGNREG days worked
+              and unmet MGNREG demand. The only stronger GER-related result is with 100-plus-days employment,
+              but that relationship is influenced by a few standout states and should not be interpreted
+              causally.
+            </p>
+
+            <p>
+              The stronger and more meaningful relationship is between secondary dropout and MGNREG unmet
+              demand. This suggests that the real issue is not simply whether students are enrolled, but
+              whether they are retained in school while households also gain livelihood security. Where
+              households continue to face unmet demand for work, students may remain more vulnerable to
+              dropping out.
+            </p>
+
+            <p>
+              Therefore, Q8 supports the broader project argument: education indicators must be interpreted
+              alongside livelihood indicators. A state may show relatively strong schooling participation
+              and still have households that depend heavily on MGNREG or cannot access the work they seek.
+            </p>
+
+            <p>
+              <strong>Takeaway:</strong> High ST schooling participation does not automatically imply low
+              MGNREG dependence. The clearest warning signal is not GER, but the combination of secondary
+              dropout and unmet demand for work.
+            </p>
+          </section>
+          <section id="q9">
+            <h3>Q9. Does gender parity in enrolment translate into better female literacy and work outcomes?</h3>
+            <p>The weak correlation between GPI and female work participation is one of the more important cautionary findings in the notebook. Near-parity enrollment for girls at the secondary level, measured by GPI, does not produce a detectable signal in female WPR across these states. This is not evidence that enrolling girls in school is unimportant — it almost certainly matters for long-run outcomes — but it does mean that the timeline and the intervening mechanisms are too complex to appear as a clean cross-sectional correlation. Several states with GPI values close to one still show low female WPR and large female literacy gaps. The gaps in literacy reflect multi-generational exclusion that current enrollment parity cannot undo quickly. The gaps in work participation reflect labour market norms, mobility constraints, household-level gender expectations, and the structure of available employment — all of which operate largely independently of whether girls are currently enrolled in secondary school. Treating GPI improvement as a sufficient policy signal for gender equity is therefore misleading. It conflates the input (enrollment) with the outcome (economic participation), and it can create the appearance of progress on gender equity while the substantive gaps in literacy and livelihood remain intact.</p>
+          <figure>
+              <img src="assets\figures\q9-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q9-2.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q9-3.png">
+            </figure>
+          </section>
+          <section id="q10">
+            <h3>Q10. Does secondary dropout appear to be a stronger warning signal of poverty and weak labour outcomes than literacy alone?</h3>
+
+            <p>
+              This question compares two education indicators as warning signals: ST literacy and
+              secondary dropout. ST literacy captures the absolute educational level of the ST
+              population, while secondary dropout captures whether students are being retained in
+              school at a later and more consequential stage. The goal is to see which of these two
+              indicators is more closely associated with poverty, labour-market weakness, and MGNREG
+              dependence.
+            </p>
+
+            <p>
+              The results show that secondary dropout is a stronger warning signal for ST poverty,
+              and it is also highly relevant for MGNREG unmet demand and work participation. However,
+              ST literacy is still important. It has a stronger relationship with unemployment and
+              MGNREG 100-plus-days employment. Therefore, the answer is not that dropout completely
+              replaces literacy. Rather, dropout is the sharper warning signal for welfare distress,
+              while literacy remains important for understanding broader labour outcomes.
+            </p>
+
+            <h4>1. Comparing ST literacy and secondary dropout</h4>
+
+            <figure>
+              <img
+                src="assets/q10/q10_literacy_vs_dropout_warning_signals.png"
+                alt="Bar chart comparing ST literacy and secondary dropout as warning signals"
+              >
+              <figcaption>
+                Absolute Pearson correlations comparing ST literacy and secondary dropout across
+                poverty, labour, and MGNREG indicators.
+              </figcaption>
+            </figure>
+
+            <p>
+              The chart compares the absolute Pearson correlation of ST literacy and secondary dropout
+              with five outcomes: ST poverty, work participation rate, unemployment, MGNREG unmet demand,
+              and MGNREG 100-plus-days employment. Because the chart uses absolute correlations, it shows
+              the strength of association, not the direction of the relationship. This is important:
+              the graph tells us which indicator is more closely related to each outcome, but it does
+              not by itself show whether the relationship is positive or negative.
+            </p>
+
+            <h4>2. ST poverty: dropout is much stronger</h4>
+
+            <p>
+              For ST poverty, secondary dropout is clearly the stronger warning signal. The correlation
+              strength for dropout is about 0.53, while the correlation strength for ST literacy is only
+              about 0.07. This means that poverty is much more closely associated with whether students
+              leave school at the secondary stage than with the general ST literacy level alone.
+            </p>
+
+            <p>
+              This is one of the most important findings of the project. It suggests that literacy alone
+              is too broad and slow-moving to capture current educational vulnerability. A state may have
+              some level of ST literacy, but if students are dropping out before completing secondary
+              education, that may reveal a more immediate connection with poverty and household distress.
+            </p>
+
+            <h4>3. Work participation rate: both matter, but dropout is slightly stronger</h4>
+
+            <p>
+              For work participation rate, secondary dropout and ST literacy are both strongly related.
+              The correlation strength is about 0.51 for dropout and about 0.48 for ST literacy. This
+              means that neither indicator should be ignored.
+            </p>
+
+            <p>
+              The close values suggest that labour participation is shaped by both educational stock
+              and school retention. ST literacy captures the broad educational base of the community,
+              while dropout captures whether younger students are continuing through the school system.
+              The slightly stronger dropout relationship suggests that retention may be especially useful
+              for identifying states where education and work outcomes are not aligning well.
+            </p>
+
+            <h4>4. Unemployment: ST literacy is stronger</h4>
+
+            <p>
+              For unemployment, ST literacy is the stronger predictor. The correlation strength for
+              ST literacy is about 0.62, while secondary dropout is about 0.32. This means that
+              unemployment appears more closely linked with the overall literacy level than with
+              dropout alone.
+            </p>
+
+            <p>
+              This result should be interpreted carefully. A stronger relationship between literacy
+              and unemployment does not necessarily mean literacy causes unemployment. It may reflect
+              the fact that more literate populations are more likely to enter formal labour markets,
+              seek work, or be counted as unemployed. It may also reflect a mismatch between education
+              and available jobs. Therefore, this result supports the broader argument that education
+              must connect to actual livelihood opportunities.
+            </p>
+
+            <h4>5. MGNREG unmet demand: both are strong warning signals</h4>
+
+            <p>
+              For MGNREG unmet demand, both indicators are strong. ST literacy has a correlation strength
+              of about 0.53, while secondary dropout is very close at about 0.51. This means unmet demand
+              for work is associated with both weaker educational conditions and school-retention problems.
+            </p>
+
+            <p>
+              This result connects Q10 back to Q6 and Q8. MGNREG unmet demand is not only an employment
+              issue; it also overlaps with educational disadvantage. States where households seek but do
+              not receive work may also be states where students face greater pressure to leave school.
+              In this sense, unmet demand, dropout, and literacy should be read together as part of a
+              wider livelihood-distress profile.
+            </p>
+
+            <h4>6. MGNREG 100-plus-days: literacy is stronger, dropout is weak</h4>
+
+            <p>
+              For MGNREG 100-plus-days employment, ST literacy is the stronger indicator. Its correlation
+              strength is about 0.29, while the dropout correlation is only about 0.05. This means that
+              secondary dropout has almost no relationship with 100-plus-days employment in this sample.
+            </p>
+
+            <p>
+              This supports the earlier interpretation that 100-plus-days employment is not a clean
+              distress indicator. Receiving many days of work can reflect household need, but it can
+              also reflect better access to the scheme or better implementation. This is why unmet
+              demand is more useful than 100-plus-days employment for identifying livelihood distress.
+            </p>
+
+            <h4>Q10 interpretation</h4>
+
+            <p>
+              Overall, Q10 shows that secondary dropout is a powerful warning signal, especially for
+              ST poverty. Dropout is also closely related to work participation and MGNREG unmet demand.
+              This supports the idea that retention failure is more policy-relevant than literacy alone
+              when the goal is to identify states facing deeper education-livelihood stress.
+            </p>
+
+            <p>
+              However, ST literacy remains important. It is stronger for unemployment and MGNREG
+              100-plus-days employment, and it is almost equally strong for MGNREG unmet demand. This
+              means that literacy and dropout should not be treated as competing indicators. They capture
+              different parts of the same problem.
+            </p>
+
+            <p>
+              ST literacy reflects the long-term educational foundation of a community. Secondary dropout
+              reflects current failure in school progression. A state with low literacy needs foundational
+              education support, while a state with high dropout needs retention, transition, and completion
+              support. The strongest policy diagnosis comes from using both indicators together.
+            </p>
+
+            <p>
+              <strong>Takeaway:</strong> Secondary dropout is the sharper warning signal for ST poverty,
+              while ST literacy remains important for broader labour-market outcomes. For policy, the
+              best approach is to treat literacy as the foundation and dropout as the immediate alarm bell.
+            </p>
+          </section>
+          <section id="q11">
+            <h3>Q11. Do high-ST-share states systematically perform worse, or do outcomes vary substantially?</h3>
+          <p>The scatters of ST population share against literacy, poverty, and WPR across all states show shallow slopes and high dispersion, meaning that knowing a state's ST concentration tells you very little about where its ST outcomes will land. This is an important corrective to a common heuristic in policy discussions that treats high-ST-share states as a homogeneous problem category. The variation within the high-ST group is real and substantial: states at similar levels of ST concentration differ sharply on literacy, dropout, poverty, and employment. Concentration is not a cause of poor outcomes; it is a demographic characteristic that correlates loosely with historical marginalization but is not the operative mechanism. The implication is that national-level interventions designed for "high-ST states" as a bloc will almost inevitably be poorly calibrated for a large proportion of their intended beneficiaries — over-intervening in states that have made relative progress and under-addressing the specific structural failures in states that have not.</p>
+            <figure>
+              <img src="assets\figures\q11-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q11-2.png">
+            </figure>
+          </section>  
+          <section id="q12">
+            <h3>Q12. Do states with high concentrations of ST villages show different education and livelihood outcomes?</h3>
+
+            <p>
+              This question examines whether states with a higher concentration of Scheduled Tribe
+              villages show different education and livelihood outcomes. The village concentration
+              measure is normalized as the number of villages with more than 50% ST population per
+              100,000 ST population. This normalization is important because it avoids simply ranking
+              states by size or total ST population.
+            </p>
+
+            <p>
+              The results show that ST village concentration is more strongly connected with livelihood
+              distress than with education outcomes. States with more concentrated ST settlements tend
+              to have higher MGNREG unmet demand, but village concentration does not strongly explain
+              secondary dropout or ST literacy by itself. This suggests that settlement geography may
+              matter more for access to work and public employment than for schooling outcomes alone.
+            </p>
+
+            <h4>1. Highest normalized ST village concentration</h4>
+
+            <figure>
+              <img
+                src="assets/q12/q12_highest_gt50_village_concentration.png"
+                alt="Bar chart showing highest normalized ST village concentration"
+              >
+              <figcaption>
+                Arunachal Pradesh has the highest normalized concentration of villages with more than
+                50% ST population, followed by Meghalaya, Manipur, Odisha, Assam, and Jharkhand.
+              </figcaption>
+            </figure>
+
+            <p>
+              The ranking shows which states have the greatest concentration of ST-majority villages
+              after adjusting for ST population size. Arunachal Pradesh is a clear outlier, with a much
+              higher number of ST-majority villages per 100,000 ST population than the other states.
+              Meghalaya, Manipur, Odisha, Assam, Jharkhand, Madhya Pradesh, Rajasthan, Nagaland, and
+              Mizoram also appear among the higher-concentration states.
+            </p>
+
+            <p>
+              This indicator matters because ST village concentration can shape access to public services,
+              local employment, schools, infrastructure, and administrative delivery. A high concentration
+              of ST villages does not automatically mean worse outcomes, but it may indicate that geography
+              and settlement patterns play an important role in how policy reaches ST households.
+            </p>
+
+            <h4>2. ST village concentration and MGNREG unmet demand</h4>
+
+            <figure>
+              <img
+                src="assets/q12/q12_gt50_village_concentration_vs_mgnreg_unmet_demand.png"
+                alt="Scatter plot showing ST village concentration and MGNREG unmet demand"
+              >
+              <figcaption>
+                ST village concentration and MGNREG unmet demand show a moderate positive association:
+                Pearson r = 0.5025, p = 0.0335, n = 18; Spearman r = 0.5418, p = 0.0202.
+              </figcaption>
+            </figure>
+
+            <p>
+              This is the strongest main Q12 result. States with more concentrated ST-majority villages
+              tend to have higher MGNREG unmet demand. Both Pearson and Spearman correlations are positive
+              and statistically meaningful, which suggests that the relationship is not only driven by a
+              few extreme values.
+            </p>
+
+            <p>
+              The interpretation is that ST settlement concentration may be linked to livelihood distress
+              or difficulty accessing public employment. In more concentrated ST-village contexts,
+              households may face weaker local labour markets, greater remoteness, or implementation
+              challenges in receiving MGNREG work. This does not prove causality, but it does show that
+              village concentration is relevant for understanding unmet work demand.
+            </p>
+
+            <p>
+              Arunachal Pradesh, Assam, Odisha, Jharkhand, Madhya Pradesh, and Chhattisgarh are important
+              cases in this graph because they show high unmet demand. Arunachal Pradesh is especially
+              notable because it combines extremely high village concentration with very high unmet demand.
+              Meghalaya and Manipur are useful exceptions: they have high village concentration but much
+              lower unmet demand, showing that concentration alone does not determine the outcome.
+            </p>
+
+            <h4>3. Robustness check using villages with more than 75% ST population</h4>
+
+            <figure>
+              <img
+                src="assets/q12/q12_gt75_village_concentration_vs_mgnreg_unmet_demand.png"
+                alt="Scatter plot showing higher ST village concentration and MGNREG unmet demand"
+              >
+              <figcaption>
+                Using a stricter village concentration threshold gives a similar positive relationship:
+                Pearson r = 0.4503, p = 0.0608, n = 18; Spearman r = 0.6182, p = 0.0063.
+              </figcaption>
+            </figure>
+
+            <p>
+              The robustness check uses a stricter definition of ST village concentration: villages with
+              more than 75% ST population per 100,000 ST population. The relationship with MGNREG unmet
+              demand remains positive. The Pearson result becomes slightly weaker, but the Spearman
+              relationship becomes even stronger and statistically meaningful.
+            </p>
+
+            <p>
+              This matters because it shows that the finding is not only dependent on the 50% threshold.
+              Even when ST village concentration is defined more strictly, states with higher concentration
+              tend to rank higher on unmet MGNREG demand. The Spearman result is especially useful because
+              it captures whether the ranking of states is similar across the two variables.
+            </p>
+
+            <p>
+              In simple terms, the robustness check strengthens the argument that ST village concentration
+              is connected to livelihood distress. It suggests that the pattern is not just a statistical
+              accident from one particular definition of village concentration.
+            </p>
+
+            <h4>4. ST village concentration and secondary dropout</h4>
+
+            <figure>
+              <img
+                src="assets/q12/q12_gt50_village_concentration_vs_secondary_dropout.png"
+                alt="Scatter plot showing ST village concentration and secondary dropout"
+              >
+              <figcaption>
+                ST village concentration and secondary dropout show a weak relationship:
+                Pearson r = 0.1257, p = 0.6192, n = 18; Spearman r = 0.2941, p = 0.2361.
+              </figcaption>
+            </figure>
+
+            <p>
+              The relationship between ST village concentration and secondary dropout is weak. The slope
+              is slightly positive, but the correlations are not statistically meaningful. This means that
+              normalized ST village concentration does not clearly explain secondary dropout by itself.
+            </p>
+
+            <p>
+              This null-style result is important. It prevents the analysis from making an overly simple
+              claim that ST village concentration automatically leads to worse education outcomes. Some
+              high-concentration states, such as Arunachal Pradesh and Manipur, have relatively low
+              secondary dropout, while Odisha has very high dropout despite not being the highest on the
+              concentration measure.
+            </p>
+
+            <p>
+              The better interpretation is that dropout depends on more direct schooling and household
+              factors: school access, quality, transition support, poverty, gender constraints, and local
+              economic pressure. Village concentration may shape the context in which education policy is
+              delivered, but it does not directly predict dropout in this sample.
+            </p>
+
+            <h4>5. ST village concentration and ST literacy</h4>
+
+            <figure>
+              <img
+                src="assets/q12/q12_gt50_village_concentration_vs_st_literacy.png"
+                alt="Scatter plot showing ST village concentration and ST literacy"
+              >
+              <figcaption>
+                ST village concentration and ST literacy show a weak negative relationship:
+                Pearson r = -0.1993, p = 0.4432, n = 17; Spearman r = -0.3264, p = 0.2011.
+              </figcaption>
+            </figure>
+
+            <p>
+              ST village concentration also does not show a strong relationship with ST literacy. The
+              relationship is negative, meaning that higher concentration is loosely associated with
+              lower ST literacy, but the relationship is weak and not statistically meaningful.
+            </p>
+
+            <p>
+              This again suggests that settlement concentration alone is not enough to explain education
+              outcomes. Some states with high ST village concentration have relatively high ST literacy,
+              while some lower-concentration states have weaker literacy outcomes. For example, Goa,
+              Tripura, Sikkim, and Nagaland show relatively high ST literacy despite lower or moderate
+              village concentration. Arunachal Pradesh has very high concentration but does not have the
+              lowest ST literacy.
+            </p>
+
+            <p>
+              The main implication is that education outcomes depend on more than the spatial concentration
+              of ST villages. Policy quality, school infrastructure, language, accessibility, household
+              income, gender norms, and state capacity may all matter more directly.
+            </p>
+
+            <h4>Q12 interpretation</h4>
+
+            <p>
+              Taken together, Q12 shows that ST village concentration is most useful as a livelihood-access
+              indicator, not as a direct education predictor. The strongest and most consistent relationship
+              is with MGNREG unmet demand. This means that states with more concentrated ST settlements are
+              more likely to report households seeking but not receiving work.
+            </p>
+
+            <p>
+              In contrast, village concentration does not strongly predict secondary dropout or ST literacy.
+              This is important because it keeps the argument precise. The project should not claim that ST
+              village concentration automatically causes poor education outcomes. Instead, the evidence
+              suggests that concentration may create or reflect conditions where access to public employment
+              and livelihood support becomes more difficult.
+            </p>
+
+            <p>
+              The policy implication is that ST-concentrated village geographies may need stronger local
+              delivery systems. This includes better MGNREG work provision, more reliable administrative
+              access, localized employment planning, and stronger coordination between livelihood support
+              and education retention policies. The education problem may not come directly from village
+              concentration, but livelihood stress in these areas can still affect schooling indirectly.
+            </p>
+
+            <p>
+              <strong>Takeaway:</strong> High ST village concentration is linked more clearly with MGNREG
+              unmet demand than with secondary dropout or ST literacy. This suggests that settlement
+              concentration matters most for livelihood access and public-work delivery, while education
+              outcomes require additional school-level and household-level explanations.
+            </p>
+          </section>
+          <section id="q13">
+            <h3>Q13. Are there gender-specific disadvantages hidden behind state averages?</h3>
+            <p>The female literacy gap — the difference between male and female ST literacy within each state — is a more diagnostic indicator of gendered exclusion than either aggregate literacy or GPI alone. The bar chart makes this concrete: Rajasthan, Odisha, Jharkhand, Jammu and Kashmir, and Madhya Pradesh carry gaps that in some cases exceed 15 to 20 percentage points within the ST population alone. The scatter of female literacy gap against female WPR shows a negative association — larger gaps tend to coincide with lower female work participation — but the correlation should not be read as the literacy gap causing low WPR. Both are more plausibly outcomes of the same underlying structural conditions: norm systems that have historically deprioritized women's education and economic participation, geographic and social barriers to female mobility, and the absence of formal employment opportunities that would make female literacy economically legible to households. What the data establish is that state-level averages — including overall ST literacy averages — can present a picture of relative progress that completely conceals the depth of female disadvantage within the same population. In states where the gap is large, the policy need is not simply more general ST education spending; it is specifically gendered intervention reaching adult women in the current generation through literacy programmes, and adolescent girls in the next generation through retention, safety, and post-schooling economic pathway support.</p>
+            <figure>
+              <img src="assets\figures\q13-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q13-2.png">
+            </figure>
+          </section>
+        </section>
+        <section id="recommendations">
+          <h2>Recommendations and Suggestions</h2>
+
+          <p>
+            Recommendations will be added after the analysis is completed. They will focus
+            on state-specific policy priorities rather than one general solution for all states.
+          </p>
+
+          <p>
+            Possible recommendation areas include improving secondary retention, targeting
+            literacy gaps, supporting ST female education, connecting education to employment,
+            and strengthening livelihood support in high-distress states.
+          </p>
+        </section>
+
+        <section id="limitations">
+          <h2>Limitations</h2>
+
+          <p>
+            This analysis is exploratory and should not be interpreted as causal evidence.
+            The dataset combines indicators from multiple sources and years, so some variables
+            may not be perfectly aligned in time.
+          </p>
+
+          <p>
+            Some indicators, such as ST poverty, may also have missing values for certain
+            states. Because of this, results should be used for policy interpretation and
+            prioritization rather than precise causal claims.
+          </p>
+        </section>
+
+        <section id="references">
+          <h2>References</h2>
+
+          <p>
+            References and data sources will be added here.
+          </p>
+
+          <ul>
+            <li>Government education datasets</li>
+            <li>Scheduled Tribe literacy and demographic data</li>
+            <li>Employment and labour force indicators</li>
+            <li>MGNREG-related indicators</li>
+            <li>Project notebook and cleaned datasets</li>
+          </ul>
+        </section>
+
+      </article>
     </main>
-
-    <script>
-      const variableMeta = {
-        st_literacy_rate_pct: { label: "ST literacy rate", unit: "%", short: "ST literacy" },
-        literacy_gap_pct: { label: "Literacy gap", unit: "pp", short: "Literacy gap" },
-        dropout_secondary_pct: { label: "Secondary dropout", unit: "%", short: "Secondary dropout" },
-        dropout_upper_primary_pct: { label: "Upper-primary dropout", unit: "%", short: "Upper-primary dropout" },
-        ger_classes_i_viii: { label: "GER I-VIII", unit: "", short: "GER I-VIII" },
-        ger_classes_ix_x: { label: "GER IX-X", unit: "", short: "GER IX-X" },
-        ger_latest_secondary_total: { label: "Latest secondary GER IX-X", unit: "", short: "Latest secondary GER" },
-        st_bpl_mean_pct: { label: "Mean ST poverty rate", unit: "%", short: "ST poverty" },
-        employment_wpr_person_per_1000: { label: "Work participation ratio", unit: "", short: "WPR" },
-        employment_pu_person_per_1000: { label: "Unemployment indicator", unit: "", short: "Unemployment" },
-        mgnreg_sought_not_received_per_1000: { label: "MGNREG sought-not-received", unit: "per 1000", short: "MGNREG unmet" },
-        mgnreg_work_100_plus_days_per_1000: { label: "MGNREG 100-plus-days", unit: "per 1000", short: "100-plus days" },
-        overall_priority_score: { label: "Overall priority score", unit: "", short: "Priority" },
-        education_disadvantage_score: { label: "Education disadvantage score", unit: "", short: "Education score" },
-        economic_vulnerability_score: { label: "Economic vulnerability score", unit: "", short: "Economic score" },
-        villages_gt50_per_100k_st_pop: { label: "ST village concentration", unit: "per 100k ST pop", short: "Village concentration" }
-      };
-
-      const defaultX = "dropout_secondary_pct";
-      const defaultY = "mgnreg_sought_not_received_per_1000";
-      const numericVariables = [
-        "st_literacy_rate_pct",
-        "literacy_gap_pct",
-        "dropout_secondary_pct",
-        "dropout_upper_primary_pct",
-        "ger_classes_i_viii",
-        "ger_classes_ix_x",
-        "ger_latest_secondary_total",
-        "st_bpl_mean_pct",
-        "employment_wpr_person_per_1000",
-        "employment_pu_person_per_1000",
-        "mgnreg_sought_not_received_per_1000",
-        "mgnreg_work_100_plus_days_per_1000",
-        "overall_priority_score",
-        "education_disadvantage_score",
-        "economic_vulnerability_score",
-        "villages_gt50_per_100k_st_pop"
-      ];
-
-      const questions = {
-        q2: {
-          tag: "Q2",
-          title: "Do GER and enrolment signal real progress?",
-          text: "GER helps measure participation, but the project shows that high GER can coexist with high poverty. Retention indicators such as dropout provide a sharper policy warning.",
-          bullets: [
-            "GER I-VIII and ST poverty move together in the limited poverty sample, which is counter-intuitive.",
-            "Secondary GER IX-X is more useful when read with upper-primary dropout.",
-            "Girls' secondary participation is linked with lower transition-stage dropout."
-          ],
-          images: [
-            ["assets/q2/q2_ger_i_viii_vs_st_poverty.png", "GER I-VIII and ST poverty"],
-            ["assets/q2/q2_secondary_ger_ix_x_vs_upper_primary_dropout.png", "Secondary GER IX-X and upper-primary dropout"],
-            ["assets/q2/q2_girls_secondary_ger_ix_x_vs_upper_primary_dropout.png", "Girls' secondary GER and upper-primary dropout"]
-          ]
-        },
-        q4: {
-          tag: "Q4",
-          title: "Does the literacy gap reveal hidden exclusion?",
-          text: "The literacy gap captures exclusion relative to the total population. It adds context beyond absolute ST literacy, especially when identifying states with low literacy and large gaps.",
-          bullets: [
-            "Low ST literacy plus a large gap indicates compounded education disadvantage.",
-            "Some higher-literacy states still retain gaps that point to unequal progress.",
-            "The quadrant view is more useful for targeting than a simple rank list."
-          ],
-          images: [
-            ["assets/q4/q4_literacy_level_vs_literacy_gap_quadrants.png", "ST literacy level and literacy gap quadrants"],
-            ["assets/q4/q4_literacy_gap_vs_secondary_dropout.png", "Literacy gap and secondary dropout"]
-          ]
-        },
-        q6: {
-          tag: "Q6",
-          title: "Does MGNREG unmet demand reflect livelihood distress?",
-          text: "Unmet MGNREG demand is the strongest MGNREG distress signal. It is associated with higher poverty, higher dropout, and lower ST literacy.",
-          bullets: [
-            "Unmet demand performs better than simple job-card counts.",
-            "Secondary dropout and unmet MGNREG demand cluster together.",
-            "100-plus-days is useful context, but weaker as a core relationship."
-          ],
-          images: [
-            ["assets/q6/q6_mgnreg_unmet_demand_vs_st_poverty.png", "MGNREG unmet demand and ST poverty"],
-            ["assets/q6/q6_mgnreg_unmet_demand_vs_secondary_dropout.png", "MGNREG unmet demand and secondary dropout"],
-            ["assets/q6/q6_mgnreg_unmet_demand_vs_st_literacy.png", "MGNREG unmet demand and ST literacy"]
-          ]
-        },
-        q8: {
-          tag: "Q8",
-          title: "Can schooling participation coexist with livelihood dependence?",
-          text: "The direct GER-to-MGNREG relationship is not strong enough for a causal claim. The stronger message is that dropout and unmet demand move together, supporting an education-livelihood mismatch interpretation.",
-          bullets: [
-            "High schooling participation does not automatically produce livelihood security.",
-            "Secondary dropout is associated with unmet MGNREG demand.",
-            "State profiles help identify mismatch cases."
-          ],
-          images: [
-            ["assets/q8/q8_secondary_dropout_vs_mgnreg_unmet_demand.png", "Secondary dropout and MGNREG unmet demand"],
-            ["assets/q8/q8_latest_secondary_ger_vs_mgnreg_unmet_demand.png", "Latest secondary GER and MGNREG unmet demand"],
-            ["assets/q8/q8_latest_secondary_ger_vs_mgnreg_average_days.png", "Latest secondary GER and average MGNREG days"]
-          ]
-        },
-        q10: {
-          tag: "Q10",
-          title: "Is dropout a stronger warning signal than literacy?",
-          text: "Dropout is stronger for poverty and MGNREG unmet demand, while literacy remains stronger for unemployment. The point is not that one measure replaces the other; dropout adds information literacy misses.",
-          bullets: [
-            "Dropout is stronger for ST poverty in the available poverty sample.",
-            "Dropout and literacy both matter for MGNREG unmet demand.",
-            "Literacy remains important for labour-market indicators."
-          ],
-          images: [
-            ["assets/q10/q10_literacy_vs_dropout_warning_signals.png", "Literacy versus dropout as warning signals"]
-          ]
-        },
-        q12: {
-          tag: "Q12",
-          title: "Does ST village concentration matter?",
-          text: "After normalizing by ST population, village concentration is most clearly connected to unmet MGNREG demand, not directly to literacy or dropout.",
-          bullets: [
-            "Village concentration is a spatial livelihood-distress signal.",
-            "Raw village counts can reflect state size, so normalized measures are safer.",
-            "This is useful as support evidence, not the central education result."
-          ],
-          images: [
-            ["assets/q12/q12_gt50_village_concentration_vs_mgnreg_unmet_demand.png", "ST village concentration and MGNREG unmet demand"],
-            ["assets/q12/q12_gt50_village_concentration_vs_st_literacy.png", "ST village concentration and ST literacy"],
-            ["assets/q12/q12_gt50_village_concentration_vs_secondary_dropout.png", "ST village concentration and secondary dropout"]
-          ]
-        }
-      };
-
-      let highStates = [];
-      let selectedState = "";
-      let activeQuestion = "q2";
-      let activeImageIndex = 0;
-
-      function parseCSV(text) {
-        const rows = [];
-        let row = [];
-        let cell = "";
-        let inQuotes = false;
-        for (let i = 0; i < text.length; i += 1) {
-          const char = text[i];
-          const next = text[i + 1];
-          if (char === '"' && inQuotes && next === '"') {
-            cell += '"';
-            i += 1;
-          } else if (char === '"') {
-            inQuotes = !inQuotes;
-          } else if (char === "," && !inQuotes) {
-            row.push(cell);
-            cell = "";
-          } else if ((char === "\n" || char === "\r") && !inQuotes) {
-            if (char === "\r" && next === "\n") i += 1;
-            row.push(cell);
-            if (row.some((value) => value !== "")) rows.push(row);
-            row = [];
-            cell = "";
-          } else {
-            cell += char;
-          }
-        }
-        if (cell || row.length) {
-          row.push(cell);
-          rows.push(row);
-        }
-        const headers = rows.shift();
-        return rows.map((values) => {
-          const obj = {};
-          headers.forEach((header, index) => {
-            const value = values[index] ?? "";
-            const number = Number(value);
-            obj[header] = value !== "" && Number.isFinite(number) ? number : value;
-          });
-          return obj;
-        });
-      }
-
-      function fmt(value, digits = 1) {
-        if (value === null || value === undefined || value === "" || Number.isNaN(value)) return "NA";
-        if (typeof value === "number") return value.toLocaleString("en-IN", { maximumFractionDigits: digits });
-        return value;
-      }
-
-      function mean(rows, key) {
-        const values = rows.map((row) => row[key]).filter((value) => typeof value === "number" && Number.isFinite(value));
-        return values.reduce((sum, value) => sum + value, 0) / values.length;
-      }
-
-      function median(rows, key) {
-        const values = rows.map((row) => row[key]).filter((value) => typeof value === "number" && Number.isFinite(value)).sort((a, b) => a - b);
-        if (!values.length) return null;
-        const mid = Math.floor(values.length / 2);
-        return values.length % 2 ? values[mid] : (values[mid - 1] + values[mid]) / 2;
-      }
-
-      function pearson(rows, xKey, yKey) {
-        const pairs = rows
-          .map((row) => [row[xKey], row[yKey]])
-          .filter(([x, y]) => typeof x === "number" && typeof y === "number" && Number.isFinite(x) && Number.isFinite(y));
-        if (pairs.length < 4) return { r: null, n: pairs.length };
-        const mx = pairs.reduce((sum, pair) => sum + pair[0], 0) / pairs.length;
-        const my = pairs.reduce((sum, pair) => sum + pair[1], 0) / pairs.length;
-        let numerator = 0;
-        let dx = 0;
-        let dy = 0;
-        pairs.forEach(([x, y]) => {
-          numerator += (x - mx) * (y - my);
-          dx += (x - mx) ** 2;
-          dy += (y - my) ** 2;
-        });
-        return { r: numerator / Math.sqrt(dx * dy), n: pairs.length };
-      }
-
-      function setupSelectors() {
-        const xSelect = document.getElementById("xSelect");
-        const ySelect = document.getElementById("ySelect");
-        numericVariables.forEach((key) => {
-          const xOption = new Option(variableMeta[key].label, key);
-          const yOption = new Option(variableMeta[key].label, key);
-          xSelect.add(xOption);
-          ySelect.add(yOption);
-        });
-        xSelect.value = defaultX;
-        ySelect.value = defaultY;
-
-        const stateSelect = document.getElementById("stateSelect");
-        highStates
-          .map((row) => row.state)
-          .sort()
-          .forEach((state) => stateSelect.add(new Option(state, state)));
-        selectedState = highStates[0]?.state || "";
-        stateSelect.value = selectedState;
-      }
-
-      function updateMetrics() {
-        document.getElementById("heroStates").textContent = highStates.length;
-        document.getElementById("metricLiteracy").textContent = `${fmt(mean(highStates, "st_literacy_rate_pct"))}%`;
-        document.getElementById("metricDropout").textContent = `${fmt(mean(highStates, "dropout_secondary_pct"))}%`;
-        document.getElementById("metricPoverty").textContent = `${fmt(mean(highStates, "st_bpl_mean_pct"))}%`;
-        document.getElementById("metricMgnreg").textContent = fmt(mean(highStates, "mgnreg_sought_not_received_per_1000"));
-      }
-
-      function drawScatter() {
-        const svg = document.getElementById("scatterChart");
-        const tooltip = document.getElementById("tooltip");
-        const xKey = document.getElementById("xSelect").value;
-        const yKey = document.getElementById("ySelect").value;
-        const colorKey = document.getElementById("colorSelect").value;
-        const rows = highStates.filter((row) => typeof row[xKey] === "number" && typeof row[yKey] === "number");
-        const width = svg.clientWidth || 760;
-        const height = 470;
-        const margin = { top: 28, right: 28, bottom: 64, left: 74 };
-        svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-        svg.innerHTML = "";
-
-        const xValues = rows.map((row) => row[xKey]);
-        const yValues = rows.map((row) => row[yKey]);
-        const colorValues = rows.map((row) => row[colorKey]).filter((value) => typeof value === "number");
-        const xMin = Math.min(...xValues);
-        const xMax = Math.max(...xValues);
-        const yMin = Math.min(...yValues);
-        const yMax = Math.max(...yValues);
-        const cMin = Math.min(...colorValues);
-        const cMax = Math.max(...colorValues);
-        const pad = (min, max) => (max - min || 1) * 0.08;
-        const xp = pad(xMin, xMax);
-        const yp = pad(yMin, yMax);
-
-        const xScale = (value) => margin.left + ((value - (xMin - xp)) / ((xMax + xp) - (xMin - xp))) * (width - margin.left - margin.right);
-        const yScale = (value) => height - margin.bottom - ((value - (yMin - yp)) / ((yMax + yp) - (yMin - yp))) * (height - margin.top - margin.bottom);
-        const colorScale = (value) => {
-          if (typeof value !== "number" || !Number.isFinite(value)) return "#82959d";
-          const t = cMax === cMin ? 0.5 : (value - cMin) / (cMax - cMin);
-          const r = Math.round(43 + t * 151);
-          const g = Math.round(93 - t * 38);
-          const b = Math.round(124 - t * 76);
-          return `rgb(${r}, ${g}, ${b})`;
-        };
-
-        const add = (name, attrs = {}, text = "") => {
-          const element = document.createElementNS("http://www.w3.org/2000/svg", name);
-          Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
-          if (text) element.textContent = text;
-          svg.appendChild(element);
-          return element;
-        };
-
-        for (let i = 0; i <= 4; i += 1) {
-          const tx = margin.left + i * (width - margin.left - margin.right) / 4;
-          const ty = margin.top + i * (height - margin.top - margin.bottom) / 4;
-          add("line", { x1: tx, x2: tx, y1: margin.top, y2: height - margin.bottom, class: "grid-line" });
-          add("line", { x1: margin.left, x2: width - margin.right, y1: ty, y2: ty, class: "grid-line" });
-        }
-
-        add("line", { x1: margin.left, x2: width - margin.right, y1: height - margin.bottom, y2: height - margin.bottom, class: "axis-line" });
-        add("line", { x1: margin.left, x2: margin.left, y1: margin.top, y2: height - margin.bottom, class: "axis-line" });
-
-        const xLabel = variableMeta[xKey].label;
-        const yLabel = variableMeta[yKey].label;
-        add("text", { x: width / 2, y: height - 18, class: "axis-label", "text-anchor": "middle" }, xLabel);
-        add("text", { x: 18, y: height / 2, class: "axis-label", "text-anchor": "middle", transform: `rotate(-90 18 ${height / 2})` }, yLabel);
-
-        const corr = pearson(highStates, xKey, yKey);
-        document.getElementById("corrPill").textContent = corr.r === null ? `n = ${corr.n}` : `r = ${corr.r.toFixed(2)} | n = ${corr.n}`;
-        document.getElementById("chartSubtitle").textContent = `${xLabel} compared with ${yLabel}.`;
-
-        rows.forEach((row) => {
-          const point = add("circle", {
-            cx: xScale(row[xKey]),
-            cy: yScale(row[yKey]),
-            r: row.state === selectedState ? 8 : 5.8,
-            fill: colorScale(row[colorKey]),
-            class: row.state === selectedState ? "point selected" : "point",
-            tabindex: 0
-          });
-          point.addEventListener("mouseenter", (event) => {
-            tooltip.hidden = false;
-            tooltip.innerHTML = `<strong>${row.state}</strong><br>${variableMeta[xKey].short}: ${fmt(row[xKey])}<br>${variableMeta[yKey].short}: ${fmt(row[yKey])}`;
-            tooltip.style.left = `${event.offsetX + 16}px`;
-            tooltip.style.top = `${event.offsetY + 16}px`;
-          });
-          point.addEventListener("mouseleave", () => {
-            tooltip.hidden = true;
-          });
-          point.addEventListener("click", () => {
-            selectedState = row.state;
-            document.getElementById("stateSelect").value = selectedState;
-            updateStateProfile();
-            drawScatter();
-          });
-        });
-      }
-
-      function updateStateProfile() {
-        const row = highStates.find((item) => item.state === selectedState) || highStates[0];
-        if (!row) return;
-        const profile = document.getElementById("stateProfile");
-        const fields = [
-          ["ST literacy", "st_literacy_rate_pct", "%"],
-          ["Literacy gap", "literacy_gap_pct", "pp"],
-          ["Secondary dropout", "dropout_secondary_pct", "%"],
-          ["ST poverty", "st_bpl_mean_pct", "%"],
-          ["WPR", "employment_wpr_person_per_1000", ""],
-          ["MGNREG unmet", "mgnreg_sought_not_received_per_1000", ""],
-          ["Priority score", "overall_priority_score", ""]
-        ];
-        profile.innerHTML = `
-          <h4>${row.state}</h4>
-          ${fields.map(([label, key, unit]) => {
-            const med = median(highStates, key);
-            const value = row[key];
-            const comparison = typeof value === "number" && med !== null
-              ? value >= med ? "above median" : "below median"
-              : "no comparison";
-            return `<div class="profile-row">
-              <span>${label}</span>
-              <strong>${fmt(value)}${unit}</strong>
-              <small>${comparison}</small>
-            </div>`;
-          }).join("")}
-        `;
-      }
-
-      function renderPriorityTable() {
-        const sortKey = document.getElementById("sortSelect").value;
-        const query = document.getElementById("stateSearch").value.trim().toLowerCase();
-        const rows = highStates
-          .filter((row) => row.state.toLowerCase().includes(query))
-          .sort((a, b) => (b[sortKey] || -Infinity) - (a[sortKey] || -Infinity));
-        document.getElementById("priorityTable").innerHTML = rows.map((row) => `
-          <tr>
-            <td><button class="state-link" type="button" data-state="${row.state}">${row.state}</button></td>
-            <td>${fmt(row.overall_priority_score)}</td>
-            <td>${fmt(row.education_disadvantage_score)}</td>
-            <td>${fmt(row.economic_vulnerability_score)}</td>
-            <td>${fmt(row.dropout_secondary_pct)}%</td>
-            <td>${fmt(row.st_bpl_mean_pct)}%</td>
-            <td>${fmt(row.mgnreg_sought_not_received_per_1000)}</td>
-          </tr>
-        `).join("");
-        document.querySelectorAll(".state-link").forEach((button) => {
-          button.addEventListener("click", () => {
-            selectedState = button.dataset.state;
-            document.getElementById("stateSelect").value = selectedState;
-            updateStateProfile();
-            drawScatter();
-            document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
-          });
-        });
-      }
-
-      function renderQuestion() {
-        const question = questions[activeQuestion];
-        activeImageIndex = Math.min(activeImageIndex, question.images.length - 1);
-        const [src, caption] = question.images[activeImageIndex];
-        document.getElementById("questionTag").textContent = question.tag;
-        document.getElementById("questionTitle").textContent = question.title;
-        document.getElementById("questionText").textContent = question.text;
-        document.getElementById("questionBullets").innerHTML = question.bullets.map((item) => `<li>${item}</li>`).join("");
-        document.getElementById("evidenceTitle").textContent = caption;
-        document.getElementById("evidenceCaption").textContent = `${activeImageIndex + 1} of ${question.images.length}`;
-        const img = document.getElementById("evidenceImage");
-        img.src = src;
-        img.alt = caption;
-        document.querySelectorAll(".tab").forEach((tab) => tab.classList.toggle("is-active", tab.dataset.question === activeQuestion));
-      }
-
-      async function init() {
-        const response = await fetch("assets/data/high_st_states.csv");
-        highStates = parseCSV(await response.text());
-        highStates.forEach((row) => {
-          if (typeof row.tribal_villages_gt_50_count === "number" && typeof row.st_population === "number") {
-            row.villages_gt50_per_100k_st_pop = row.tribal_villages_gt_50_count / row.st_population * 100000;
-          }
-        });
-
-        setupSelectors();
-        updateMetrics();
-        updateStateProfile();
-        drawScatter();
-        renderPriorityTable();
-        renderQuestion();
-
-        ["xSelect", "ySelect", "colorSelect"].forEach((id) => {
-          document.getElementById(id).addEventListener("change", drawScatter);
-        });
-        document.getElementById("stateSelect").addEventListener("change", (event) => {
-          selectedState = event.target.value;
-          updateStateProfile();
-          drawScatter();
-        });
-        document.getElementById("sortSelect").addEventListener("change", renderPriorityTable);
-        document.getElementById("stateSearch").addEventListener("input", renderPriorityTable);
-
-        document.querySelectorAll(".tab").forEach((button) => {
-          button.addEventListener("click", () => {
-            activeQuestion = button.dataset.question;
-            activeImageIndex = 0;
-            renderQuestion();
-          });
-        });
-        document.getElementById("prevImage").addEventListener("click", () => {
-          const count = questions[activeQuestion].images.length;
-          activeImageIndex = (activeImageIndex - 1 + count) % count;
-          renderQuestion();
-        });
-        document.getElementById("nextImage").addEventListener("click", () => {
-          const count = questions[activeQuestion].images.length;
-          activeImageIndex = (activeImageIndex + 1) % count;
-          renderQuestion();
-        });
-        window.addEventListener("resize", drawScatter);
-      }
-
-      init().catch((error) => {
-        document.querySelector(".dashboard-shell").innerHTML = `<div class="panel"><h2>Dashboard data could not load</h2><p>${error.message}</p></div>`;
-      });
-    </script>
   </body>
 </html>
