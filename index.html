@@ -546,36 +546,300 @@
           </section>
           <section id="q3">
             <h3>Q3. Are enrolment and GER enough to indicate educational progress, or do dropout rates tell a different story?</h3>
+          <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sample</th>
+      <th>x</th>
+      <th>y</th>
+      <th>n</th>
+      <th>pearson_r</th>
+      <th>pearson_p</th>
+      <th>abs_r</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>high_st_states</td>
+      <td>ger_classes_i_viii_clean</td>
+      <td>st_bpl_mean_pct</td>
+      <td>9</td>
+      <td>0.7172</td>
+      <td>0.0296</td>
+      <td>0.7172</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>high_st_states</td>
+      <td>primary_total</td>
+      <td>st_bpl_mean_pct</td>
+      <td>9</td>
+      <td>0.6833</td>
+      <td>0.0425</td>
+      <td>0.6833</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>high_st_states</td>
+      <td>gpi_ix_xii_avg_clean</td>
+      <td>st_bpl_mean_pct</td>
+      <td>9</td>
+      <td>0.6596</td>
+      <td>0.0532</td>
+      <td>0.6596</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>high_st_states</td>
+      <td>primary_total</td>
+      <td>dropout_secondary_pct</td>
+      <td>19</td>
+      <td>0.5008</td>
+      <td>0.0290</td>
+      <td>0.5008</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>high_st_states</td>
+      <td>ger_classes_ix_xii_clean</td>
+      <td>dropout_secondary_pct</td>
+      <td>18</td>
+      <td>-0.4230</td>
+      <td>0.0803</td>
+      <td>0.4230</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>high_st_states</td>
+      <td>ger_classes_ix_xii_clean</td>
+      <td>st_bpl_mean_pct</td>
+      <td>9</td>
+      <td>0.3540</td>
+      <td>0.3500</td>
+      <td>0.3540</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>high_st_states</td>
+      <td>gpi_ix_xii_avg_clean</td>
+      <td>employment_wpr_person_per_1000</td>
+      <td>18</td>
+      <td>-0.3261</td>
+      <td>0.1866</td>
+      <td>0.3261</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>high_st_states</td>
+      <td>ger_latest_ix_xii_avg_girls_clean</td>
+      <td>st_bpl_mean_pct</td>
+      <td>9</td>
+      <td>0.2762</td>
+      <td>0.4719</td>
+      <td>0.2762</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>high_st_states</td>
+      <td>ger_latest_ix_xii_avg_girls_clean</td>
+      <td>dropout_secondary_pct</td>
+      <td>19</td>
+      <td>0.2508</td>
+      <td>0.3003</td>
+      <td>0.2508</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>high_st_states</td>
+      <td>ger_latest_ix_xii_avg_clean</td>
+      <td>dropout_secondary_pct</td>
+      <td>19</td>
+      <td>0.2232</td>
+      <td>0.3584</td>
+      <td>0.2232</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>high_st_states</td>
+      <td>primary_total</td>
+      <td>employment_wpr_person_per_1000</td>
+      <td>18</td>
+      <td>0.1855</td>
+      <td>0.4612</td>
+      <td>0.1855</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>high_st_states</td>
+      <td>ger_classes_ix_xii_clean</td>
+      <td>employment_wpr_person_per_1000</td>
+      <td>17</td>
+      <td>-0.1843</td>
+      <td>0.4789</td>
+      <td>0.1843</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>high_st_states</td>
+      <td>gpi_ix_xii_avg_clean</td>
+      <td>dropout_secondary_pct</td>
+      <td>19</td>
+      <td>0.1841</td>
+      <td>0.4507</td>
+      <td>0.1841</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>high_st_states</td>
+      <td>ger_latest_ix_xii_avg_clean</td>
+      <td>st_bpl_mean_pct</td>
+      <td>9</td>
+      <td>0.1591</td>
+      <td>0.6826</td>
+      <td>0.1591</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>high_st_states</td>
+      <td>ger_classes_i_viii_clean</td>
+      <td>employment_wpr_person_per_1000</td>
+      <td>17</td>
+      <td>-0.1373</td>
+      <td>0.5992</td>
+      <td>0.1373</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>high_st_states</td>
+      <td>ger_classes_i_viii_clean</td>
+      <td>dropout_secondary_pct</td>
+      <td>18</td>
+      <td>-0.0795</td>
+      <td>0.7538</td>
+      <td>0.0795</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>high_st_states</td>
+      <td>ger_latest_ix_xii_avg_clean</td>
+      <td>employment_wpr_person_per_1000</td>
+      <td>18</td>
+      <td>0.0695</td>
+      <td>0.7842</td>
+      <td>0.0695</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>high_st_states</td>
+      <td>ger_latest_ix_xii_avg_girls_clean</td>
+      <td>employment_wpr_person_per_1000</td>
+      <td>18</td>
+      <td>0.0063</td>
+      <td>0.9803</td>
+      <td>0.0063</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+            <figure>
+              <img src="assets\figures\q3-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-2.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-3.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-4.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-5.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q3-6.png">
+            </figure>
+
           </section>
           <section id="q4">
             <h3>Q4. Is the literacy gap more informative than ST literacy alone in explaining disadvantage?</h3>
+            
           </section>
           <section id="q5">
             <h3>Q5. Are there states where educational indicators look reasonable, but employment or poverty outcomes remain weak?</h3>
+          <figure>
+              <img src="assets\figures\q5-1.png">
+            </figure>
           </section>
           <section id="q6">
             <h3>Q6. Does MGNREG unmet demand reflect deeper livelihood distress among ST households?</h3>
           </section>
           <section id="q7">
             <h3>Q7. Are scholarship-supported states seeing lower secondary dropout among ST students?</h3>
+          <figure>
+              <img src="assets\figures\q7-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q7-2.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q7-3.png">
+            </figure>
           </section>
           <section id="q8">
             <h3>Q8. Do states with high ST schooling participation still depend heavily on MGNREG?</h3>
           </section>
           <section id="q9">
             <h3>Q9. Does gender parity in enrolment translate into better female literacy and work outcomes?</h3>
+          <figure>
+              <img src="assets\figures\q9-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q9-2.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q9-3.png">
+            </figure>
           </section>
           <section id="q10">
             <h3>Q10. Does secondary dropout appear to be a stronger warning signal of poverty and weak labour outcomes than literacy alone?</h3>
           </section>
           <section id="q11">
             <h3>Q11. Do high-ST-share states systematically perform worse, or do outcomes vary substantially?</h3>
+          <figure>
+              <img src="assets\figures\q11-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q11-2.png">
+            </figure>
           </section>  
           <section id="q12">
             <h3>Q12. Do states with high concentrations of ST villages show different education and livelihood outcomes?</h3>
           </section>
           <section id="q13">
             <h3>Q13. Are there gender-specific disadvantages hidden behind state averages?</h3>
+            <figure>
+              <img src="assets\figures\q13-1.png">
+            </figure>
+            <figure>
+              <img src="assets\figures\q13-2.png">
+            </figure>
           </section>
         </section>
         <section id="recommendations">
