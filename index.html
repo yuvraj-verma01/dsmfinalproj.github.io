@@ -165,6 +165,51 @@
             </div>
           </div>
 
+          <div class="schema-table-wrap">
+            <table class="schema-layer-table">
+              <caption>Aggregation layers used in the project database</caption>
+              <thead>
+                <tr>
+                  <th>Layer</th>
+                  <th>Tables</th>
+                  <th>Role in the analysis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Demographic base</td>
+                  <td><code>demographics_st</code>, <code>high_st_share</code>, <code>sc_st_residence</code></td>
+                  <td>Defines ST population size, state-level ST concentration, and rural-urban residence context.</td>
+                </tr>
+                <tr>
+                  <td>Education pipeline</td>
+                  <td><code>literacy</code>, <code>low_literacy_districts</code>, <code>enrolment_st</code>, <code>dropout_st</code>, <code>ger_st</code>, <code>ger_st_gender_summary</code>, <code>ger_st_latest</code></td>
+                  <td>Tracks long-run literacy, current enrolment, GER, gender parity, and dropout across school stages.</td>
+                </tr>
+                <tr>
+                  <td>Livelihood and poverty</td>
+                  <td><code>employment_st</code>, <code>poverty_st</code>, <code>household_type_rural</code>, <code>mgnreg_st</code>, <code>mgnreg_st_dependency</code></td>
+                  <td>Connects education indicators to work participation, unemployment, poverty, rural household type, and MGNREG dependence.</td>
+                </tr>
+                <tr>
+                  <td>Programme support</td>
+                  <td><code>scholarships_st</code></td>
+                  <td>Captures pre-matric and post-matric scholarship release, utilization, and per-capita support.</td>
+                </tr>
+                <tr>
+                  <td>Settlement and community context</td>
+                  <td><code>tribal_villages</code>, <code>tribe_socioeconomic</code></td>
+                  <td>Adds ST-majority village concentration and tribe-level literacy, work, and population indicators.</td>
+                </tr>
+                <tr>
+                  <td>Analysis-ready marts</td>
+                  <td><code>state_analysis_dataset_all_states</code>, <code>state_analysis_dataset_high_st_states</code></td>
+                  <td>Combines the cleaned indicators into state-level datasets used for correlations, rankings, and policy-priority scoring.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h3>Main Variables Used in the Analysis</h3>
 
           <p>
@@ -181,6 +226,7 @@
                 <tr>
                   <th>Question focus</th>
                   <th>Main variables</th>
+                  <th>Used for</th>
                 </tr>
               </thead>
               <tbody>
@@ -194,6 +240,7 @@
                     <code>tribe_weighted_literacy_total_pct</code>,
                     <code>tribe_weighted_literacy_female_pct</code>
                   </td>
+                  <td>Q1, Q4, Q10, and Q13 use these variables to identify accumulated educational disadvantage and gendered literacy gaps.</td>
                 </tr>
                 <tr>
                   <td>Schooling access and retention</td>
@@ -204,6 +251,7 @@
                     <code>ger_latest_ix_xii_avg</code>, <code>dropout_primary_pct</code>,
                     <code>dropout_upper_primary_pct</code>, <code>dropout_secondary_pct</code>
                   </td>
+                  <td>Q2 and Q3 test whether enrolment and GER capture educational progress, or whether dropout reveals a separate retention failure.</td>
                 </tr>
                 <tr>
                   <td>Gender parity and female outcomes</td>
@@ -214,6 +262,7 @@
                     <code>gpi_ix_xii_avg</code>, <code>employment_wpr_female_per_1000</code>,
                     <code>employment_lfpr_female_per_1000</code>
                   </td>
+                  <td>Q2, Q9, and Q13 examine whether girls' enrolment and gender parity correspond to female literacy and work participation.</td>
                 </tr>
                 <tr>
                   <td>Employment and labour-market outcomes</td>
@@ -225,13 +274,19 @@
                     <code>employment_wpr_female_per_1000</code>,
                     <code>tribe_weighted_wpr_pct</code>
                   </td>
+                  <td>Q1, Q5, Q10, Q11, and Q13 connect education indicators with work participation, labour-force participation, and unemployment.</td>
                 </tr>
                 <tr>
                   <td>Poverty and livelihood vulnerability</td>
                   <td>
                     <code>st_bpl_rural_pct</code>, <code>st_bpl_urban_pct</code>,
-                    <code>st_bpl_mean_pct</code>
+                    <code>st_bpl_mean_pct</code>,
+                    <code>hh_self_employed_agriculture_pct</code>,
+                    <code>hh_regular_wage_salary_pct</code>,
+                    <code>hh_casual_labour_agriculture_pct</code>,
+                    <code>hh_casual_labour_non_agriculture_pct</code>
                   </td>
+                  <td>Q2, Q5, Q6, Q10, and Q11 use these variables to test whether education gains align with lower poverty and more secure livelihoods.</td>
                 </tr>
                 <tr>
                   <td>MGNREG dependence and unmet demand</td>
@@ -243,6 +298,7 @@
                     <code>mgnreg_work_received_any_days_per_1000</code>,
                     <code>mgnreg_100_plus_share_of_work_received_pct</code>
                   </td>
+                  <td>Q6 and Q8 use these variables to identify livelihood distress and whether stronger schooling participation coexists with public-work dependence.</td>
                 </tr>
                 <tr>
                   <td>Scholarship support</td>
@@ -253,6 +309,7 @@
                     <code>scholarship_cumulative_utilized_lakh_per_100k_st_pop</code>,
                     <code>scholarship_cumulative_utilization_pct</code>
                   </td>
+                  <td>Q7 checks whether scholarship-supported states show lower secondary dropout or weaker poverty outcomes.</td>
                 </tr>
                 <tr>
                   <td>ST concentration and settlement geography</td>
@@ -264,6 +321,18 @@
                     <code>tribal_villages_gt_90_count</code>,
                     <code>tribal_villages_100_pct_count</code>
                   </td>
+                  <td>Q11 and Q12 test whether high-ST-share states or ST-concentrated village geographies show systematically different outcomes.</td>
+                </tr>
+                <tr>
+                  <td>Composite policy priority scores</td>
+                  <td>
+                    <code>education_disadvantage_score</code>,
+                    <code>economic_vulnerability_score</code>,
+                    <code>overall_priority_score</code>,
+                    <code>policy_priority_category</code>,
+                    <code>overall_priority_rank</code>
+                  </td>
+                  <td>These derived variables combine education and livelihood indicators to rank states for targeted policy attention.</td>
                 </tr>
               </tbody>
             </table>
@@ -368,6 +437,11 @@
                     <td>Combined state-level analysis dataset for all states.</td>
                   </tr>
                   <tr>
+                    <td><code>state_analysis_dataset_high_st_states</code></td>
+                    <td>200</td>
+                    <td>Combined state-level analysis dataset filtered to high-ST states.</td>
+                  </tr>
+                  <tr>
                     <td><code>tribal_villages</code></td>
                     <td>7</td>
                     <td>Counts of villages above ST population concentration thresholds.</td>
@@ -384,6 +458,10 @@
 
           <div class="schema-embed schema-file-link">
             <strong>Full column dictionary</strong>
+            <p>
+              The complete schema report is kept as a separate CSV so the page does not
+              block while trying to render 618 column definitions inline.
+            </p>
             <a href="database_schema_report.csv">Open database_schema_report.csv</a>
           </div>
         </section>
@@ -395,14 +473,12 @@
             <h3>Q1. How do ST literacy and literacy gaps describe long-term educational exclusion?</h3>
 
             <p>
-    This question examines two literacy indicators — the absolute ST literacy rate and the
-    male-female literacy gap within ST populations — and asks how useful they are for describing
-    educational exclusion. The correlations test both indicators against work participation, labour
-    force participation, unemployment, and ST poverty across high-ST states. The overall result is
-    that literacy indicators are better read as historical accumulation markers than as current
-    predictors of livelihood outcomes. Neither indicator produces a strong, clean correlation with
-    employment or poverty, but together they describe the shape of long-run exclusion in a way that
-    no single current schooling metric can.
+    This question examines two literacy indicators — the absolute ST literacy rate and the gap between
+    general population literacy and ST population literacy — and asks how useful they are for describing
+    educational exclusion. The correlations test both indicators against work participation and ST poverty
+    across high-ST states. The results are more complicated than expected. Both relationships run in
+    counterintuitive directions, and Jammu and Kashmir operates as a substantial outlier in both scatters,
+    which is important context for reading every finding in this section.
   </p>
  
   <h4>1. ST literacy rate and work participation</h4>
@@ -412,14 +488,17 @@
   </figure>
  
   <p>
-    The scatter of ST literacy rate against WPR shows a loose positive trend. States with higher
-    ST literacy tend to have somewhat higher work participation rates, but the spread around the
-    fitted line is wide enough that literacy rate alone explains very little of the variation in WPR.
-    Mizoram and Nagaland sit toward the higher end of ST literacy with relatively stronger WPR, while
-    states like Madhya Pradesh and Rajasthan cluster at the lower-literacy end with weaker work
-    participation. However, the pattern is not consistent enough to treat literacy as a reliable
-    predictor. The relationship is plausible in direction but shallow in strength, which already
-    signals that literacy is proxying something deeper rather than directly driving employment outcomes.
+    The scatter of ST literacy rate against WPR shows a negative relationship — Pearson r = −0.48,
+    p = 0.046 — meaning that states with higher ST literacy actually tend to have lower work
+    participation, and this relationship is statistically significant. This is the opposite of what a
+    simple education-to-employment story would predict. Jammu and Kashmir sits at the extreme upper-left
+    corner: relatively low ST literacy of around 51% but an exceptionally high WPR of approximately 620.
+    At the other end, high-literacy states like Mizoram and Lakshadweep show moderate WPR values in the
+    390–460 range. The negative slope is not evidence that literacy suppresses work participation. What
+    it reflects is that the WPR indicator is capturing something structurally different across these
+    states — Jammu and Kashmir's very high WPR likely reflects its particular demographic and labour
+    force composition rather than a genuine literacy-employment pathway. The scatter makes clear that ST
+    literacy rate, read alone, is a poor cross-state predictor of work participation.
   </p>
  
   <h4>2. Literacy gap and work participation</h4>
@@ -428,18 +507,19 @@
     <img src="assets/figures/q1-2.png" alt="Scatter plot showing literacy gap and work participation">
   </figure>
  
-  <p>
-    The scatter of literacy gap against WPR runs in the expected negative direction — states where
-    the male-female ST literacy gap is larger tend to have lower work participation — but again the
-    relationship is too scattered to be treated causally. Rajasthan and Madhya Pradesh appear at the
-    high-gap end with weak WPR, while North-Eastern states with smaller internal literacy gaps tend to
-    show higher WPR. The key interpretive point is that neither the literacy rate nor the literacy gap
-    is causing these WPR differences directly. Both are outcomes of the same underlying structural
-    history: decades of differential access to schooling, administrative reach, and economic integration
-    that shaped both who became literate and who found stable employment. The literacy gap is the more
-    diagnostic of the two because it captures relative exclusion within the ST population itself — a
-    state could have moderate overall ST literacy while still having left women far behind.
-  </p>
+  The scatter of the literacy gap — the difference between general population literacy and ST population
+    literacy within each state — against WPR shows a positive relationship: Pearson r = 0.54, p = 0.021.
+    States where ST communities lag further behind the general population in literacy tend to have higher
+    work participation rates. Jammu and Kashmir is the most prominent case, with a gap of around 20
+    percentage points and WPR near 620. Odisha and Maharashtra also appear at the high-gap, higher-WPR
+    end. States with very small gaps — Assam, Nagaland, Tripura, Arunachal Pradesh — cluster at the
+    lower end of WPR. This positive direction is counterintuitive but should not be read as a larger ST
+    literacy gap producing higher work participation. Both variables are being shaped by underlying
+    economic structures: states where ST communities remain relatively excluded from the educational
+    mainstream often have labour force compositions dominated by informal and agricultural work, which
+    is counted in WPR but does not reflect formal employment pathways. The correlation is describing a
+    structural co-occurrence between relative educational exclusion and the kind of economy in which ST
+    communities participate, not a beneficial effect of the gap itself.
  
   <h4>3. ST literacy rate and ST poverty</h4>
  
@@ -448,13 +528,15 @@
   </figure>
  
   <p>
-    The scatter of ST literacy rate against ST poverty shows the expected negative direction — higher
-    literacy is loosely associated with lower poverty — but the relationship is noisy and the small
-    poverty sample limits what can be inferred. Odisha and Madhya Pradesh appear at the low-literacy,
-    high-poverty corner, while some North-Eastern states are positioned toward lower poverty. However,
-    the data points scatter considerably around the fitted line. This confirms that literacy cannot be
-    used as a standalone welfare indicator. Several states with moderate or improving literacy still face
-    substantial poverty, which means the factors that determine poverty are not captured by literacy alone.
+    The scatter of ST literacy rate against ST poverty shows essentially no relationship — Pearson
+    r = −0.07, p = 0.868, n = 9. The fitted line is nearly flat. Odisha and Madhya Pradesh both sit
+    at around 51–53% ST literacy but have very different poverty levels. Maharashtra at 65% literacy
+    has poverty around 43%. Assam at 73% literacy has the lowest poverty in the sample at around 25%.
+    Jammu and Kashmir at 51% literacy shows very low poverty of around 10%, sitting far from the
+    general cloud of points. With only nine states in the poverty sample and this much dispersion, the
+    scatter confirms that ST literacy rate carries almost no information about poverty levels at the
+    cross-state level. Literacy and poverty are both shaped by the same long-run structural history but
+    through enough different pathways that they do not correlate with each other cleanly.
   </p>
  
   <h4>4. Literacy gap and ST poverty</h4>
@@ -464,34 +546,40 @@
   </figure>
  
   <p>
-    The scatter of literacy gap against ST poverty shows a positive direction — states where the
-    male-female literacy gap is wider also tend to have higher poverty — but again the correlation is
-    modest and the sample is small. Odisha is the clearest high-gap, high-poverty case, while Jammu
-    and Kashmir shows a relatively large gap alongside moderate poverty. The literacy gap is capturing
-    something beyond the literacy rate in this relationship: even where the overall ST literacy level
-    is not the very lowest, if women have been systematically excluded from literacy within the ST
-    community, poverty tends to be higher. This reinforces the idea that gender-differentiated exclusion
-    compounds economic disadvantage in a way that aggregate literacy averages conceal.
+    The scatter of the literacy gap against ST poverty shows a weak positive direction — Pearson
+    r = 0.33, p = 0.390 — but this is not statistically significant given only nine states in the
+    poverty sample. Odisha sits at the extreme, with a gap of around 21 percentage points and ST
+    poverty above 50%. Madhya Pradesh and Chhattisgarh also appear in the high-gap, high-poverty
+    region. The notable exception is Jammu and Kashmir, which has one of the largest gaps in the
+    sample at around 20 points but one of the lowest poverty rates at approximately 10%. This single
+    exception substantially weakens the correlation. The direction is plausible — states where ST
+    communities have been left furthest behind the general population in literacy tend to be states
+    with deeper structural disadvantage overall — but the small sample and the Jammu and Kashmir
+    exception mean this should be treated as suggestive rather than conclusive.
   </p>
+
  
   <h4>Q1 interpretation</h4>
  
   <p>
-    Taken together, the four scatters confirm that ST literacy and the literacy gap are best treated
-    as long-run exclusion indicators rather than as direct predictors of current employment or poverty.
-    The correlations are directionally sensible but weak enough in strength that literacy should never
-    be used as a substitute for GER or dropout in assessing the current schooling pipeline. The literacy
-    gap's most important contribution is that it reveals differential exclusion within an already-disadvantaged
-    group. For policy, this means that states with moderate overall ST literacy should not be assumed to
-    have achieved equity — if the internal gender literacy gap is large, women have been left behind even
-    as aggregate numbers improved.
+    Both correlations against WPR run in directions that are difficult to interpret at face value, and
+    Jammu and Kashmir is a consistent structural outlier that influences every scatter. The negative
+    literacy-WPR relationship and the positive gap-WPR relationship are not telling a coherent story
+    about literacy causing employment outcomes in either direction. What they confirm is that ST literacy
+    and the literacy gap are poor cross-state predictors of current work participation and poverty — not
+    because they are irrelevant, but because WPR is measuring labour force participation in ways that
+    include informal and agricultural work, and poverty data is available for too few states to draw firm
+    conclusions. Both literacy indicators are measuring accumulated historical exclusion, not current
+    drivers of livelihood outcomes. The near-zero literacy-poverty correlation makes this especially clear.
   </p>
  
   <p>
-    <strong>Takeaway:</strong> ST literacy describes accumulated educational exclusion over decades, not
-    a current lever for employment or poverty outcomes. The literacy gap adds a gender equity dimension
-    that the aggregate rate obscures. Both should inform long-run policy targeting, while GER and dropout
-    handle the current schooling pipeline.
+    <strong>Takeaway:</strong> The counterintuitive directions of both WPR correlations in Q1 are largely
+    artefacts of Jammu and Kashmir's structural outlier position and the breadth of what WPR captures.
+    ST literacy and the literacy gap should be read as long-run exclusion markers, not as current predictors
+    of employment or poverty. Their value is in identifying states where the historical educational foundation
+    is weakest and where ST communities lag furthest behind the general population, not in predicting
+    cross-state variation in livelihood outcomes.
   </p>
           </section>
           <section id="q2">
@@ -750,14 +838,11 @@
           <section id="q3">
             <h3>Q3. Are enrolment and GER enough to indicate educational progress, or do dropout rates tell a different story?</h3> 
   <p>
-    This question directly tests whether GER — as the dominant administrative metric of schooling
-    participation — is sufficient to assess educational progress among ST students, or whether secondary
-    dropout reveals a separate and more urgent failure. GER indicators for classes I–VIII and IX–XII,
-    the latest GER IX–XII average, girls' GER, and the GER Gender Parity Index were all correlated
-    against secondary dropout, WPR, and ST poverty. The central finding is that GER and dropout measure
-    fundamentally different things, and they do not substitute for each other. A state can record strong
-    GER while simultaneously losing students before secondary completion, because the infrastructure
-    required for enrolment and the infrastructure required for retention are not the same thing.
+    This question tests whether GER — as the dominant administrative metric of schooling participation
+    — is sufficient to assess educational progress among ST students. The correlations run across multiple
+    versions of GER against secondary dropout and WPR. Looking at the actual graphs, the picture is more
+    varied than a simple "GER tells us nothing" conclusion. The correlations differ in direction across
+    different GER versions, which itself is an important finding.
   </p>
  
   <h4>1. GER IX–XII and secondary dropout</h4>
@@ -767,14 +852,15 @@
   </figure>
  
   <p>
-    The scatter of GER IX–XII against secondary dropout produces a near-zero correlation. There is no
-    systematic pattern: high-GER states are not reliably the states with lower dropout, and low-GER
-    states are not confined to high-dropout outcomes. States that appear in the high-GER-but-high-dropout
-    quadrant are not statistical anomalies — they reflect what happens when enrolment campaigns, conditional
-    transfers, and age-relaxed admissions bring students into the system without building the school quality,
-    proximity, teacher presence, and household economic support that keep students there. The near-zero
-    correlation is therefore itself informative: it confirms that GER is measuring access entry, not
-    completion.
+    The scatter of GER IX–XII (cleaned) against secondary dropout shows a moderate negative relationship
+    — Pearson r = −0.42, p = 0.080, n = 18 — meaning that states with higher GER tend to have somewhat
+    lower dropout, though the relationship falls just short of conventional significance. Odisha is the
+    most prominent outlier, sitting at a moderate GER around 43 with extremely high dropout of 33%.
+    Dadra and Nagar Haveli and Daman and Diu sits at the far right with very high GER near 95 and
+    moderate dropout around 12%. Manipur and Goa cluster at the lower-dropout end. While the negative
+    direction makes intuitive sense, the p-value of 0.080 and the wide scatter confirm that GER is at
+    best a weak signal for where dropout is occurring. The relationship is suggestive but not strong
+    enough to treat GER as a reliable retention indicator.
   </p>
  
   <h4>2. Latest GER IX–XII average and secondary dropout</h4>
@@ -784,12 +870,14 @@
   </figure>
  
   <p>
-    Using the more recent and refined GER IX–XII average produces the same result. The scatter shows
-    no meaningful slope, and the state-level positions are broadly similar to the historical GER picture.
-    This consistency across GER versions confirms that the finding is not an artefact of data vintage or
-    definition. States like Maharashtra and Odisha appear at notable dropout levels despite GER values
-    that do not flag them as access-deficient. The latest GER average is the most policy-relevant version
-    of the enrolment indicator, and even it cannot identify where retention is failing.
+    Switching to the latest GER IX–XII average produces a different result: Pearson r = 0.22, p = 0.358,
+    n = 19 — a weak positive slope. On this more recent measure, states with higher enrolment do not
+    show lower dropout; if anything, there is a slight positive association. Odisha again sits at high
+    dropout of around 33% despite a GER around 70. Lakshadweep has the lowest dropout near 0 despite
+    a GER around 53. The reversal in direction between the cleaned GER and the latest GER average is
+    itself informative: different GER measurements classify states differently, meaning GER figures are
+    sensitive to how they are calculated and which year they come from. A metric this unstable in
+    direction across versions should not be the primary basis for assessing retention progress.
   </p>
  
   <h4>3. GER Gender Parity Index and secondary dropout</h4>
@@ -799,14 +887,13 @@
   </figure>
  
   <p>
-    The GPI scatter against secondary dropout is particularly important for understanding what parity
-    in enrolment does and does not tell us. A GPI close to one means girls and boys are enrolling at
-    similar rates. But states with GPI near parity still span a wide range of dropout outcomes. This
-    is because GPI tells us whether girls are present in the enrolment count, not whether they or their
-    male peers are completing the secondary stage. A state can achieve enrolment parity and still lose
-    large shares of both girls and boys before secondary completion, simply because the barriers to
-    retention operate at the household and school-quality level rather than at the point of initial
-    enrolment.
+    The scatter of the GER gender parity index — the girls-to-boys enrolment ratio in IX–XII — against
+    secondary dropout shows a weak negative relationship: Pearson r = −0.19, p = 0.442. Madhya Pradesh
+    sits at the far left with a GPI of around 0.6 and high dropout of 18%. Meghalaya appears at the
+    upper right with GPI above 1.1 and dropout around 22%, a clear exception — girls outnumber boys
+    in enrolment but dropout remains high. Lakshadweep and Goa sit at high GPI and near-zero dropout.
+    The weak and insignificant correlation confirms that gender parity in enrolment gives almost no
+    information about whether students of either gender are being retained through secondary completion.
   </p>
  
   <h4>4. Official GPI IX–XII and secondary dropout</h4>
@@ -816,12 +903,15 @@
   </figure>
  
   <p>
-    The official GPI IX–XII average against secondary dropout shows a similarly weak pattern. The slope
-    is not meaningfully negative, and states with high official GPI values appear at varying dropout levels.
-    Meghalaya stands out as a state with relatively high dropout despite a comparatively small literacy gap
-    and reasonable GPI. This exception is instructive: gender parity in enrolment does not guarantee that
-    students of either gender are being retained. It simply means that whatever barriers exist are applied
-    roughly equally to boys and girls at the point of entry.
+    The official GPI IX–XII average against secondary dropout shows a weak positive relationship:
+    Pearson r = 0.18, p = 0.451. The slope tilts slightly upward — higher official GPI is weakly
+    associated with higher dropout — which is counterintuitive but not statistically meaningful.
+    Meghalaya is the most striking case: with GPI of 1.35, the highest in the sample, it also has
+    dropout around 22%. Lakshadweep and Manipur sit at GPI around 1.0 with very low dropout. Odisha
+    and Gujarat appear at GPI near 1.0 with high dropout. The positive tilt driven by Meghalaya
+    reinforces the point that gender parity in enrolment and retention are disconnected: Meghalaya
+    achieves strong girls' representation in enrolment while still losing a significant share of
+    students before completion.
   </p>
  
   <h4>5. GER IX–XII and work participation</h4>
@@ -831,13 +921,14 @@
   </figure>
  
   <p>
-    The scatter of GER IX–XII against WPR shows that stronger secondary enrolment does not reliably
-    correspond to stronger work participation. States in the high-GER-but-low-WPR cluster are the clearest
-    evidence that even if the enrolment signal looks reasonable, labour market integration may still be weak.
-    This connects directly to the mismatch argument developed in Q5: schooling access can improve without
-    producing the livelihood outcomes that justify the investment. GER improvement without labour market
-    connection produces a population that has been in school but has not been equipped or positioned for
-    formal employment.
+    The scatter of GER IX–XII against WPR shows a weak negative relationship: Pearson r = −0.18,
+    p = 0.479. Jammu and Kashmir sits at the top left — low GER around 25 and very high WPR around
+    620 — as a consistent outlier across the full analysis. Maharashtra and Odisha show moderate GER
+    with relatively high WPR. Lakshadweep at the far right with GER around 76 has moderate WPR around
+    395. The relationship is not statistically significant and the scatter is very wide. The weak
+    negative direction is substantially influenced by Jammu and Kashmir. Excluding that state, the
+    pattern is essentially flat — secondary enrolment levels carry no meaningful signal about work
+    participation across these states.
   </p>
  
   <h4>6. Primary enrolment and secondary dropout</h4>
@@ -847,37 +938,38 @@
   </figure>
  
   <p>
-    The scatter of total primary ST enrolment against secondary dropout shows almost no informative
-    pattern. Raw enrolment totals at the primary level are heavily influenced by state size and ST
-    population scale, making them poor cross-state comparators. More importantly, primary enrolment says
-    nothing about whether students are progressing through upper-primary into secondary schooling. A large
-    primary enrolment base can coexist with severe attrition at the transition stages, which is precisely
-    what high secondary dropout captures. This result reinforces that quantity of entry-level enrolment
-    is not a proxy for quality of progression.
+    Unlike the other GER-related scatters, the relationship between total primary ST enrolment and
+    secondary dropout is statistically significant: Pearson r = 0.50, p = 0.029, n = 19. Larger
+    primary enrolment is positively associated with higher dropout. Madhya Pradesh sits at the far
+    right with nearly 2.8 million primary ST students and dropout around 18%. Odisha has around 1.3
+    million primary students and 33% dropout. Smaller states — Lakshadweep, Goa, Manipur — cluster
+    at the left with low enrolment and low dropout. This positive relationship is a scale effect rather
+    than a meaningful educational finding: larger states naturally have more primary students in
+    absolute terms, and several of those larger states also happen to have higher dropout driven by
+    other structural factors. The correlation should not be read as primary enrolment causing dropout.
+    It reflects that states with the largest ST populations are also states with historically weaker
+    retention infrastructure, making this scatter informative about which states need the most
+    attention, but not about any direct enrolment-to-dropout mechanism.
   </p>
  
   <h4>Q3 interpretation</h4>
  
   <p>
-    GER is a politically visible, administratively easy indicator that dominates policy tracking partly
-    because it is reliably collectable and flattering to report. Dropout at the secondary level is harder
-    to measure, less flattering to acknowledge, and more revealing of structural failure. The six scatters
-    collectively establish that no version of GER — whether historical, recent, overall, girls-specific,
-    or gender-parity-adjusted — reliably identifies where ST students are being lost before secondary
-    completion. States that monitor only GER will systematically overestimate their educational progress
-    and underinvest in retention.
+    The six scatters together do not tell a single clean story. The direction of the GER-dropout
+    relationship varies across GER versions — negative in the cleaned GER, weakly positive in the
+    latest average — which means GER is not a stable enough indicator to anchor policy assessments
+    of retention. GPI in both versions is essentially unrelated to dropout. The only statistically
+    significant result is the scale-driven positive correlation between primary enrolment totals and
+    dropout, which reflects structural disadvantage in large states rather than any enrolment
+    mechanism. Across all versions, no GER measure reliably identifies where ST students are being
+    lost before secondary completion.
   </p>
  
   <p>
-    The high-GER-but-high-dropout states are not contradictions — they are the natural product of treating
-    access and retention as the same policy problem when they require different interventions entirely.
-  </p>
- 
-  <p>
-    <strong>Takeaway:</strong> GER captures access entry; dropout captures system failure. No version of
-    GER reliably predicts where retention is breaking down. Policy that monitors only enrolment will miss
-    the states where students are being lost, which are often the same states where poverty and weak WPR
-    are also elevated.
+    <strong>Takeaway:</strong> No version of GER consistently predicts secondary dropout. The directions
+    of correlation shift depending on which GER measure is used, and GPI is disconnected from retention
+    in both its forms. Dropout cannot be read from enrolment data, and states monitoring only GER will
+    miss where retention is failing.
   </p>
 
           </section>
@@ -1048,7 +1140,7 @@
     and then flagged across five livelihood distress dimensions: low WPR, high unemployment, high
     poverty, high MGNREG unmet demand, and high MGNREG 100-plus-days. States clearing the education
     threshold but carrying two or more distress flags are identified as education-livelihood mismatch
-    states. The mismatch bar chart ranks these states by the number of distress flags they carry.
+    states.
   </p>
  
   <h4>1. States with the highest distress flag counts</h4>
@@ -1057,43 +1149,39 @@
     <img src="assets/figures/q5-1.png" alt="Bar chart showing education-livelihood mismatch states by distress flag count">
   </figure>
  
-  <p>
-    The bar chart reveals that several states with education indicators that are not the weakest in
-    the sample still accumulate multiple simultaneous livelihood distress flags. States from the
-    North-East — including Assam, Nagaland, Arunachal Pradesh, and Tripura — appear prominently.
-    These states are not in the lowest tier on ST literacy or GER, yet they flag simultaneously on
-    weak WPR, high MGNREG unmet demand, and in some cases high unemployment. The visual ranking makes
-    clear that the problem is not uniformly distributed: some states carry three or more distress flags,
-    indicating compound livelihood vulnerability that coexists with comparatively acceptable education
-    indicators.
+   <p>
+    The bar chart shows twelve states in the mismatch category. Assam and Nagaland sit at the top
+    with four distress flags each — the maximum in the sample — meaning they clear the education
+    threshold while simultaneously flagging on nearly every livelihood dimension. Below them, nine
+    states carry three flags: Arunachal Pradesh, Goa, Lakshadweep, Maharashtra, Manipur, Odisha,
+    and Tripura among others. Meghalaya, Mizoram, and Sikkim carry two flags. The spread is notable
+    — this is not a North-East-only pattern. Maharashtra and Odisha, which are large mainland states
+    with substantial ST populations and significant policy attention, both appear at three flags.
+    Goa and Lakshadweep, which are small and atypical in economic structure, also appear, suggesting
+    the mismatch is not simply a function of state size or geographic remoteness.
   </p>
  
   <h4>Q5 interpretation</h4>
  
   <p>
-    The mismatch classification is a descriptive exercise based on median thresholds, not a causal model,
-    and that distinction matters enormously for how the results should be read. These states should not be
-    interpreted as places where education investment has failed. The more plausible reading is that the
-    constraints on livelihood outcomes in mismatch states are operating primarily on the demand side of
-    the labour market: thin formal employment sectors, geographic isolation, heavy dependence on subsistence
-    agriculture, and weak integration with wider economic networks. Education improves a person's readiness
-    to participate in a formal economy, but it cannot create that economy where it does not structurally
-    exist.
+    The mismatch classification is a descriptive exercise based on median thresholds, not a causal
+    model, and that distinction matters enormously for how the results should be read. Assam and
+    Nagaland carrying four simultaneous distress flags despite passing the education threshold is not
+    evidence that education investment has failed in those states. The more plausible reading is that
+    the constraints on livelihood outcomes are operating on the demand side of the labour market: thin
+    formal employment sectors, geographic isolation, heavy dependence on subsistence agriculture, and
+    weak integration with wider economic networks. Maharashtra and Odisha appearing alongside the
+    North-Eastern states at three flags each is important — it confirms that the mismatch is not
+    geographically confined and that large, economically more integrated states can also have ST
+    communities stuck in the education-livelihood gap. Education improves readiness to participate
+    in a formal economy, but it cannot create that economy where it does not structurally exist.
   </p>
  
   <p>
-    Credentialing a population without a corresponding labour market to absorb it produces underemployment
-    and continued MGNREG dependence regardless of schooling levels. The mismatch states are therefore an
-    argument for complementary economic development investment alongside education policy, not an argument
-    against education investment itself.
-  </p>
- 
-  <p>
-    <strong>Takeaway:</strong> Several states with reasonable education indicators still carry multiple
-    livelihood distress flags simultaneously. These education-livelihood mismatch states need labour market
-    and economic development interventions alongside education support — policies designed only around
-    school access or dropout reduction will not resolve the structural demand-side constraints that are
-    suppressing livelihood outcomes.
+    <strong>Takeaway:</strong> Assam and Nagaland carry the most distress flags at four each, with
+    nine further states at three flags. The mismatch is not confined to the North-East — Maharashtra
+    and Odisha appear alongside smaller and more remote states. These states need labour market and
+    economic development interventions alongside education support.
   </p>
           </section>
           <section id="q6">
@@ -1343,11 +1431,12 @@
           <section id="q7">
             <h3>Q7. Are scholarship-supported states seeing lower secondary dropout among ST students?</h3>
           <p>
-    This question tests whether states receiving higher ST scholarship funding are also the states with
-    lower secondary dropout. The analysis uses scholarship release and utilization data from 2023–24
-    alongside cumulative release over 2019–24, normalizing for ST population size to allow fair
-    cross-state comparison. The three scatters examine per-capita scholarship release against dropout,
-    scholarship utilization rate against dropout, and cumulative scholarship release against poverty.
+    This question tests whether states receiving higher ST scholarship funding are also the states
+    with lower secondary dropout. The analysis uses scholarship release and utilization data from
+    2023–24 alongside cumulative release over 2019–24, normalizing for ST population size to allow
+    fair cross-state comparison. The three scatters examine per-capita scholarship release against
+    dropout, scholarship utilization rate against dropout, and cumulative scholarship release against
+    poverty.
   </p>
  
   <h4>1. Per-capita scholarship release and secondary dropout</h4>
@@ -1357,16 +1446,16 @@
   </figure>
  
   <p>
-    The scatter of 2023–24 scholarship release per 100,000 ST population against secondary dropout does
-    not show the expected negative relationship. The slope is weak or slightly positive, meaning that
-    states receiving more scholarship funding per ST person are not systematically the states with the
-    lowest dropout. Some high-release states still appear at elevated dropout levels, while some
-    lower-release states show better retention. The temptation is to conclude that scholarships do not
-    work, but that inference is not valid. The more likely explanation is a classic confounding-by-targeting
-    problem: scholarship allocations are deliberately directed toward higher-need, higher-dropout states,
-    which mechanically produces a flat or positive association between funding and dropout even if
-    scholarships are genuinely helping at the margin within those states. Cross-sectional correlations
-    across states cannot recover what is essentially a within-state treatment effect.
+    The scatter of 2023–24 scholarship release per 100,000 ST population against secondary dropout
+    shows a weak negative relationship — Pearson r = −0.12, p = 0.636, n = 18 — meaning there is a
+    very slight tendency for higher per-capita release to coincide with lower dropout, but the
+    relationship is statistically negligible. Odisha is the most prominent outlier: it receives
+    relatively low per-capita scholarship release of around 100 lakh per 100,000 ST population and
+    has by far the highest dropout in the sample at 33%. Arunachal Pradesh sits at the far right with
+    very high per-capita release of around 840 and low dropout of about 9%. Goa and Manipur also
+    appear at the low-dropout end with varying release levels. The weak negative direction is in the
+    expected direction, but the wide scatter and the Odisha outlier mean that per-capita release alone
+    is not identifying where retention is strongest.
   </p>
  
   <h4>2. Scholarship utilization rate and secondary dropout</h4>
@@ -1376,15 +1465,15 @@
   </figure>
  
   <p>
-    The scatter of scholarship utilization rate — the percentage of released funds actually used —
-    against secondary dropout is the more actionable finding. Utilization rate is not subject to the
-    targeting confound in the same way that release levels are. Where states have received substantial
-    scholarship allocations but still show low utilization, the problem is not funding shortage; it is
-    delivery failure. Low utilization can reflect awareness gaps among eligible students, administrative
-    friction in application and disbursement processes, conditionality barriers that exclude some students,
-    or delays that make funding arrive too late to prevent dropout. These are administrative and process
-    problems that additional fund release will not fix. States in this category need process reform and
-    last-mile delivery improvements rather than larger allocations.
+    The scatter of scholarship utilization rate against secondary dropout shows essentially no
+    relationship — Pearson r = 0.02, p = 0.947, n = 17. The most striking feature of this graph is
+    the clustering: the vast majority of states report utilization rates between 90 and 100%, meaning
+    nearly all released funds are being recorded as utilized. Nagaland and Mizoram sit at the far left
+    with 0% utilization and have relatively low dropout rates of around 17% and 12% respectively.
+    Odisha at near 100% utilization still has 33% dropout. The near-zero correlation and the tight
+    clustering of most states at full utilization means this scatter is not distinguishing states in a
+    useful way. If almost every state is reporting full utilization, the utilization rate is not
+    functioning as a diagnostic variable for delivery failure in this dataset.
   </p>
  
   <h4>3. Cumulative scholarship release and ST poverty</h4>
@@ -1395,40 +1484,37 @@
  
   <p>
     The scatter of cumulative scholarship release over 2019–24 per 100,000 ST population against ST
-    poverty again shows no consistent negative association. Some high-cumulative-release states still
-    appear at high poverty levels. This confirms that sustained scholarship investment does not
-    automatically translate into poverty reduction, which is not surprising given the structural gap
-    between financial support for individual students and the broader household and labour market
-    conditions that govern poverty. Scholarships address the direct cost barrier to schooling; they
-    do not address school quality, teacher absence, household opportunity costs, early marriage, labour
-    demand pulling students out of school, or the absence of formal employment opportunities after
-    completion.
+    poverty shows a weak positive relationship — Pearson r = 0.37, p = 0.320, n = 9. Gujarat sits
+    at the far right with the highest cumulative release of around 1,850 lakh per 100,000 ST population
+    and moderate poverty of around 33%. Odisha has high cumulative release of around 1,200 and the
+    highest poverty at 52%. Jammu and Kashmir has the lowest cumulative release and the lowest poverty
+    at 10%. The positive slope — where higher cumulative scholarship funding weakly coincides with higher
+    poverty — is a targeting artefact: states with higher poverty and greater need tend to attract or
+    receive more scholarship funding over time. The positive direction should not be read as scholarships
+    increasing poverty. It reflects that the most deprived states have been receiving more support, but
+    the poverty gap has not closed sufficiently to reverse the association in cross-sectional data.
   </p>
  
   <h4>Q7 interpretation</h4>
  
   <p>
-    The scholarship findings should not be read as evidence against the intervention. They demonstrate
-    instead the analytical limits of cross-sectional correlations when the treatment is concentrated where
-    the problem is worst. The utilization gap — the space between funds released and funds actually reaching
-    students — is the most actionable signal in this section. It is independent of the targeting confound
-    and directly reveals where administrative delivery is failing.
+    Across all three scatters, the scholarship data does not show a clean protective effect on dropout
+    or poverty, but the reasons differ by graph. The per-capita release scatter shows a weak
+    expected-direction relationship swamped by the Odisha outlier. The utilization scatter is
+    effectively uninformative because most states cluster at near-full utilization, leaving no variation
+    to explain. The cumulative release and poverty scatter shows a positive slope driven by targeting.
+    None of these results are evidence that scholarships are ineffective; they demonstrate the limits
+    of cross-sectional correlations when treatments are concentrated where problems are worst and when
+    reported utilization does not vary meaningfully across states.
   </p>
  
   <p>
-    The deeper lesson is that financial support is one necessary component of a retention strategy, not
-    a sufficient one. Dropout is driven by school quality, household economic insecurity, teacher presence,
-    perceived returns to education, and social norms — none of which scholarship release directly addresses.
-    States with high release and low utilization need process reform; states with high dropout and low
-    release may need both funding and a broader retention package.
-  </p>
- 
-  <p>
-    <strong>Takeaway:</strong> The absence of a negative correlation between scholarship release and dropout
-    is not evidence that scholarships are ineffective — it reflects confounding-by-targeting. The actionable
-    finding is the utilization gap: where funding is released but not reaching students, administrative
-    reform is needed. Financial support alone, without complementary retention infrastructure, will not
-    resolve dropout.
+    <strong>Takeaway:</strong> Per-capita scholarship release shows a weak and non-significant negative
+    correlation with dropout. Utilization rates cluster so tightly at 100% that the variable carries no
+    diagnostic power in this dataset. Cumulative release is positively associated with poverty because
+    funding follows need. None of these patterns constitute evidence against scholarships, but they
+    confirm that funding alone — without addressing school quality, household economics, and retention
+    infrastructure — is insufficient.
   </p>
           </section>
           <section id="q8">
@@ -1673,11 +1759,9 @@
           <section id="q9">
             <h3>Q9. Does gender parity in enrolment translate into better female literacy and work outcomes?</h3>
             <p>
-    This question tests whether GPI values at the secondary level — where a score near one indicates
-    near-equal enrolment between girls and boys — correspond to better outcomes for ST women: higher
-    female literacy, stronger female WPR, and fewer low-literacy districts. It uses official GPI data
-    alongside girls' GER IX–XII and the constructed female literacy gap, which is the difference between
-    male and female ST literacy within each state.
+    This question tests whether GPI values at the secondary level correspond to better outcomes for
+    ST women: higher female literacy and stronger female WPR. The female WPR values here are NDAP
+    ratio-style values, where higher numbers indicate stronger participation.
   </p>
  
   <h4>1. Official GPI IX–XII and female ST literacy</h4>
@@ -1687,15 +1771,16 @@
   </figure>
  
   <p>
-    The scatter of official GPI IX–XII average against female ST literacy shows a weak positive trend.
-    States closer to parity in secondary enrolment tend to have somewhat higher female ST literacy, but
-    the relationship is loose and several states deviate substantially from it. The weakness of this
-    relationship is expected when the timelines are considered: current secondary GPI reflects recent
-    enrolment conditions, while female ST literacy is a cumulative measure shaped by access patterns
-    over multiple decades. A state that achieved enrolment parity only recently will not yet show a
-    corresponding lift in aggregate female literacy, because literacy is measuring the attainment of
-    the current adult population, not just the cohort currently in school. The two indicators are
-    measuring different generations.
+    The scatter of official GPI IX–XII against female ST literacy shows a weak positive relationship
+    — Pearson r = 0.31, p = 0.194, n = 19. Lakshadweep is a pronounced outlier at the upper left:
+    GPI of around 0.9 and female ST literacy of 100%. Mizoram also sits high at around 89% female
+    literacy with GPI around 1.1. Meghalaya is at the far right with the highest GPI of 1.35 and
+    female literacy around 73%. Rajasthan and Jammu and Kashmir sit at the lower left, with low GPI
+    and female ST literacy below 40%. The positive slope is in the expected direction — states with
+    better gender parity in enrolment tend to have somewhat higher female ST literacy — but the
+    correlation is weak and not statistically significant. The timelines are also mismatched: current
+    GPI captures recent enrolment conditions, while female ST literacy reflects cumulative access
+    over decades. The two indicators are measuring different generations.
   </p>
  
   <h4>2. Official GPI IX–XII and female work participation</h4>
@@ -1705,17 +1790,18 @@
   </figure>
  
   <p>
-    The scatter of GPI against female WPR is the more important and more cautionary finding. There is
-    very little relationship between enrolment parity and female work participation. States with GPI
-    values close to or above one still span a wide range of female WPR outcomes. Some near-parity states
-    show low female WPR, which means that getting girls into secondary school at rates comparable to boys
-    has not produced detectable improvement in their economic participation. This is not evidence that
-    enrolling girls is unimportant — over longer time horizons it almost certainly matters — but it does
-    mean that the mechanisms connecting schooling to labour market participation are too slow, complex, and
-    mediated by structural factors to appear as a clean cross-sectional correlation. Female WPR is shaped
-    by labour market norms, mobility constraints, household gender expectations, safety considerations,
-    and the structure of available formal work — all of which operate largely independently of whether
-    girls are currently enrolled.
+    The scatter of official GPI IX–XII against female WPR shows a moderate negative relationship —
+    Pearson r = −0.35, p = 0.149, n = 18. This is the opposite of what gender parity in schooling
+    would be expected to produce. Jammu and Kashmir sits at the extreme upper left: GPI around 0.83
+    and female WPR of approximately 690, the highest in the sample by a considerable margin. Meghalaya
+    at GPI 1.35 has female WPR around 355 — lower than many states with far less enrolment parity.
+    Maharashtra at GPI around 0.95 shows high female WPR near 445. The negative slope is substantially
+    driven by Jammu and Kashmir — a state where high female work participation coexists with
+    below-parity secondary enrolment for girls, likely because female WPR there includes agricultural
+    and informal labour rather than reflecting education-to-employment pathways. This negative
+    relationship is not evidence that gender parity in enrolment reduces female work participation;
+    it reflects that female WPR is shaped primarily by labour market structure, agricultural economy,
+    and informal work patterns rather than by schooling participation levels.
   </p>
  
   <h4>3. Girls' GER IX–XII and female work participation</h4>
@@ -1725,39 +1811,37 @@
   </figure>
  
   <p>
-    The scatter of girls' GER IX–XII against female WPR produces a similarly weak result. States with
-    higher girls' secondary GER do not show reliably higher female WPR. This confirms that the failure
-    to translate enrolment into work outcomes is not specific to GPI as a measure — it holds for the
-    underlying girls' enrolment rate itself. The state table sorted by GPI is especially revealing:
-    states such as Rajasthan and Jammu and Kashmir can appear with moderate GPI values while still
-    registering low female WPR and large female literacy gaps, because the norm systems and labour market
-    structures that exclude women from economic participation are not dismantled by enrolment alone.
+    The scatter of latest girls' GER IX–XII average against female WPR shows essentially no
+    relationship — Pearson r = −0.10, p = 0.701, n = 18. Jammu and Kashmir is again the extreme
+    outlier at the top left: low girls' GER around 45 and female WPR near 690. Maharashtra at girls'
+    GER around 74 has high female WPR near 445. Assam and Goa sit at high GER around 74–75 with very
+    low female WPR around 195–200. Mizoram at the far right with girls' GER around 82 has female WPR
+    around 355. The near-zero correlation and the visual scatter confirm that girls' secondary
+    enrolment rates carry no information about female work participation across these states. The WPR
+    variation is being driven by state-specific labour market structures, informal economy composition,
+    and agricultural patterns — none of which are captured by enrolment.
   </p>
  
   <h4>Q9 interpretation</h4>
  
   <p>
-    GPI improvement is a meaningful milestone in access equity, but it is a structurally shallow indicator
-    of gender equity outcomes. It measures input — whether girls are present in school — rather than the
-    outcomes that justify that input: literacy, economic participation, and livelihood security. The gap
-    between enrolment parity and female WPR reveals that intervening mechanisms are doing substantial work
-    that enrolment data cannot capture. Household expectations about women's roles, norms around female
-    mobility and employment, and the absence of formal work opportunities compatible with women's
-    circumstances all determine whether schooling translates into economic participation.
+    Across all three scatters, Jammu and Kashmir is the most important feature to understand. Its
+    combination of low GPI, low girls' GER, and extremely high female WPR dominates the correlations
+    and drives the negative slopes in graphs 2 and 3. The high female WPR in Jammu and Kashmir reflects
+    the inclusion of agricultural and informal labour in WPR, not an education-to-employment pathway.
+    Excluding this outlier, the relationships would be flatter still. The weak positive finding in
+    graph 1 — GPI and female literacy — is the most interpretable result, and even that is not
+    statistically significant. Enrolment parity and girls' GER are simply not predictors of female
+    work participation in this dataset, because the indicator being explained is shaped by forces
+    operating far outside the schooling system.
   </p>
  
   <p>
-    States reporting GPI improvement while female WPR and female literacy remain stagnant have a gendered
-    education-to-livelihood gap. Treating GPI as a sufficient measure of gender progress will systematically
-    understate the depth of female disadvantage that remains.
-  </p>
- 
-  <p>
-    <strong>Takeaway:</strong> Near-parity enrolment for girls, measured by GPI, does not produce a
-    detectable signal in female work participation or female literacy outcomes at the cross-state level.
-    GPI is an access input, not an equity outcome. For genuine gender equity, policy must extend beyond
-    enrolment to address labour market norms, post-schooling pathways, and the structural conditions that
-    determine whether education becomes economically meaningful for women.
+    <strong>Takeaway:</strong> Official GPI shows a weak positive association with female ST literacy
+    but a moderate negative association with female WPR, largely driven by Jammu and Kashmir as a
+    structural outlier. Girls' GER and female WPR show essentially no relationship. Enrolment parity
+    is measuring a schooling input; female work participation is determined primarily by labour market
+    structure and informal economy composition. The two are decoupled in this data.
   </p>
           </section>
           <section id="q10">
@@ -1916,10 +2000,11 @@
           <section id="q11">
             <h3>Q11. Do high-ST-share states systematically perform worse, or do outcomes vary substantially?</h3>
           <p>
-    This question uses the full all-states sample rather than the high-ST subsample to test whether ST
-    population concentration is a meaningful predictor of ST outcomes. ST share in total state population
-    is correlated against ST literacy, secondary dropout, ST poverty, and WPR. The two scatters test
-    whether simply knowing a state's ST concentration tells you where its outcomes will land.
+    This question uses the full all-states sample rather than the high-ST subsample to test whether
+    ST population concentration is a meaningful predictor of ST outcomes. ST share in total state
+    population is correlated against ST literacy and ST poverty. Contrary to what a simple
+    homogeneity assumption might suggest, both relationships are statistically significant and
+    positive — but in ways that tell different stories about what ST concentration actually predicts.
   </p>
  
   <h4>1. ST population share and ST literacy</h4>
@@ -1929,13 +2014,22 @@
   </figure>
  
   <p>
-    The scatter of ST share against ST literacy across all states shows a very shallow slope with high
-    dispersion. States at similar levels of ST concentration vary enormously in ST literacy. Some
-    high-ST-share states show strong literacy; others show weak literacy. The fitted line is nearly flat,
-    and the scatter around it is wide enough to confirm that concentration explains very little of the
-    literacy variation. North-Eastern states with very high ST shares often show comparatively strong ST
-    literacy, while some lower-ST-share states in central India show weaker literacy outcomes. If
-    concentration were a meaningful cause of poor literacy, this divergence would not exist.
+    The scatter of ST share against ST literacy shows a strong positive relationship: Pearson r = 0.60,
+    p &lt; 0.001, n = 27. States with higher ST population concentrations tend to have considerably
+    higher ST literacy rates. At the extreme right, Lakshadweep at around 95% ST share has ST literacy
+    above 92%. Nagaland and Meghalaya, both around 85% ST share, show literacy rates of 80% and 75%
+    respectively. At the left end, low-ST-share states like Bihar, Tamil Nadu, and Uttar Pradesh —
+    all below 2% ST share — cluster in the 50–56% ST literacy range. The positive slope is strong
+    and statistically significant. This is not evidence that ST concentration causes higher literacy;
+    it reflects that the states where ST communities form the demographic majority are primarily
+    North-Eastern states that have historically had better educational infrastructure, greater
+    political representation of ST communities, and smaller internal inequality between ST and
+    general populations. States where ST communities are a small minority embedded in larger
+    non-ST populations tend to show lower ST literacy, likely because those communities have had
+    less institutional visibility and policy reach. The scatter makes clear that ST population
+    share is not a homogeneous disadvantage indicator — it describes very different contexts
+    depending on whether concentration reflects a North-Eastern majority situation or a minority
+    ST population within a larger state.
   </p>
  
   <h4>2. ST population share and ST poverty</h4>
@@ -1945,39 +2039,49 @@
   </figure>
  
   <p>
-    The scatter of ST share against ST poverty similarly shows high dispersion and a weak slope. Some
-    high-ST-share states appear in the middle of the poverty distribution, while others are at both
-    extremes. The relationship is not systematic enough to treat concentration as a poverty driver. The
-    dispersion in this scatter is precisely the point: states that are demographically similar in terms
-    of ST concentration have followed very different developmental trajectories, suggesting that historical
-    policy choices, state capacity, geographic conditions, and economic structure matter far more than
-    demographic composition.
+    The scatter of ST share against ST poverty shows a moderate positive relationship: Pearson r = 0.55,
+    p = 0.017, n = 18. Unlike the literacy result, this positive association is less encouraging —
+    states with higher ST concentration tend to have higher ST poverty. Odisha at around 23% ST share
+    has the highest poverty in the sample at over 52%. Chhattisgarh at 30% ST share shows poverty
+    around 44%, and Jharkhand at 26% shows around 40%. At the lower end, Himachal Pradesh at 5% ST
+    share has very low ST poverty near 6%, and Andhra Pradesh at around 6% ST share has poverty around
+    18%. Several states with low ST concentration — Bihar, West Bengal, Kerala — show moderate poverty
+    rates that sit above the fitted line, meaning their ST communities face worse poverty than their
+    low ST share would suggest. The positive relationship between ST concentration and poverty is
+    therefore capturing something real: the states where ST communities are most numerous in absolute
+    and proportional terms — Odisha, Jharkhand, Chhattisgarh, Madhya Pradesh — are also the states
+    where ST poverty remains most severe. This stands in contrast to the literacy finding, where high
+    ST share is associated with better outcomes. The divergence between the two scatters tells the
+    more important story: high ST concentration in North-Eastern states coincides with reasonable
+    literacy but not necessarily with poverty relief, while high ST concentration in central Indian
+    states coincides with both higher literacy gaps and much higher poverty.
   </p>
  
   <h4>Q11 interpretation</h4>
  
   <p>
-    ST population concentration is a demographic characteristic, not a causal mechanism. The weak and
-    dispersed correlations confirm that knowing a state's ST share tells you almost nothing about where
-    its ST communities will land on literacy, poverty, dropout, or employment. This matters for policy in
-    two ways. First, it disconfirms the implicit assumption in much national-level tribal welfare
-    programming that high-ST-share states form a homogeneous problem category requiring a uniform
-    intervention package. The variation within the high-ST group is real, large, and policy-relevant.
+    The two scatters together dismantle the assumption that ST population concentration is a uniform
+    predictor of outcomes in either direction. ST share predicts higher literacy and higher poverty
+    simultaneously, which is only possible if the states with high ST concentration are themselves
+    heterogeneous — which they are. The North-Eastern high-ST states tend to have higher literacy and
+    lower poverty, while the central Indian high-ST states carry both lower literacy and far higher
+    poverty. This heterogeneity is precisely what is lost when "high-ST states" are treated as a
+    single policy category. A national programme calibrated to the average high-ST state will be
+    systematically misaligned with both the North-Eastern context — where literacy is relatively
+    strong but livelihood distress persists — and the central Indian context — where literacy
+    deficits and poverty are compounding each other. The significant positive correlation with
+    poverty in particular means that ST concentration is not an irrelevant demographic variable;
+    it is pointing toward the states where ST communities are most economically vulnerable. But
+    the literacy finding prevents any simple negative reading of concentration as purely a marker
+    of disadvantage.
   </p>
  
   <p>
-    Second, the dispersion visible in both scatters is the analytical justification for state-level
-    differentiation: states at comparable levels of ST concentration have achieved very different outcomes,
-    which means the operative factors are state-specific and structural, not demographic. National blocs
-    and uniform allocations will inevitably be miscalibrated — over-intervening where progress has been
-    made and under-addressing the specific failures in states that genuinely lag.
-  </p>
- 
-  <p>
-    <strong>Takeaway:</strong> ST population concentration does not systematically predict worse outcomes.
-    High-ST-share states vary enormously on every outcome indicator. This variation is the central
-    justification for differentiated, state-specific policy rather than bloc-level interventions designed
-    for a uniform "high-ST state" category.
+    <strong>Takeaway:</strong> ST population concentration is positively associated with both ST
+    literacy and ST poverty — not because concentration causes either, but because the high-ST
+    states are internally divided between North-Eastern states with relatively stronger educational
+    foundations and central Indian states with severe and compounding disadvantage. Treating them
+    as a uniform category will misdirect both diagnosis and resources.
   </p>
           </section>  
           <section id="q12">
@@ -2199,11 +2303,10 @@
           <section id="q13">
             <h3>Q13. Are there gender-specific disadvantages hidden behind state averages?</h3>
             <p>
-    This question uses the constructed female literacy gap — the difference between male and female ST
-    literacy within each state — alongside the absolute female ST literacy rate to examine whether
-    state-level averages conceal serious gendered disadvantage. The analysis correlates these indicators
-    against female WPR, ST poverty, and low-literacy district count, and presents a ranking bar chart
-    and a scatter plot.
+    This question uses the constructed female literacy gap — the difference between male and female
+    ST literacy within each state — to examine whether state-level averages conceal serious gendered
+    disadvantage within ST populations. The analysis presents a ranking bar chart of states by the
+    size of this internal gender gap, and then correlates it against female WPR across states.
   </p>
  
   <h4>1. Largest female literacy gaps across high-ST states</h4>
@@ -2213,15 +2316,18 @@
   </figure>
  
   <p>
-    The bar chart ranking states by the magnitude of their male-female ST literacy gap is one of the
-    most direct equity findings in the project. Rajasthan, Odisha, Jharkhand, Jammu and Kashmir, and
-    Madhya Pradesh carry gaps that in some cases exceed 15 to 20 percentage points within the ST
-    population alone. These are not gaps between ST and general populations — they are gaps between men
-    and women within the already-disadvantaged ST community. The bar chart makes concretely visible
-    something that aggregate ST literacy averages completely hide: a state can post a literacy figure
-    that appears moderate or improving while simultaneously having ST women who are far behind ST men.
-    Rajasthan is the clearest example — its large female literacy gap signals that progress in overall
-    ST literacy has been substantially male-concentrated.
+    The bar chart ranks states by the male-female ST literacy gap — the difference in literacy rates
+    between ST men and ST women within each state. Rajasthan has by far the largest gap at 30
+    percentage points, standing clearly apart from every other state in the sample. Odisha and
+    Jharkhand follow at around 22 percentage points each, with Dadra and Nagar Haveli and Daman and
+    Diu, Jammu and Kashmir, and Chhattisgarh all sitting around 21 points. Gujarat is at approximately
+    19 points, Madhya Pradesh at around 18.5, Maharashtra at around 17.5, and Goa at the lower end
+    of the high-gap group at around 16 points. These are not gaps between ST and general populations
+    — they are gaps between men and women within the ST community itself, meaning they represent
+    differential exclusion from literacy that operates inside an already disadvantaged group.
+    Rajasthan's 30-point gap is especially severe: it means that on average, ST women in Rajasthan
+    are 30 percentage points less literate than ST men, a level of internal gender inequality that
+    aggregate ST literacy figures would not surface at all.
   </p>
  
   <h4>2. Female literacy gap and female work participation</h4>
@@ -2231,47 +2337,50 @@
   </figure>
  
   <p>
-    The scatter of female literacy gap against female WPR shows a negative association — states with
-    larger internal gender literacy gaps tend to have lower female WPR among ST populations. However,
-    this correlation must not be read as the literacy gap causing low WPR. Both are more plausibly
-    common outcomes of the same underlying structural conditions: norm systems that have historically
-    deprioritized women's education and economic participation, geographic and social barriers to female
-    mobility and employment, and the absence of formal work opportunities that are accessible to women
-    in remote or rural ST-concentrated areas. The correlation describes co-movement, not a causal pathway
-    from literacy to employment. A state that closes its female literacy gap through targeted adult
-    literacy programmes will not automatically see female WPR rise unless the labour market conditions
-    and social norms that constrain women's economic participation also change.
+    The scatter of the female literacy gap against female WPR shows a weak positive relationship —
+    Pearson r = 0.31, p = 0.218, n = 18 — which is not statistically significant. The direction is
+    counterintuitive: states with larger internal gender literacy gaps weakly tend to have higher
+    female WPR rather than lower. Jammu and Kashmir is the dominant outlier, sitting at a gap of
+    around 21 percentage points and female WPR near 690 — by far the highest in the sample. Rajasthan,
+    with the largest gap of 30 points, has moderate female WPR around 400. States with small gender
+    literacy gaps — Meghalaya, Mizoram, Lakshadweep — cluster at the lower end of female WPR, between
+    250 and 360. The positive slope should not be read as the gender literacy gap causing or benefiting
+    female work participation. As seen throughout this analysis, high female WPR in several states
+    reflects agricultural and informal labour that is counted in participation rates regardless of
+    educational attainment. States with large internal gender literacy gaps tend to be states where
+    women's economic role is predominantly in subsistence and agricultural contexts, which contributes
+    to WPR without reflecting formal employment or education-linked labour market participation.
+    The correlation is not statistically significant and is substantially distorted by the Jammu and
+    Kashmir outlier. Without Jammu and Kashmir, the relationship would be flatter still.
   </p>
  
   <h4>Q13 interpretation</h4>
  
   <p>
-    The most important finding in Q13 is descriptive but consequential: state-level averages, including
-    overall ST literacy averages, can project a picture of relative progress that completely masks the
-    depth of female disadvantage within the same population. In the five flagged states, gender-disaggregated
-    analysis reveals a separate and severe equity problem that aggregate literacy or GER figures would not
-    raise.
+    The most important finding in Q13 is in the bar chart rather than the scatter. The ranking
+    makes concretely visible something that aggregate ST literacy figures cannot show: within states
+    that already have relatively disadvantaged ST populations, women have been left further behind
+    than men by margins as large as 30 percentage points. Rajasthan's gap of 30 points places it
+    in a category of its own. Odisha, Jharkhand, Chhattisgarh, and Jammu and Kashmir follow with
+    gaps above 21 points. These states are not being flagged here because their overall ST literacy
+    is the lowest — they are being flagged because the progress in ST literacy that has occurred has
+    been concentrated among men, leaving ST women far behind. The scatter against female WPR does
+    not produce a meaningful or interpretable relationship, largely because the Jammu and Kashmir
+    outlier and the agricultural labour composition of WPR distort the picture in the same way seen
+    across Q1 and Q9. The WPR indicator cannot be used to assess whether female literacy gaps are
+    translating into genuine economic disadvantage in this dataset; it is measuring the wrong thing
+    for that purpose.
   </p>
  
   <p>
-    For policy, this means that states with large female literacy gaps need specifically gendered
-    interventions — not simply larger envelopes of general ST education spending. The current adult
-    generation of ST women in high-gap states needs foundational literacy support through adult and
-    continuing education programmes. The next generation of adolescent girls needs retention support at
-    the secondary level, safety infrastructure, scholarship access, and visible post-schooling economic
-    pathways that make education tangibly valuable for families in contexts where female economic
-    participation is still socially restricted. Without these specifically gendered elements, even
-    substantial improvements in overall ST literacy or secondary GER will leave the internal gender gap
-    intact.
-  </p>
- 
-  <p>
-    <strong>Takeaway:</strong> Female literacy gaps within ST populations can be large and structurally
-    serious even in states where aggregate literacy looks moderate. Rajasthan, Odisha, Jharkhand, Jammu
-    and Kashmir, and Madhya Pradesh are the clearest cases. Policy in these states must be gender-specific,
-    not just ST-specific — targeting adult women in the current generation and adolescent girls in the next,
-    while addressing the structural norms and labour market conditions that determine whether literacy
-    translates into economic participation.
+    <strong>Takeaway:</strong> The bar chart is the central finding of Q13: Rajasthan, Odisha,
+    Jharkhand, Chhattisgarh, and Jammu and Kashmir carry male-female ST literacy gaps exceeding 21
+    percentage points, with Rajasthan at 30. These are gaps within the ST population, not between
+    ST and general populations, and they are invisible in aggregate literacy figures. The scatter
+    against female WPR produces a weak and statistically insignificant positive relationship driven
+    largely by the Jammu and Kashmir outlier and the agricultural composition of WPR — it should
+    not be used to draw conclusions about whether the gender literacy gap is consequential for
+    women's economic participation.
   </p>
           </section>
         </section>
