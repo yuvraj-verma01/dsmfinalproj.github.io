@@ -561,15 +561,14 @@
             <a href="#q2"><strong>Q2</strong><span>GER, dropout, and poverty</span></a>
             <a href="#q3"><strong>Q3</strong><span>GER versus dropout</span></a>
             <a href="#q4"><strong>Q4</strong><span>Literacy gap versus literacy level</span></a>
-            <a href="#q5"><strong>Q5</strong><span>Education-livelihood mismatches</span></a>
-            <a href="#q6"><strong>Q6</strong><span>MGNREG unmet demand</span></a>
-            <a href="#q7"><strong>Q7</strong><span>Scholarships and dropout</span></a>
-            <a href="#q8"><strong>Q8</strong><span>Schooling and MGNREG dependence</span></a>
-            <a href="#q9"><strong>Q9</strong><span>Gender parity and outcomes</span></a>
-            <a href="#q10"><strong>Q10</strong><span>Dropout as warning signal</span></a>
-            <a href="#q11"><strong>Q11</strong><span>High-ST-share variation</span></a>
-            <a href="#q12"><strong>Q12</strong><span>ST village concentration</span></a>
-            <a href="#q13"><strong>Q13</strong><span>Gender-specific disadvantages</span></a>
+            <a href="#q6"><strong>Q5</strong><span>MGNREG unmet demand</span></a>
+            <a href="#q7"><strong>Q6</strong><span>Scholarships and dropout</span></a>
+            <a href="#q8"><strong>Q7</strong><span>Schooling and MGNREG dependence</span></a>
+            <a href="#q9"><strong>Q8</strong><span>Gender parity and outcomes</span></a>
+            <a href="#q10"><strong>Q9</strong><span>Dropout as warning signal</span></a>
+            <a href="#q11"><strong>Q10</strong><span>High-ST-share variation</span></a>
+            <a href="#q12"><strong>Q11</strong><span>ST village concentration</span></a>
+            <a href="#q13"><strong>Q12</strong><span>Gender-specific disadvantages</span></a>
           </nav>
 
           <section id="q1">
@@ -966,24 +965,7 @@
     enough to treat GER as a reliable retention indicator.
   </p>
  
-  <h4>2. Latest GER IX–XII average and secondary dropout</h4>
- 
-  <figure>
-    <img src="assets/figures/q3-2.png" alt="Scatter plot showing latest GER IX-XII average and secondary dropout">
-  </figure>
- 
-  <p>
-    Switching to the latest GER IX–XII average produces a different result: Pearson r = 0.22, p = 0.358,
-    n = 19 — a weak positive slope. On this more recent measure, states with higher enrolment do not
-    show lower dropout; if anything, there is a slight positive association. Odisha again sits at high
-    dropout of around 33% despite a GER around 70. Lakshadweep has the lowest dropout near 0 despite
-    a GER around 53. The reversal in direction between the cleaned GER and the latest GER average is
-    itself informative: different GER measurements classify states differently, meaning GER figures are
-    sensitive to how they are calculated and which year they come from. A metric this unstable in
-    direction across versions should not be the primary basis for assessing retention progress.
-  </p>
- 
-  <h4>3. GER Gender Parity Index and secondary dropout</h4>
+  <h4>2. GER Gender Parity Index and secondary dropout</h4>
  
   <figure>
     <img src="assets/figures/q3-3.png" alt="Scatter plot showing GER Gender Parity Index and secondary dropout">
@@ -999,7 +981,7 @@
     information about whether students of either gender are being retained through secondary completion.
   </p>
  
-  <h4>4. Official GPI IX–XII and secondary dropout</h4>
+  <h4>3. Official GPI IX–XII and secondary dropout</h4>
  
   <figure>
     <img src="assets/figures/q3-4.png" alt="Scatter plot showing official GPI IX-XII and secondary dropout">
@@ -1017,7 +999,7 @@
     students before completion.
   </p>
  
-  <h4>5. GER IX–XII and work participation</h4>
+  <h4>4. GER IX–XII and work participation</h4>
  
   <figure>
     <img src="assets/figures/q3-5.png" alt="Scatter plot showing GER IX-XII and work participation">
@@ -1032,27 +1014,6 @@
     negative direction is substantially influenced by Jammu and Kashmir. Excluding that state, the
     pattern is essentially flat — secondary enrolment levels carry no meaningful signal about work
     participation across these states.
-  </p>
- 
-  <h4>6. Primary enrolment and secondary dropout</h4>
- 
-  <figure>
-    <img src="assets/figures/q3-6.png" alt="Scatter plot showing primary enrolment and secondary dropout">
-  </figure>
- 
-  <p>
-    Unlike the other GER-related scatters, the relationship between total primary ST enrolment and
-    secondary dropout is statistically significant: Pearson r = 0.50, p = 0.029, n = 19. Larger
-    primary enrolment is positively associated with higher dropout. Madhya Pradesh sits at the far
-    right with nearly 2.8 million primary ST students and dropout around 18%. Odisha has around 1.3
-    million primary students and 33% dropout. Smaller states — Lakshadweep, Goa, Manipur — cluster
-    at the left with low enrolment and low dropout. This positive relationship is a scale effect rather
-    than a meaningful educational finding: larger states naturally have more primary students in
-    absolute terms, and several of those larger states also happen to have higher dropout driven by
-    other structural factors. The correlation should not be read as primary enrolment causing dropout.
-    It reflects that states with the largest ST populations are also states with historically weaker
-    retention infrastructure, making this scatter informative about which states need the most
-    attention, but not about any direct enrolment-to-dropout mechanism.
   </p>
  
   <h4>Q3 interpretation</h4>
@@ -1236,59 +1197,7 @@
             </p>
           </section>
           <section id="q5">
-            <h3>Q5. Are there states where educational indicators look reasonable, but employment or poverty outcomes remain weak?</h3>
-          <p>
-    This question builds a structured mismatch classification. Each state is assessed against median
-    thresholds on ST literacy and GER to determine whether its education indicators look reasonable,
-    and then flagged across five livelihood distress dimensions: low WPR, high unemployment, high
-    poverty, high MGNREG unmet demand, and high MGNREG 100-plus-days. States clearing the education
-    threshold but carrying two or more distress flags are identified as education-livelihood mismatch
-    states.
-  </p>
- 
-  <h4>1. States with the highest distress flag counts</h4>
- 
-  <figure>
-    <img src="assets/figures/q5-1.png" alt="Bar chart showing education-livelihood mismatch states by distress flag count">
-  </figure>
- 
-   <p>
-    The bar chart shows twelve states in the mismatch category. Assam and Nagaland sit at the top
-    with four distress flags each — the maximum in the sample — meaning they clear the education
-    threshold while simultaneously flagging on nearly every livelihood dimension. Below them, nine
-    states carry three flags: Arunachal Pradesh, Goa, Lakshadweep, Maharashtra, Manipur, Odisha,
-    and Tripura among others. Meghalaya, Mizoram, and Sikkim carry two flags. The spread is notable
-    — this is not a North-East-only pattern. Maharashtra and Odisha, which are large mainland states
-    with substantial ST populations and significant policy attention, both appear at three flags.
-    Goa and Lakshadweep, which are small and atypical in economic structure, also appear, suggesting
-    the mismatch is not simply a function of state size or geographic remoteness.
-  </p>
- 
-  <h4>Q5 interpretation</h4>
- 
-  <p>
-    The mismatch classification is a descriptive exercise based on median thresholds, not a causal
-    model, and that distinction matters enormously for how the results should be read. Assam and
-    Nagaland carrying four simultaneous distress flags despite passing the education threshold is not
-    evidence that education investment has failed in those states. The more plausible reading is that
-    the constraints on livelihood outcomes are operating on the demand side of the labour market: thin
-    formal employment sectors, geographic isolation, heavy dependence on subsistence agriculture, and
-    weak integration with wider economic networks. Maharashtra and Odisha appearing alongside the
-    North-Eastern states at three flags each is important — it confirms that the mismatch is not
-    geographically confined and that large, economically more integrated states can also have ST
-    communities stuck in the education-livelihood gap. Education improves readiness to participate
-    in a formal economy, but it cannot create that economy where it does not structurally exist.
-  </p>
- 
-  <p>
-    <strong>Takeaway:</strong> Assam and Nagaland carry the most distress flags at four each, with
-    nine further states at three flags. The mismatch is not confined to the North-East — Maharashtra
-    and Odisha appear alongside smaller and more remote states. These states need labour market and
-    economic development interventions alongside education support.
-  </p>
-          </section>
-          <section id="q6">
-            <h3>Q6. Does MGNREG unmet demand reflect deeper livelihood distress among ST households?</h3>
+            <h3>Q5. Does MGNREG unmet demand reflect deeper livelihood distress among ST households?</h3>
 
             <p>
               This question examines whether MGNREG-related indicators reveal deeper livelihood
@@ -1500,7 +1409,7 @@
               linked with dropout, literacy, and poverty.
             </p>
 
-            <h4>Q6 interpretation</h4>
+            <h4>Q5 interpretation</h4>
 
             <p>
               Taken together, the Q6 results show that MGNREG unmet demand is a strong livelihood-distress
@@ -1531,8 +1440,8 @@
               tend to show higher dropout, lower literacy, and higher poverty.
             </p>
           </section>
-          <section id="q7">
-            <h3>Q7. Are scholarship-supported states seeing lower secondary dropout among ST students?</h3>
+          <section id="q6">
+            <h3>Q6. Are scholarship-supported states seeing lower secondary dropout among ST students?</h3>
           <p>
     This question tests whether states receiving higher ST scholarship funding are also the states
     with lower secondary dropout. The analysis uses scholarship release and utilization data from
@@ -1598,7 +1507,7 @@
     the poverty gap has not closed sufficiently to reverse the association in cross-sectional data.
   </p>
  
-  <h4>Q7 interpretation</h4>
+  <h4>Q6 interpretation</h4>
  
   <p>
     Across all three scatters, the scholarship data does not show a clean protective effect on dropout
@@ -1620,8 +1529,8 @@
     infrastructure — is insufficient.
   </p>
           </section>
-          <section id="q8">
-            <h3>Q8. Do states with high ST schooling participation still depend heavily on MGNREG?</h3>
+          <section id="q7">
+            <h3>Q7. Do states with high ST schooling participation still depend heavily on MGNREG?</h3>
 
             <p>
               This question tests whether stronger ST schooling participation is enough to reduce
@@ -1829,10 +1738,10 @@
               treated as separate issues.
             </p>
 
-            <h4>Q8 interpretation</h4>
+            <h4>Q7 interpretation</h4>
 
             <p>
-              The Q8 results show that high ST schooling participation does not automatically mean low
+              The Q7 results show that high ST schooling participation does not automatically mean low
               MGNREG dependence. Secondary GER has only weak relationships with average MGNREG days worked
               and unmet MGNREG demand. The only stronger GER-related result is with 100-plus-days employment,
               but that relationship is influenced by a few standout states and should not be interpreted
@@ -1859,8 +1768,8 @@
               dropout and unmet demand for work.
             </p>
           </section>
-          <section id="q9">
-            <h3>Q9. Does gender parity in enrolment translate into better female literacy and work outcomes?</h3>
+          <section id="q8">
+            <h3>Q8. Does gender parity in enrolment translate into better female literacy and work outcomes?</h3>
             <p>
     This question tests whether GPI values at the secondary level correspond to better outcomes for
     ST women: higher female literacy and stronger female WPR. The female WPR values here are NDAP
@@ -1925,7 +1834,7 @@
     and agricultural patterns — none of which are captured by enrolment.
   </p>
  
-  <h4>Q9 interpretation</h4>
+  <h4>Q8 interpretation</h4>
  
   <p>
     Across all three scatters, Jammu and Kashmir is the most important feature to understand. Its
@@ -1947,8 +1856,8 @@
     structure and informal economy composition. The two are decoupled in this data.
   </p>
           </section>
-          <section id="q10">
-            <h3>Q10. Does secondary dropout appear to be a stronger warning signal of poverty and weak labour outcomes than literacy alone?</h3>
+          <section id="q9">
+            <h3>Q9. Does secondary dropout appear to be a stronger warning signal of poverty and weak labour outcomes than literacy alone?</h3>
 
             <p>
               This question compares two education indicators as warning signals: ST literacy and
@@ -2071,10 +1980,10 @@
               demand is more useful than 100-plus-days employment for identifying livelihood distress.
             </p>
 
-            <h4>Q10 interpretation</h4>
+            <h4>Q9 interpretation</h4>
 
             <p>
-              Overall, Q10 shows that secondary dropout is a powerful warning signal, especially for
+              Overall, Q9 shows that secondary dropout is a powerful warning signal, especially for
               ST poverty. Dropout is also closely related to work participation and MGNREG unmet demand.
               This supports the idea that retention failure is more policy-relevant than literacy alone
               when the goal is to identify states facing deeper education-livelihood stress.
@@ -2100,8 +2009,8 @@
               best approach is to treat literacy as the foundation and dropout as the immediate alarm bell.
             </p>
           </section>
-          <section id="q11">
-            <h3>Q11. Do high-ST-share states systematically perform worse, or do outcomes vary substantially?</h3>
+          <section id="q10">
+            <h3>Q10. Do high-ST-share states systematically perform worse, or do outcomes vary substantially?</h3>
           <p>
     This question uses the full all-states sample rather than the high-ST subsample to test whether
     ST population concentration is a meaningful predictor of ST outcomes. ST share in total state
@@ -2160,7 +2069,7 @@
     states coincides with both higher literacy gaps and much higher poverty.
   </p>
  
-  <h4>Q11 interpretation</h4>
+  <h4>Q10 interpretation</h4>
  
   <p>
     The two scatters together dismantle the assumption that ST population concentration is a uniform
@@ -2187,8 +2096,8 @@
     as a uniform category will misdirect both diagnosis and resources.
   </p>
           </section>  
-          <section id="q12">
-            <h3>Q12. Do states with high concentrations of ST villages show different education and livelihood outcomes?</h3>
+          <section id="q11">
+            <h3>Q11. Do states with high concentrations of ST villages show different education and livelihood outcomes?</h3>
 
             <p>
               This question examines whether states with a higher concentration of Scheduled Tribe
@@ -2371,10 +2280,10 @@
               income, gender norms, and state capacity may all matter more directly.
             </p>
 
-            <h4>Q12 interpretation</h4>
+            <h4>Q11 interpretation</h4>
 
             <p>
-              Taken together, Q12 shows that ST village concentration is most useful as a livelihood-access
+              Taken together, Q11 shows that ST village concentration is most useful as a livelihood-access
               indicator, not as a direct education predictor. The strongest and most consistent relationship
               is with MGNREG unmet demand. This means that states with more concentrated ST settlements are
               more likely to report households seeking but not receiving work.
@@ -2403,8 +2312,8 @@
               outcomes require additional school-level and household-level explanations.
             </p>
           </section>
-          <section id="q13">
-            <h3>Q13. Are there gender-specific disadvantages hidden behind state averages?</h3>
+          <section id="q12">
+            <h3>Q12. Are there gender-specific disadvantages hidden behind state averages?</h3>
             <p>
     This question uses the constructed female literacy gap — the difference between male and female
     ST literacy within each state — to examine whether state-level averages conceal serious gendered
@@ -2457,7 +2366,7 @@
     Kashmir outlier. Without Jammu and Kashmir, the relationship would be flatter still.
   </p>
  
-  <h4>Q13 interpretation</h4>
+  <h4>Q12 interpretation</h4>
  
   <p>
     The most important finding in Q13 is in the bar chart rather than the scatter. The ranking
@@ -2470,7 +2379,7 @@
     been concentrated among men, leaving ST women far behind. The scatter against female WPR does
     not produce a meaningful or interpretable relationship, largely because the Jammu and Kashmir
     outlier and the agricultural labour composition of WPR distort the picture in the same way seen
-    across Q1 and Q9. The WPR indicator cannot be used to assess whether female literacy gaps are
+    across Q1 and Q8. The WPR indicator cannot be used to assess whether female literacy gaps are
     translating into genuine economic disadvantage in this dataset; it is measuring the wrong thing
     for that purpose.
   </p>
