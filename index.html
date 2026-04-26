@@ -165,51 +165,6 @@
             </div>
           </div>
 
-          <div class="schema-table-wrap">
-            <table class="schema-layer-table">
-              <caption>Aggregation layers used in the project database</caption>
-              <thead>
-                <tr>
-                  <th>Layer</th>
-                  <th>Tables</th>
-                  <th>Role in the analysis</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Demographic base</td>
-                  <td><code>demographics_st</code>, <code>high_st_share</code>, <code>sc_st_residence</code></td>
-                  <td>Defines ST population size, state-level ST concentration, and rural-urban residence context.</td>
-                </tr>
-                <tr>
-                  <td>Education pipeline</td>
-                  <td><code>literacy</code>, <code>low_literacy_districts</code>, <code>enrolment_st</code>, <code>dropout_st</code>, <code>ger_st</code>, <code>ger_st_gender_summary</code>, <code>ger_st_latest</code></td>
-                  <td>Tracks long-run literacy, current enrolment, GER, gender parity, and dropout across school stages.</td>
-                </tr>
-                <tr>
-                  <td>Livelihood and poverty</td>
-                  <td><code>employment_st</code>, <code>poverty_st</code>, <code>household_type_rural</code>, <code>mgnreg_st</code>, <code>mgnreg_st_dependency</code></td>
-                  <td>Connects education indicators to work participation, unemployment, poverty, rural household type, and MGNREG dependence.</td>
-                </tr>
-                <tr>
-                  <td>Programme support</td>
-                  <td><code>scholarships_st</code></td>
-                  <td>Captures pre-matric and post-matric scholarship release, utilization, and per-capita support.</td>
-                </tr>
-                <tr>
-                  <td>Settlement and community context</td>
-                  <td><code>tribal_villages</code>, <code>tribe_socioeconomic</code></td>
-                  <td>Adds ST-majority village concentration and tribe-level literacy, work, and population indicators.</td>
-                </tr>
-                <tr>
-                  <td>Analysis-ready marts</td>
-                  <td><code>state_analysis_dataset_all_states</code>, <code>state_analysis_dataset_high_st_states</code></td>
-                  <td>Combines the cleaned indicators into state-level datasets used for correlations, rankings, and policy-priority scoring.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
           <h3>Main Variables Used in the Analysis</h3>
 
           <p>
@@ -226,7 +181,6 @@
                 <tr>
                   <th>Question focus</th>
                   <th>Main variables</th>
-                  <th>Used for</th>
                 </tr>
               </thead>
               <tbody>
@@ -240,7 +194,6 @@
                     <code>tribe_weighted_literacy_total_pct</code>,
                     <code>tribe_weighted_literacy_female_pct</code>
                   </td>
-                  <td>Q1, Q4, Q10, and Q13 use these variables to identify accumulated educational disadvantage and gendered literacy gaps.</td>
                 </tr>
                 <tr>
                   <td>Schooling access and retention</td>
@@ -251,7 +204,6 @@
                     <code>ger_latest_ix_xii_avg</code>, <code>dropout_primary_pct</code>,
                     <code>dropout_upper_primary_pct</code>, <code>dropout_secondary_pct</code>
                   </td>
-                  <td>Q2 and Q3 test whether enrolment and GER capture educational progress, or whether dropout reveals a separate retention failure.</td>
                 </tr>
                 <tr>
                   <td>Gender parity and female outcomes</td>
@@ -262,7 +214,6 @@
                     <code>gpi_ix_xii_avg</code>, <code>employment_wpr_female_per_1000</code>,
                     <code>employment_lfpr_female_per_1000</code>
                   </td>
-                  <td>Q2, Q9, and Q13 examine whether girls' enrolment and gender parity correspond to female literacy and work participation.</td>
                 </tr>
                 <tr>
                   <td>Employment and labour-market outcomes</td>
@@ -274,19 +225,13 @@
                     <code>employment_wpr_female_per_1000</code>,
                     <code>tribe_weighted_wpr_pct</code>
                   </td>
-                  <td>Q1, Q5, Q10, Q11, and Q13 connect education indicators with work participation, labour-force participation, and unemployment.</td>
                 </tr>
                 <tr>
                   <td>Poverty and livelihood vulnerability</td>
                   <td>
                     <code>st_bpl_rural_pct</code>, <code>st_bpl_urban_pct</code>,
-                    <code>st_bpl_mean_pct</code>,
-                    <code>hh_self_employed_agriculture_pct</code>,
-                    <code>hh_regular_wage_salary_pct</code>,
-                    <code>hh_casual_labour_agriculture_pct</code>,
-                    <code>hh_casual_labour_non_agriculture_pct</code>
+                    <code>st_bpl_mean_pct</code>
                   </td>
-                  <td>Q2, Q5, Q6, Q10, and Q11 use these variables to test whether education gains align with lower poverty and more secure livelihoods.</td>
                 </tr>
                 <tr>
                   <td>MGNREG dependence and unmet demand</td>
@@ -298,7 +243,6 @@
                     <code>mgnreg_work_received_any_days_per_1000</code>,
                     <code>mgnreg_100_plus_share_of_work_received_pct</code>
                   </td>
-                  <td>Q6 and Q8 use these variables to identify livelihood distress and whether stronger schooling participation coexists with public-work dependence.</td>
                 </tr>
                 <tr>
                   <td>Scholarship support</td>
@@ -309,7 +253,6 @@
                     <code>scholarship_cumulative_utilized_lakh_per_100k_st_pop</code>,
                     <code>scholarship_cumulative_utilization_pct</code>
                   </td>
-                  <td>Q7 checks whether scholarship-supported states show lower secondary dropout or weaker poverty outcomes.</td>
                 </tr>
                 <tr>
                   <td>ST concentration and settlement geography</td>
@@ -321,18 +264,6 @@
                     <code>tribal_villages_gt_90_count</code>,
                     <code>tribal_villages_100_pct_count</code>
                   </td>
-                  <td>Q11 and Q12 test whether high-ST-share states or ST-concentrated village geographies show systematically different outcomes.</td>
-                </tr>
-                <tr>
-                  <td>Composite policy priority scores</td>
-                  <td>
-                    <code>education_disadvantage_score</code>,
-                    <code>economic_vulnerability_score</code>,
-                    <code>overall_priority_score</code>,
-                    <code>policy_priority_category</code>,
-                    <code>overall_priority_rank</code>
-                  </td>
-                  <td>These derived variables combine education and livelihood indicators to rank states for targeted policy attention.</td>
                 </tr>
               </tbody>
             </table>
@@ -437,11 +368,6 @@
                     <td>Combined state-level analysis dataset for all states.</td>
                   </tr>
                   <tr>
-                    <td><code>state_analysis_dataset_high_st_states</code></td>
-                    <td>200</td>
-                    <td>Combined state-level analysis dataset filtered to high-ST states.</td>
-                  </tr>
-                  <tr>
                     <td><code>tribal_villages</code></td>
                     <td>7</td>
                     <td>Counts of villages above ST population concentration thresholds.</td>
@@ -458,10 +384,6 @@
 
           <div class="schema-embed schema-file-link">
             <strong>Full column dictionary</strong>
-            <p>
-              The complete schema report is kept as a separate CSV so the page does not
-              block while trying to render 618 column definitions inline.
-            </p>
             <a href="database_schema_report.csv">Open database_schema_report.csv</a>
           </div>
         </section>

@@ -303,7 +303,6 @@ caption {
 }
 
 .analysis-variable-table td:first-child,
-.schema-layer-table td:first-child,
 .schema-summary-table td:nth-child(2) {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
