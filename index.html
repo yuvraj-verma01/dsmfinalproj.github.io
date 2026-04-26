@@ -18,6 +18,7 @@
       <nav aria-label="Article sections">
         <a href="#introduction">Introduction</a>
         <a href="#problem-statement">Problem Statement</a>
+        <a href="#data-aggregation">Data Aggregation</a>
         <a href="#analysis-results">Analysis & Results</a>
         <a href="#recommendations">Recommendations</a>
         <a href="#limitations">Limitations</a>
@@ -96,10 +97,31 @@
           <h2>Problem Statement</h2>
 
           <p>
-            The main problem addressed in this project is that better educational access
-            does not always lead to better economic outcomes for Scheduled Tribe populations.
-            States may show improvement in enrolment or literacy, but still face high dropout,
-            poverty, weak employment outcomes, or dependence on public employment schemes.
+            India's education policy for Scheduled Tribes has largely been framed around
+            access: getting ST children into school, expanding enrolment, and closing the
+            literacy gap with the general population. These are meaningful goals, and the
+            investments made toward them are visible in rising gross enrolment ratio figures
+            and improving average literacy rates across many high-ST states. The problem is
+            that access-focused metrics can look encouraging while deeper failures, like
+            students dropping out before secondary completion, women being left behind within
+            the ST population itself, educated young people entering labour markets that
+            cannot absorb them, etc. remain undetected. When education policy is evaluated
+            primarily through enrolment indicators, the system can appear to be working even
+            as the people it is meant to serve remain in poverty or without stable livelihoods.
+          </p>
+
+          <p>
+            This matters because the policy stakes are high. Scholarship funding, residential
+            schooling, and centrally sponsored tribal education schemes represent substantial
+            public investment. If that investment is being concentrated in states where
+            enrolment is strong but dropout is also high, or in states where education
+            outcomes have improved but labour markets are too thin to absorb graduates, then
+            the design of interventions needs to be revisited. Similarly, if MGNREG dependence
+            and livelihood distress are clustering in the same states as secondary dropout and
+            weak literacy then treating education and livelihood policy as separate domains
+            will systematically underestimate the scale of the problem. Scheduled Tribes in
+            several states are caught in an overlapping set of disadvantages that no
+            single-sector intervention can address.
           </p>
 
           <p>
@@ -107,9 +129,341 @@
           </p>
 
           <blockquote>
-            How do educational outcomes among Scheduled Tribe populations relate to
-            employment, poverty, and livelihood distress across high-ST states in India?
+            How do differences in educational outcomes among Scheduled Tribe populations
+            relate to employment and poverty across states with high population of Scheduled
+            Tribes in India?
           </blockquote>
+        </section>
+
+        <section id="data-aggregation">
+          <h2>Data Aggregation and Schema</h2>
+
+          <p>
+            The analysis is built from a state-level database that aggregates education,
+            demographic, employment, poverty, public-work, scholarship, household, village,
+            and tribe-level indicators. The purpose of the aggregation is to convert separate
+            administrative and survey datasets into a common analytical structure where each
+            state can be compared across schooling outcomes and livelihood conditions.
+          </p>
+
+          <p>
+            The schema keeps the raw indicator tables separate from the final analysis-ready
+            tables. This matters because the source indicators do not all measure the same
+            population, year, gender category, residence category, or education stage. Keeping
+            those fields visible in the schema reduces the risk of treating unlike indicators
+            as directly comparable without checking their definitions.
+          </p>
+
+          <div class="schema-metrics" aria-label="Database schema summary">
+            <div>
+              <strong>20</strong>
+              <span>tables</span>
+            </div>
+            <div>
+              <strong>200</strong>
+              <span>final dataset columns</span>
+            </div>
+          </div>
+
+          <div class="schema-table-wrap">
+            <table class="schema-layer-table">
+              <caption>Aggregation layers used in the project database</caption>
+              <thead>
+                <tr>
+                  <th>Layer</th>
+                  <th>Tables</th>
+                  <th>Role in the analysis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Demographic base</td>
+                  <td><code>demographics_st</code>, <code>high_st_share</code>, <code>sc_st_residence</code></td>
+                  <td>Defines ST population size, state-level ST concentration, and rural-urban residence context.</td>
+                </tr>
+                <tr>
+                  <td>Education pipeline</td>
+                  <td><code>literacy</code>, <code>low_literacy_districts</code>, <code>enrolment_st</code>, <code>dropout_st</code>, <code>ger_st</code>, <code>ger_st_gender_summary</code>, <code>ger_st_latest</code></td>
+                  <td>Tracks long-run literacy, current enrolment, GER, gender parity, and dropout across school stages.</td>
+                </tr>
+                <tr>
+                  <td>Livelihood and poverty</td>
+                  <td><code>employment_st</code>, <code>poverty_st</code>, <code>household_type_rural</code>, <code>mgnreg_st</code>, <code>mgnreg_st_dependency</code></td>
+                  <td>Connects education indicators to work participation, unemployment, poverty, rural household type, and MGNREG dependence.</td>
+                </tr>
+                <tr>
+                  <td>Programme support</td>
+                  <td><code>scholarships_st</code></td>
+                  <td>Captures pre-matric and post-matric scholarship release, utilization, and per-capita support.</td>
+                </tr>
+                <tr>
+                  <td>Settlement and community context</td>
+                  <td><code>tribal_villages</code>, <code>tribe_socioeconomic</code></td>
+                  <td>Adds ST-majority village concentration and tribe-level literacy, work, and population indicators.</td>
+                </tr>
+                <tr>
+                  <td>Analysis-ready marts</td>
+                  <td><code>state_analysis_dataset_all_states</code>, <code>state_analysis_dataset_high_st_states</code></td>
+                  <td>Combines the cleaned indicators into state-level datasets used for correlations, rankings, and policy-priority scoring.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Main Variables Used in the Analysis</h3>
+
+          <p>
+            The full database contains many supporting columns, but the project questions
+            mainly use a smaller set of analytical variables. These are the variables that
+            connect schooling access, retention, gender gaps, poverty, employment, public
+            work demand, scholarships, and ST settlement patterns.
+          </p>
+
+          <div class="schema-table-wrap">
+            <table class="analysis-variable-table">
+              <caption>Core variables mapped to the analysis questions</caption>
+              <thead>
+                <tr>
+                  <th>Question focus</th>
+                  <th>Main variables</th>
+                  <th>Used for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Literacy and long-term exclusion</td>
+                  <td>
+                    <code>st_literacy_rate_pct</code>, <code>literacy_gap_pct</code>,
+                    <code>low_literacy_district_count</code>,
+                    <code>low_literacy_female_min_pct</code>,
+                    <code>low_literacy_female_mean_pct</code>,
+                    <code>tribe_weighted_literacy_total_pct</code>,
+                    <code>tribe_weighted_literacy_female_pct</code>
+                  </td>
+                  <td>Q1, Q4, Q10, and Q13 use these variables to identify accumulated educational disadvantage and gendered literacy gaps.</td>
+                </tr>
+                <tr>
+                  <td>Schooling access and retention</td>
+                  <td>
+                    <code>primary_total</code>, <code>upper_primary_total</code>,
+                    <code>ger_classes_i_viii</code>, <code>ger_classes_ix_x</code>,
+                    <code>ger_classes_ix_xii</code>, <code>ger_latest_secondary_total</code>,
+                    <code>ger_latest_ix_xii_avg</code>, <code>dropout_primary_pct</code>,
+                    <code>dropout_upper_primary_pct</code>, <code>dropout_secondary_pct</code>
+                  </td>
+                  <td>Q2 and Q3 test whether enrolment and GER capture educational progress, or whether dropout reveals a separate retention failure.</td>
+                </tr>
+                <tr>
+                  <td>Gender parity and female outcomes</td>
+                  <td>
+                    <code>ger_classes_ix_x_girls</code>, <code>ger_latest_ix_xii_avg_girls</code>,
+                    <code>ger_classes_i_viii_gpi</code>, <code>ger_classes_ix_x_gpi</code>,
+                    <code>ger_classes_ix_xii_gpi</code>, <code>gpi_secondary</code>,
+                    <code>gpi_ix_xii_avg</code>, <code>employment_wpr_female_per_1000</code>,
+                    <code>employment_lfpr_female_per_1000</code>
+                  </td>
+                  <td>Q2, Q9, and Q13 examine whether girls' enrolment and gender parity correspond to female literacy and work participation.</td>
+                </tr>
+                <tr>
+                  <td>Employment and labour-market outcomes</td>
+                  <td>
+                    <code>employment_lfpr_person_per_1000</code>,
+                    <code>employment_wpr_person_per_1000</code>,
+                    <code>employment_pu_person_per_1000</code>,
+                    <code>employment_wpr_male_per_1000</code>,
+                    <code>employment_wpr_female_per_1000</code>,
+                    <code>tribe_weighted_wpr_pct</code>
+                  </td>
+                  <td>Q1, Q5, Q10, Q11, and Q13 connect education indicators with work participation, labour-force participation, and unemployment.</td>
+                </tr>
+                <tr>
+                  <td>Poverty and livelihood vulnerability</td>
+                  <td>
+                    <code>st_bpl_rural_pct</code>, <code>st_bpl_urban_pct</code>,
+                    <code>st_bpl_mean_pct</code>,
+                    <code>hh_self_employed_agriculture_pct</code>,
+                    <code>hh_regular_wage_salary_pct</code>,
+                    <code>hh_casual_labour_agriculture_pct</code>,
+                    <code>hh_casual_labour_non_agriculture_pct</code>
+                  </td>
+                  <td>Q2, Q5, Q6, Q10, and Q11 use these variables to test whether education gains align with lower poverty and more secure livelihoods.</td>
+                </tr>
+                <tr>
+                  <td>MGNREG dependence and unmet demand</td>
+                  <td>
+                    <code>mgnreg_job_card_households_per_1000</code>,
+                    <code>mgnreg_sought_not_received_per_1000</code>,
+                    <code>mgnreg_average_days_worked</code>,
+                    <code>mgnreg_work_100_plus_days_per_1000</code>,
+                    <code>mgnreg_work_received_any_days_per_1000</code>,
+                    <code>mgnreg_100_plus_share_of_work_received_pct</code>
+                  </td>
+                  <td>Q6 and Q8 use these variables to identify livelihood distress and whether stronger schooling participation coexists with public-work dependence.</td>
+                </tr>
+                <tr>
+                  <td>Scholarship support</td>
+                  <td>
+                    <code>scholarship_total_release_2023_24_lakh_per_100k_st_pop</code>,
+                    <code>scholarship_total_utilized_2023_24_lakh_per_100k_st_pop</code>,
+                    <code>scholarship_cumulative_release_lakh_per_100k_st_pop</code>,
+                    <code>scholarship_cumulative_utilized_lakh_per_100k_st_pop</code>,
+                    <code>scholarship_cumulative_utilization_pct</code>
+                  </td>
+                  <td>Q7 checks whether scholarship-supported states show lower secondary dropout or weaker poverty outcomes.</td>
+                </tr>
+                <tr>
+                  <td>ST concentration and settlement geography</td>
+                  <td>
+                    <code>st_population</code>, <code>st_share_state_population_pct</code>,
+                    <code>state_share_india_st_population_pct</code>,
+                    <code>is_high_st_share_state</code>, <code>tribal_villages_gt_50_count</code>,
+                    <code>tribal_villages_gt_75_count</code>,
+                    <code>tribal_villages_gt_90_count</code>,
+                    <code>tribal_villages_100_pct_count</code>
+                  </td>
+                  <td>Q11 and Q12 test whether high-ST-share states or ST-concentrated village geographies show systematically different outcomes.</td>
+                </tr>
+                <tr>
+                  <td>Composite policy priority scores</td>
+                  <td>
+                    <code>education_disadvantage_score</code>,
+                    <code>economic_vulnerability_score</code>,
+                    <code>overall_priority_score</code>,
+                    <code>policy_priority_category</code>,
+                    <code>overall_priority_rank</code>
+                  </td>
+                  <td>These derived variables combine education and livelihood indicators to rank states for targeted policy attention.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <details class="schema-embed">
+            <summary>Table-level schema summary from database_schema_report.csv</summary>
+
+            <div class="schema-table-wrap">
+              <table class="schema-summary-table">
+                <thead>
+                  <tr>
+                    <th>Table name</th>
+                    <th>Columns</th>
+                    <th>Main analytical use</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>demographics_st</code></td>
+                    <td>9</td>
+                    <td>ST population, state population share, and decadal growth.</td>
+                  </tr>
+                  <tr>
+                    <td><code>dropout_st</code></td>
+                    <td>5</td>
+                    <td>Primary, upper-primary, and secondary dropout rates.</td>
+                  </tr>
+                  <tr>
+                    <td><code>employment_st</code></td>
+                    <td>7</td>
+                    <td>Gendered labour-force, worker-population, and unemployment indicators.</td>
+                  </tr>
+                  <tr>
+                    <td><code>enrolment_st</code></td>
+                    <td>14</td>
+                    <td>Pre-primary, primary, and upper-primary enrolment by gender.</td>
+                  </tr>
+                  <tr>
+                    <td><code>ger_st</code></td>
+                    <td>7</td>
+                    <td>Gross enrolment ratios by gender and class group.</td>
+                  </tr>
+                  <tr>
+                    <td><code>ger_st_gender_summary</code></td>
+                    <td>26</td>
+                    <td>GER and GPI summaries across class groups.</td>
+                  </tr>
+                  <tr>
+                    <td><code>ger_st_latest</code></td>
+                    <td>27</td>
+                    <td>Latest GER values and GPI indicators for comparison across states.</td>
+                  </tr>
+                  <tr>
+                    <td><code>high_st_share</code></td>
+                    <td>5</td>
+                    <td>High-ST state classification and ST concentration.</td>
+                  </tr>
+                  <tr>
+                    <td><code>household_type_rural</code></td>
+                    <td>10</td>
+                    <td>Rural household livelihood categories and sample size.</td>
+                  </tr>
+                  <tr>
+                    <td><code>literacy</code></td>
+                    <td>6</td>
+                    <td>Total literacy, ST literacy, and literacy gaps.</td>
+                  </tr>
+                  <tr>
+                    <td><code>low_literacy_districts</code></td>
+                    <td>6</td>
+                    <td>District-level low-literacy signals, including female literacy.</td>
+                  </tr>
+                  <tr>
+                    <td><code>mgnreg_st</code></td>
+                    <td>13</td>
+                    <td>MGNREG job cards, days worked, unmet demand, and seeking status.</td>
+                  </tr>
+                  <tr>
+                    <td><code>mgnreg_st_dependency</code></td>
+                    <td>12</td>
+                    <td>Derived MGNREG dependence and work-received indicators.</td>
+                  </tr>
+                  <tr>
+                    <td><code>poverty_st</code></td>
+                    <td>4</td>
+                    <td>ST poverty by state and residence type.</td>
+                  </tr>
+                  <tr>
+                    <td><code>sc_st_residence</code></td>
+                    <td>6</td>
+                    <td>SC and ST population split by residence type.</td>
+                  </tr>
+                  <tr>
+                    <td><code>scholarships_st</code></td>
+                    <td>39</td>
+                    <td>Scholarship releases, utilization, cumulative support, and per-capita measures.</td>
+                  </tr>
+                  <tr>
+                    <td><code>state_analysis_dataset_all_states</code></td>
+                    <td>200</td>
+                    <td>Combined state-level analysis dataset for all states.</td>
+                  </tr>
+                  <tr>
+                    <td><code>state_analysis_dataset_high_st_states</code></td>
+                    <td>200</td>
+                    <td>Combined state-level analysis dataset filtered to high-ST states.</td>
+                  </tr>
+                  <tr>
+                    <td><code>tribal_villages</code></td>
+                    <td>7</td>
+                    <td>Counts of villages above ST population concentration thresholds.</td>
+                  </tr>
+                  <tr>
+                    <td><code>tribe_socioeconomic</code></td>
+                    <td>15</td>
+                    <td>Tribe-level population, literacy, sex ratio, and work indicators.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <div class="schema-embed schema-file-link">
+            <strong>Full column dictionary</strong>
+            <p>
+              The complete schema report is kept as a separate CSV so the page does not
+              block while trying to render 618 column definitions inline.
+            </p>
+            <a href="database_schema_report.csv">Open database_schema_report.csv</a>
+          </div>
         </section>
 
         <section id="analysis-results">
@@ -261,9 +615,11 @@
               This does not mean that schooling causes poverty. Instead, it shows that GER should not
               be interpreted as a welfare indicator by itself. GER is a gross enrolment measure, so it
               can be high because of over-age enrolment, delayed progression, repeat enrolment, late
-              entry into school, or targeted schooling expansion in poorer regions. In other words, a
+              entry into school, or school access expansion in poorer regions. In other words, a
               state can have many students enrolled while still struggling with poverty, poor progression,
-              and weak livelihood outcomes.
+              and weak livelihood outcomes. This is because poverty also depends on many factors outside schooling, such as the availability of jobs,
+              local labour-market conditions, rural livelihoods, infrastructure, migration, land access,
+              and state capacity.
             </p>
 
             <p>
@@ -391,18 +747,35 @@
             </figure>
 
             <p>
-              The gender parity result needs careful interpretation. A higher GPI means that girls’
-              enrolment is closer to, or sometimes higher than, boys’ enrolment. However, the graph shows
-              that higher secondary GPI can coexist with higher ST poverty. This does not mean that gender
-              parity causes poverty. Rather, it shows that gender parity in enrolment is not the same as
-              economic empowerment.
+              The gender parity result needs careful interpretation. A higher GPI means that girls'
+              enrolment is closer to, or sometimes higher than, boys' enrolment. However, the graph
+              shows that higher secondary GPI can coexist with higher ST poverty. This does not mean
+              that gender parity causes poverty. Rather, it shows that gender parity in enrolment is
+              not the same as economic empowerment.
             </p>
 
             <p>
-              A state can have gender-balanced enrolment and still face high ST poverty if overall
-              education quality is weak, labour markets are limited, school completion is poor, or
-              education does not translate into work opportunities. GPI is therefore useful, but it should
-              be read alongside actual enrolment levels, dropout, poverty, and employment indicators.
+              A state can have gender-balanced schooling and still face high ST poverty if education
+              does not translate into secure work. Girls may be enrolled in school but still face
+              barriers after schooling, such as early marriage, restrictions on mobility, unpaid care
+              work, limited access to paid employment, or social norms that discourage women from
+              joining the labour force. Therefore, equal enrolment does not automatically mean equal
+              labour-market participation.
+            </p>
+
+            <p>
+              The labour-market side also matters. Even if girls and boys both complete school, the
+              state may not have enough jobs overall, or the available jobs may not be accessible to
+              ST communities and women. Weak local labour markets, poor transport, low industrial
+              development, discrimination, and lack of suitable work can prevent schooling gains from
+              becoming income gains.
+            </p>
+
+            <p>
+              GPI is therefore useful, but incomplete. It should be read alongside actual enrolment
+              levels, dropout, completion, female work participation, poverty, and employment indicators.
+              The key point is that parity in school access is only one stage of empowerment; it does
+              not guarantee equal outcomes after school.
             </p>
 
             <figure>
