@@ -142,6 +142,7 @@ h1 {
 
 section {
   margin: 42px 0;
+  scroll-margin-top: 82px;
 }
 
 h2 {
@@ -211,6 +212,58 @@ blockquote {
 
 .claims li {
   margin-bottom: 16px;
+}
+
+.finding-group {
+  margin: 28px 0;
+}
+
+.finding-group h3 {
+  margin-bottom: 12px;
+}
+
+.key-findings-list {
+  padding-left: 24px;
+}
+
+.key-findings-list li {
+  margin-bottom: 16px;
+}
+
+.question-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 20px 0 34px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.question-nav a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px 12px;
+  border: 1px solid var(--faint);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.question-nav a:hover {
+  border-color: #cfc7ba;
+  text-decoration: none;
+}
+
+.question-nav strong {
+  color: var(--accent-dark);
+  font-size: 14px;
+}
+
+.question-nav span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.35;
 }
 
 figure {
@@ -405,6 +458,10 @@ code {
   }
 
   .schema-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .question-nav {
     grid-template-columns: 1fr;
   }
 
